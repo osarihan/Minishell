@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/07 12:00:08 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:59:59 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 int	ft_cd(char *str)
 {
 	char *tmp;
+	int	i;
 
-	if (str)
+	str = str + 3;
+	if (ft_strcmp(str, "..") == 1)
 	{
-		tmp = getenv("PWD");
-		chdir("./");
-		tmp = getenv("PWD");
+		tmp = getenv("OLDPATH");
+		i = chdir(tmp);
+		//tmp = getenv("PWD");
+		//printf("%s\n", tmp);
+	}
+	else
+	{
+		tmp = getenv(ft_strjoin("/", str));
+		i = chdir(tmp);
 		printf("%s\n", tmp);
 	}
-	//if (ft_strcmp(str, "cd .."))
-	//{
-	//	return(0);
-	//}
-	//if (str)
-	//	return(1);
 	return(1);
 }
 
@@ -63,4 +65,20 @@ int	ft_pwd()
 	tmp = getenv("PWD");
 	printf("%s\n", tmp);
 	return(1);	
+}
+
+int ft_env(void)
+{
+	int i;
+	extern char **environ;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
+	return (1);
 }

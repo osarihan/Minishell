@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmnds2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/07 16:12:55 by osarihan         ###   ########.fr       */
+/*   Created: 2022/10/07 16:00:08 by osarihan          #+#    #+#             */
+/*   Updated: 2022/10/07 16:10:24 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	ft_export(char *str)
 {
-	char *asd;
-	char *name = NULL;
-	printf("|----------------|Minishell|-----------------|\n");
-	
-	name = get_name(name);
-	while (1)
-	{
-		asd = readline(name);
-		if (check_cmnd(asd))
-		{
-			continue;
-		}
-		else
-			printf("%s: command not found.\n", asd);
-	}
+	str += 7;
+	if (str)
+		return(1);
 	return(1);
 }

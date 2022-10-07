@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/07 11:49:44 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:17:09 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int	check_cmnd(char *str)
 		ft_pwd(str);
 	else if (ft_strcmp(str, "exit"))
 		exit(0);
+	else if (ft_strcmp(str, "env"))
+		ft_env();
+	else if (ft_strcmp(str , "export"))
+		ft_export(str);
 	else
 		return(0);
 	return (1);
