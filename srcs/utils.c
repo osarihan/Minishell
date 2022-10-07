@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:25:04 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:49:44 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ int	check_cmnd(char *str)
 {
 	if (ft_strcmp(str, "cd"))
 		ft_cd(str);
-	if (ft_strcmp(str, "ls"))
+	else if (ft_strcmp(str, "ls"))
 		ft_ls(str);
-	if (ft_strcmp(str, "echo"))
+	else if (ft_strcmp(str, "echo"))
 		ft_echo(str);
+	else if (ft_strcmp(str, "pwd"))
+		ft_pwd(str);
+	else if (ft_strcmp(str, "exit"))
+		exit(0);
 	else
 		return(0);
 	return (1);

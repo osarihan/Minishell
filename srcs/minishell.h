@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:19:49 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:40:19 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ char	*get_name(char *name);
 int	ft_ls(char *str);
 int	ft_cd(char *str);
 int	ft_echo(char *str);
+int	ft_pwd(char *str);
 #endif

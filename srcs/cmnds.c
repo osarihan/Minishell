@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:29:46 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 12:00:08 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ int	ft_cd(char *str)
 {
 	char *tmp;
 
-	tmp = getenv("PWD");
-	printf("%s\n", tmp);
-	if (ft_strcmp(str, "cd .."))
-	{
-		return(0);
-	}
 	if (str)
-		return(1);
+	{
+		tmp = getenv("PWD");
+		chdir("./");
+		tmp = getenv("PWD");
+		printf("%s\n", tmp);
+	}
+	//if (ft_strcmp(str, "cd .."))
+	//{
+	//	return(0);
+	//}
+	//if (str)
+	//	return(1);
 	return(1);
 }
 
@@ -49,4 +54,13 @@ int	ft_echo(char *str)
 			printf("%s\n", str);
 	}
 	return(1);
+}
+
+int	ft_pwd()
+{
+	char *tmp;
+
+	tmp = getenv("PWD");
+	printf("%s\n", tmp);
+	return(1);	
 }
