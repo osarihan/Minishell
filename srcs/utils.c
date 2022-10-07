@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/07 16:17:09 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:36:09 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ char	*get_name(char *name)
 
 int	check_cmnd(char *str)
 {
+	if (*str == 39 || *str == 34)
+	{
+		if (*str == 39)
+			str = ft_maqas(str, 39);
+		else
+			str = ft_maqas(str, 34);
+	}
+//printf("%s\n", str);
 	if (ft_strcmp(str, "cd"))
 		ft_cd(str);
 	else if (ft_strcmp(str, "ls"))

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/07 16:10:10 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:26:53 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_echo(char *str);
 int	ft_pwd();
 int ft_env(void);
 int	ft_export(char *str);
+char	*ft_maqas(char const *s1, char const set);
 typedef struct s_shell
 {
 	
