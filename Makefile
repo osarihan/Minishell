@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 SRCS = srcs/*.c libft/*.c
 LIBS = readline/lib
 INCLUDES = readline/include
@@ -8,7 +8,7 @@ INCLUDES = readline/include
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(CFLAGS) $(SRCS) -lreadline -o $(NAME)
+	@$(CC) $(SRCS) -I /Users/oozcan/goinfre/homebrew/opt/readline/include -L /Users/oozcan/goinfre/homebrew/opt/readline/lib -lreadline -o $(NAME)
 
 re: fclean all
 
