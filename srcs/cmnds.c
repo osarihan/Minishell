@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 16:55:16 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:23:53 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void	ft_pwd(void)
 		perror("");
 }
 
-void	ft_cd(t_shell *shell, int i)
+void	ft_cd(char **arg, int i)
 {
 	char *str = NULL;
 
-	if (shell->str[i + 1] != NULL)
+	if (arg[i + 1] != NULL)
 	{
 		str = ft_strjoin(getcwd(str, sizeof(str)), "/");
 		i++;
-		if (!shell->str[i])
+		if (!arg[i])
 			return ;
-		str = ft_strjoin(str, shell->str[i]);
+		str = ft_strjoin(str, arg[i]);
 		chdir(str);
 	}
 	else
@@ -72,32 +72,21 @@ void	ft_cd(t_shell *shell, int i)
 	}
 }
 
-int	 ft_echo(t_shell *shell, int i)
+void	 ft_echo(char **str, int i)
 {
-	if (ft_strcmp(shell->str[i], "-n"))
-	{
-		i++;
-		while (shell->str[i])
-		{
-			printf("%s", shell->str[i]);
-			if (shell->str[i + 1] != NULL)
-				printf(" ");
-			i++;
-		}
-	}
+	printf("echoya girdim\n");
+	if (str[i + 1] == NULL)
+		printf("\n");
 	else
 	{
-		//while (shell->str[i] != '\0' && ft_strcmp(shell->str[i], shell->op[0]) == 0)
-		while (shell->str[i] != NULL)
-		{
-			printf("%s", shell->str[i]);
-			if (shell->str[i + 1] != NULL)
-				printf(" ");
-			i++;
-		}
-		printf("\n");
+		i++;
+		if (ft_strcmp(str[i], "-n") && str[i + 1] == NULL)
+			return ;
+		if (ft_strcmp(str[i], "-n") && str[i + 1] != NULL)
+			printf("%s", str[i + 1]);
+		else
+			printf("%s\n", str[i]);
 	}
-	return (1);
 }
 
 

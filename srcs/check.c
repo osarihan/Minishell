@@ -1,22 +1,5 @@
 #include "minishell.h"
 
-int	op_counter(char **str)
-{
-	int	i = 0;
-	int	total = 0;
-
-	while (str[i])
-	{
-		if ((ft_strchr(str[i], '&') && ft_strlen(str[i]) == 1) \
-						|| (ft_strchr(str[i], '|') && ft_strlen(str[i]) == 1))
-		{
-			total++;
-		}
-		i++;
-	}
-	return (total);
-}
-
 void	pipe_counter(t_shell *shell)
 {
 	int i;

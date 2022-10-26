@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 18:19:36 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/26 17:43:19 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char **argv, char **env)
 	char *name = NULL;
 	int i = 0;
 
-	int fd[2];
 	printf("|----------------|Minishell|-----------------|\n");
 
 	shell = malloc(sizeof(t_shell *));
@@ -82,7 +81,6 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
 	name = get_name(name);
-	shell->name = name;
 	while (1)
 	{
 		asd = readline(name);
@@ -99,11 +97,15 @@ int	main(int argc, char **argv, char **env)
 		shell->str = ft_split(asd, ' ');
 		shell->str_pipe = ft_split(asd, '|');
 		pipe_counter(shell);
-		shell_pipe_dup2(shell);
-		if (check_cmnd(shell, i))
-			continue;
+		if (shell->pipe > 0)
+			shell_pipe_dup2(shell);
 		else
-			printf("%s: command not found.\n", asd);
+		{
+			if (check_cmnd(shell, i))
+				continue;
+			else
+				printf("%s: command not found.\n", asd);
+		}
 		free(asd);
 	}
 	return(1);

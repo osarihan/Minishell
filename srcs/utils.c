@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 18:40:04 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:47:58 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ char	*get_name(char *name)
 
 int	check_cmnd(t_shell *shell, int i)
 {
-	//shell->str[i] = to_lower(shell->str[i]);
+	if (!ft_strcmp(shell->str[i], "CD"))
+		shell->str[i] = to_lower(shell->str[i]);
 	if (ft_strcmp(shell->str[i], "cd"))
-		ft_cd(shell, i);
+		ft_cd(shell->str, i);
+	else if (ft_strcmp(shell->str[i], "echo"))
+		ft_echo(shell->str, i);
 	else if (ft_strcmp(shell->str[i], "pwd") || \
 					ft_strcmp(shell->str[i], "PWD"))
 		ft_pwd();
@@ -34,10 +37,7 @@ int	check_cmnd(t_shell *shell, int i)
 	else if (other_cmnds(shell->str))
 		return (1);
 	else
-	{
-		i++;
 		return (0);
-	}
 	return (1);
 }
 
@@ -50,7 +50,6 @@ char *to_lower(char *str)
 	{
 		if (str[i] >= 'A' && str[i] <= 'Z')
 			str[i] += 32;
-		printf("%c", str[i]);
 		i++;
 	}
 	return (str);

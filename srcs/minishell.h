@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 17:14:22 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:24:03 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ typedef struct s_shell
 	char 	**str;
 	char	**str_pipe;
 	char	**op;
-	char	**cmd;
 
 	int	pipe;
-	int	id;
+	int	*pid;
 	char *name;
 }	t_shell;
 
@@ -50,8 +49,8 @@ int		other_cmnds(char **arg);
 int		op_check(char **str, t_shell *shell);
 int		ft_strcmp(char *asd, char *sda);
 char	*get_name(char *name);
-void	ft_cd(t_shell *shell, int i);
-int		ft_echo(t_shell *shell, int i);
+void	ft_cd(char **arg, int i);
+void	 ft_echo(char **str, int i);
 void	ft_pwd(void);
 int 	ft_env(void);
 int		ft_export(char *str);
