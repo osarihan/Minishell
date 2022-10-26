@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 18:19:36 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/24 13:12:11 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char **argv, char **env)
 	char *name = NULL;
 	int i = 0;
 
-	int fd[2];
 	printf("|----------------|Minishell|-----------------|\n");
 
 	shell = malloc(sizeof(t_shell *));
@@ -100,10 +99,20 @@ int	main(int argc, char **argv, char **env)
 		shell->str_pipe = ft_split(asd, '|');
 		pipe_counter(shell);
 		shell_pipe_dup2(shell);
-		if (check_cmnd(shell, i))
-			continue;
-		else
+		if (shell->pipe != 0)
+		{
+			if (check_cmnd_pipe(shell, i))
+				continue;
+			else
 			printf("%s: command not found.\n", asd);
+		}
+		else
+		{
+			if (check_cmnd(shell, i))
+				continue;
+			else
+			printf("%s: command not found.\n", asd);
+		}
 		free(asd);
 	}
 	return(1);

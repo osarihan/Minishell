@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 17:14:22 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/24 13:51:52 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int 	ft_env(void);
 int		ft_export(char *str);
 void	pipe_counter(t_shell *shell);
 void	shell_pipe_dup2(t_shell *shell);
-
+int	check_cmnd_pipe(t_shell *shell, int i);
 
 #endif

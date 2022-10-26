@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/23 18:40:04 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/25 14:12:12 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_name(char *name)
 
 int	check_cmnd(t_shell *shell, int i)
 {
-	//shell->str[i] = to_lower(shell->str[i]);
+	shell->str[i] = to_lower(shell->str[i]);
 	if (ft_strcmp(shell->str[i], "cd"))
 		ft_cd(shell, i);
 	else if (ft_strcmp(shell->str[i], "pwd") || \
@@ -32,6 +32,28 @@ int	check_cmnd(t_shell *shell, int i)
 	else if (ft_strcmp(shell->str[i], "exit"))
 		exit(0);
 	else if (other_cmnds(shell->str))
+		return (1);
+	else
+	{
+		i++;
+		return (0);
+	}
+	return (1);
+}
+
+int	check_cmnd_pipe(t_shell *shell, int i)
+{
+	shell->str_pipe[i] = to_lower(shell->str_pipe[i]);
+	if (ft_strcmp(shell->str_pipe[i], "cd"))
+		ft_cd(shell, i);
+	else if (ft_strcmp(shell->str_pipe[i], "pwd") || \
+					ft_strcmp(shell->str_pipe[i], "PWD"))
+		ft_pwd();
+	else if (ft_strcmp(shell->str_pipe[i], "env"))
+		ft_env();
+	else if (ft_strcmp(shell->str_pipe[i], "exit"))
+		exit(0);
+	else if (other_cmnds(shell->str_pipe))
 		return (1);
 	else
 	{
