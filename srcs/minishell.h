@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/26 13:24:03 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:40:31 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ typedef struct s_shell
 {
 	char 	**str;
 	char	**str_pipe;
-	char	**op;
+	//char	**op;
 
 	int	pipe;
 	int	*pid;
-	char *name;
 }	t_shell;
 
 char *to_lower(char *str);

@@ -1,35 +1,5 @@
 #include "minishell.h"
 
-// void	multi_close(int **fd, int len)
-// {
-// 	int i = 0;
-// 	while (i < len)
-// 	{
-// 		close(fd[i][0]);
-// 		close(fd[i][1]);
-// 	}
-// }
-void    multiple_close(int **fd, int len)
-{
-    int i;
-    int j;
-    i = 0;
-    j = 0;
-    while (i < len)
-    {
-        if (j == 2)
-        {
-            j = 0;
-            i++;
-            if (i == len)
-                break ;
-        }
-        if (close(fd[i][j]) < 0)
-            perror("close ");
-        j++;
-    }
-}
-
 int	job(char **arg, int i)
 {
 	arg[i] = to_lower(arg[i]);
@@ -64,35 +34,10 @@ void	check_cmnd2(char *arg, int i)
 	i++;
 }
 
-void	multiple_pid(int *pid, int len)
+void	create_pipe(t_shell *shell, int **fd)
 {
-	int	status;
-	int	i = 0;
-	while (i < len)
-	{
-		waitpid(pid[i], &status, 0);
-		i++;
-	}
-}
+	int	i;
 
-void	shell_pipe_dup2(t_shell *shell)
-{
-	int	len;
-	int	i = 0;
-	int	*pid;
-	int	**fd;
-	int	status;
-
-	pid = malloc(sizeof(int) * shell->pipe + 1);
-	if (shell->pipe <= 0)
-		return ;
-	fd = malloc(sizeof(int *) * shell->pipe + 1);
-	while (i <= shell->pipe)
-	{
-		fd[i] = malloc(sizeof(int) * 2);
-		printf("I %d\n", i);
-		i++;
-	}
 	i = 0;
 	while (i <= shell->pipe)
 	{
@@ -103,34 +48,61 @@ void	shell_pipe_dup2(t_shell *shell)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < shell->pipe + 1)
+}
+
+void	wr_close_pipe(t_shell *shell, int **fd)
+{
+	int	j;
+
+	j = 0;
+	while (j < shell->pipe)
 	{
-		pid[i] = fork();
-		if (pid[i] == 0)
+		close(fd[j][1]);
+		close(fd[j][0]);
+		j++;
+	}
+}
+
+void	shell_pipe_dup2(t_shell *shell)
+{
+	int	len;
+	int	i = 0;
+	int	**fd;
+	int	status;
+
+	fd = malloc(sizeof(int *) * shell->pipe + 1);
+	while (i <= shell->pipe)
+	{
+		fd[i] = malloc(sizeof(int) * 2);
+		i++;
+	}
+	create_pipe(shell, fd);
+	i = 0;
+	if (!fork())//child
+	{
+		dup2(fd[0][1], 1);
+		wr_close_pipe(shell, fd);
+		check_cmnd2(shell->str_pipe[0], 0);
+		exit(0);
+	}
+	else
+	{
+		i++;
+		while (i < shell->pipe + 1)
 		{
-			printf("Burdasin --> %d\n", __LINE__);
-			if (i == 0)
-			{
-				dup2(fd[i][1] , STDOUT_FILENO);
-			}
-			//if (i != shell->pipe)
-			if (i > 0)
+			if (!fork())
 			{
 				dup2(fd[i - 1][0], STDIN_FILENO);
+				if (i != shell->pipe)
+					dup2(fd[i][1], STDOUT_FILENO);
+				wr_close_pipe(shell, fd);
+				check_cmnd2(shell->str_pipe[i], i);
+				exit(0);
 			}
-			if (i != shell->pipe)
-				dup2(fd[i][1] , STDOUT_FILENO);
-			multiple_close(fd, shell->pipe + 1);
-			check_cmnd2(shell->str_pipe[i], i);
-			exit(0);
+			i++;
 		}
-		//multiple_close(fd, shell->pipe + 1);
-		//wait(NULL);
-		printf("123\n");
-		multiple_pid(pid, shell->pipe + 1);
-		//waitpid(pid, &status, 0);
-		//multi_close(fd, shell->pipe);
-		i++;
+		///parent
+		wr_close_pipe(shell, fd);
+		wait(NULL);
 	}
 }

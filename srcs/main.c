@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/26 17:43:19 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/27 18:17:05 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,17 @@ int	main(int argc, char **argv, char **env)
 		shell->str_pipe = ft_split(asd, '|');
 		pipe_counter(shell);
 		if (shell->pipe > 0)
+		{
 			shell_pipe_dup2(shell);
+			sleep(1);
+			continue;
+		}
 		else
 		{
 			if (check_cmnd(shell, i))
+			{
 				continue;
+			}
 			else
 				printf("%s: command not found.\n", asd);
 		}
