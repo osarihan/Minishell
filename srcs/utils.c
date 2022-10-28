@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/26 13:47:58 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:35:27 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	check_cmnd(t_shell *shell, int i)
 		shell->str[i] = to_lower(shell->str[i]);
 	if (ft_strcmp(shell->str[i], "cd"))
 		ft_cd(shell->str, i);
+	else if (ft_strcmp(shell->str[i], "export"))
+		ft_export(shell);
 	else if (ft_strcmp(shell->str[i], "echo"))
 		ft_echo(shell->str, i);
 	else if (ft_strcmp(shell->str[i], "pwd") || \

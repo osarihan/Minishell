@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 15:12:47 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 17:26:05 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 #include <sys/stat.h>
 #include <time.h>
 
-
-
 // typedef struct	ss_list
 // {
 // 	char *data;
 // 	struct ss_list *next;
 // }				tt_list;
+
+char **g_environ;
 
 typedef struct s_shell
 {
@@ -37,8 +37,8 @@ typedef struct s_shell
 	char	**str_pipe;
 	char	**env;
 	char	**temp;
+	t_list	*asd;
 	//char	**op;
-
 	int	pipe;
 	int	*pid;
 }	t_shell;
@@ -54,9 +54,9 @@ void	ft_cd(char **arg, int i);
 void	 ft_echo(char **str, int i);
 void	ft_pwd(void);
 int 	ft_env(void);
-int		ft_export(char *str);
+void	ft_export(t_shell *shell);
 void	pipe_counter(t_shell *shell);
 void	shell_pipe_dup2(t_shell *shell);
-
+void	ft_fill(t_shell *shell);
 
 #endif

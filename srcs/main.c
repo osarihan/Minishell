@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 15:14:11 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 17:21:13 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ctrl_D(char *line)
 	exit(1);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **environ)
 {
 	t_shell	*shell;
 	char *line;
@@ -63,9 +63,8 @@ int	main(int argc, char **argv, char **env)
 	int i = 0;
 
 	shell = malloc(sizeof(t_shell *));
-	shell->temp = env;
+	g_environ = environ;
 	printf("|----------------|Minishell|-----------------|\n");
-
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
@@ -82,7 +81,6 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		shell->str = ft_split(line, ' ');
 		shell->str_pipe = ft_split(line, '|');
-		ft_export(shell);
 		pipe_counter(shell);
 		if (shell->pipe > 0)
 		{
