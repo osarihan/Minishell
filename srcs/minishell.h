@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 17:26:05 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:48:09 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*get_name(char *name);
 void	ft_cd(char **arg, int i);
 void	 ft_echo(char **str, int i);
 void	ft_pwd(void);
-int 	ft_env(void);
+int 	ft_env(t_shell *shell);
 void	ft_export(t_shell *shell);
 void	pipe_counter(t_shell *shell);
 void	shell_pipe_dup2(t_shell *shell);

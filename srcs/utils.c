@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 15:35:27 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:46:21 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_cmnd(t_shell *shell, int i)
 					ft_strcmp(shell->str[i], "PWD"))
 		ft_pwd();
 	else if (ft_strcmp(shell->str[i], "env"))
-		ft_env();
+		ft_env(shell);
 	else if (ft_strcmp(shell->str[i], "exit"))
 		exit(0);
 	else if (other_cmnds(shell->str))

@@ -10,8 +10,8 @@ int	job(char **arg, int i)
 	else if (ft_strcmp(arg[i], "pwd") || \
 					ft_strcmp(arg[i], "PWD"))
 		ft_pwd();
-	else if (ft_strcmp(arg[i], "env"))
-		ft_env();
+	// else if (ft_strcmp(arg[i], "env"))
+	// 	ft_env();
 	else if (ft_strcmp(arg[i], "exit"))
 		exit(0);
 	else if (other_cmnds(arg))

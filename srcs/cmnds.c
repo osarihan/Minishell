@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 14:48:04 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:53:33 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,16 @@ void	 ft_echo(char **str, int i)
 }
 
 
-int ft_env(void)
+int ft_env(t_shell *shell)
 {
-	int i;
-	extern char **environ;
+	t_list *tmp;
 
-	i = 0;
-	while (environ[i] != NULL)
+	tmp = shell->asd;
+	tmp = tmp->next;
+	while (tmp != NULL)
 	{
-		printf("%s\n", environ[i]);
-		i++;
+		printf("%s\n", tmp->content);
+		tmp = tmp->next;
 	}
 	return (1);
 }
