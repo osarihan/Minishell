@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/26 13:23:53 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 14:48:04 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,23 @@ void	ft_cd(char **arg, int i)
 
 void	 ft_echo(char **str, int i)
 {
-	printf("echoya girdim\n");
 	if (str[i + 1] == NULL)
 		printf("\n");
 	else
 	{
 		i++;
-		if (ft_strcmp(str[i], "-n") && str[i + 1] == NULL)
-			return ;
-		if (ft_strcmp(str[i], "-n") && str[i + 1] != NULL)
-			printf("%s", str[i + 1]);
-		else
-			printf("%s\n", str[i]);
+		while (str[i])
+		{
+			if (ft_strcmp(str[i], "-n") && str[i + 1] == NULL && i == 1)
+				return ;
+			if (ft_strcmp(str[i], "-n") && str[i + 1] != NULL)
+				printf("A%s", str[i + 1]);
+			else if (str[i + 1] == NULL)
+				printf("%s\n", str[i]);
+			else
+				printf("%s ", str[i]);
+			i++;
+		}
 	}
 }
 
