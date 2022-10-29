@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 19:53:33 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/29 15:12:14 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ int ft_env(t_shell *shell)
 {
 	t_list *tmp;
 
+	if (!shell->ctrl)
+	{
+		ft_fill(shell);
+		shell->ctrl++;
+	}
 	tmp = shell->asd;
 	tmp = tmp->next;
 	while (tmp != NULL)

@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 19:48:09 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/29 15:51:59 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ typedef struct s_shell
 	char	**temp;
 	t_list	*asd;
 	//char	**op;
+	int	ctrl;
 	int	pipe;
-	int	*pid;
 }	t_shell;
 
 char *to_lower(char *str);
 
+void	ft_unset(t_shell *shell);
 int		check_cmnd(t_shell *shell, int i);
 int		other_cmnds(char **arg);
 int		op_check(char **str, t_shell *shell);
@@ -58,5 +59,8 @@ void	ft_export(t_shell *shell);
 void	pipe_counter(t_shell *shell);
 void	shell_pipe_dup2(t_shell *shell);
 void	ft_fill(t_shell *shell);
-
+////////
+void	ft_unset(t_shell *shell);
+void	ft_lstremover(t_shell *shell);
+void ft_dstry_node(t_shell *shell, int c);
 #endif

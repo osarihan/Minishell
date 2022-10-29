@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 17:21:13 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/29 17:58:44 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,6 @@ void	sighandler(int signum)
 		rl_redisplay();
 	}
 }
-
-// int	op(t_shell *shell)
-// {
-// 	int	i = 0;
-// 	int	j = 0;
-// 	int	id;
-// 	while (shell->str[i + 1])
-// 		i++;
-// 	while(i > 0)
-// 	{
-// 		if (ft_strcmp(shell->str[i], shell->op[shell->i_op - 1]))
-// 		{
-// 			shell->id = fork();
-// 			if (shell->id == 0)
-// 			{
-// 				//printf("i am child process\n");
-// 				return (i + 1);
-// 			}
-// 			wait(NULL);
-// 			j++;
-// 		}
-// 		i--;
-// 	}
-// 	return (0);
-// }
 
 void	ctrl_D(char *line)
 {
@@ -68,8 +43,8 @@ int	main(int argc, char **argv, char **environ)
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
-	//init_env();
 	name = get_name(name);
+	shell->ctrl = 0;
 	while (1)
 	{
 		line = readline(name);
@@ -89,7 +64,10 @@ int	main(int argc, char **argv, char **environ)
 			continue;
 		}
 		else if (check_cmnd(shell, i))
+		{
+			sleep(1);
 			continue;
+		}
 		free(line);
 	}
 	return(1);

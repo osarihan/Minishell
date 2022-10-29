@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/28 19:46:21 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/29 18:00:55 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	check_cmnd(t_shell *shell, int i)
 		ft_cd(shell->str, i);
 	else if (ft_strcmp(shell->str[i], "export"))
 		ft_export(shell);
+	else if (ft_strcmp(shell->str[i], "unset"))
+		ft_unset(shell);
 	else if (ft_strcmp(shell->str[i], "echo"))
 		ft_echo(shell->str, i);
 	else if (ft_strcmp(shell->str[i], "pwd") || \
@@ -60,14 +62,19 @@ char *to_lower(char *str)
 int	ft_strcmp(char *asd, char *sda)
 {
 	int i;
+	size_t len;
 
+	len = ft_strlen(sda);
 	i = 0;
-	while (sda[i] != '\0')
+	while (len)
 	{
 		if (asd[i] == sda[i])
 			i++;
 		else
 			return(0);
+		len--;
 	}
+	if (asd[i] != '\0')
+		return(0);
 	return(1);
 }
