@@ -63,7 +63,7 @@ void	wr_close_pipe(t_shell *shell, int **fd)
 	}
 }
 
-void	shell_pipe_dup2(t_shell *shell)
+void	shell_pipe_dup2(void)
 {
 	int	len;
 	int	i = 0;

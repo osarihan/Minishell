@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	pipe_counter(t_shell *shell)
+void	pipe_counter(void)
 {
 	int i;
 	int j;

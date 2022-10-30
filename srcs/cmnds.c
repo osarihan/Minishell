@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:17:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/29 15:12:14 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/30 14:44:21 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ void	 ft_echo(char **str, int i)
 }
 
 
-int ft_env(t_shell *shell)
+int ft_env(void)
 {
 	t_list *tmp;
 
 	if (!shell->ctrl)
 	{
-		ft_fill(shell);
+		ft_fill();
 		shell->ctrl++;
 	}
 	tmp = shell->asd;

@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/29 15:51:59 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/30 18:28:25 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,41 @@
 #include <readline/history.h>
 #include <sys/stat.h>
 #include <time.h>
-
-// typedef struct	ss_list
-// {
-// 	char *data;
-// 	struct ss_list *next;
-// }				tt_list;
-
-char **g_environ;
+#include <stdbool.h>
 
 typedef struct s_shell
 {
+	char **environ;
 	char 	**str;
 	char	**str_pipe;
-	char	**env;
 	char	**temp;
 	t_list	*asd;
-	//char	**op;
 	int	ctrl;
 	int	pipe;
 }	t_shell;
 
+t_shell	*shell;
+
 char *to_lower(char *str);
 
-void	ft_unset(t_shell *shell);
-int		check_cmnd(t_shell *shell, int i);
+int		check_cmnd(int i);
 int		other_cmnds(char **arg);
-int		op_check(char **str, t_shell *shell);
 int		ft_strcmp(char *asd, char *sda);
 char	*get_name(char *name);
+
 void	ft_cd(char **arg, int i);
 void	 ft_echo(char **str, int i);
 void	ft_pwd(void);
-int 	ft_env(t_shell *shell);
-void	ft_export(t_shell *shell);
-void	pipe_counter(t_shell *shell);
-void	shell_pipe_dup2(t_shell *shell);
-void	ft_fill(t_shell *shell);
-////////
-void	ft_unset(t_shell *shell);
-void	ft_lstremover(t_shell *shell);
-void ft_dstry_node(t_shell *shell, int c);
+int 	ft_env(void);
+void	ft_unset(void);
+void	ft_export(void);
+int		ft_strcmp2(char *asd, char *sda);
+void	shell_pipe_dup2(void);
+void	ft_fill(void);
+void	pipe_counter(void);
+void	ft_lstremover(void);
+void	ft_dstry_node(int c);
+int	lstcmp(char *str);
+void	ft_lstremover_export(char *str);
+int	ft_strcmp3(char *asd, char *sda);
 #endif
