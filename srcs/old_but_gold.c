@@ -6,18 +6,18 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:00:08 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/22 14:15:02 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:27:09 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_export(char *str)
-{
-	str += 7;
-	if (str)
-	{
-		return(1);
-	}
-	return(1);
-}
+// int	ft_export(char *str)
+// {
+// 	str += 7;
+// 	if (str)
+// 	{
+// 		return(1);
+// 	}
+// 	return(1);
+// }

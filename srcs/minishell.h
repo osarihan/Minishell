@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/24 13:51:52 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/01 13:47:03 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,46 @@
 #include <readline/history.h>
 #include <sys/stat.h>
 #include <time.h>
-
-
-
-// typedef struct	ss_list
-// {
-// 	char *data;
-// 	struct ss_list *next;
-// }				tt_list;
+#include <stdbool.h>
 
 typedef struct s_shell
 {
+	char **environ;
 	char 	**str;
 	char	**str_pipe;
-	char	**op;
-	char	**cmd;
-
+	char	**temp;
+	t_list	*asd;
+	int	ctrl;
 	int	pipe;
-	int	id;
-	char *name;
+	int cmmp;
 }	t_shell;
+
+t_shell	*shell;
 
 char *to_lower(char *str);
 
-int		check_cmnd(t_shell *shell, int i);
+int		check_cmnd(int i);
 int		other_cmnds(char **arg);
-int		op_check(char **str, t_shell *shell);
-int		ft_strcmp(char *asd, char *sda);
 char	*get_name(char *name);
-void	ft_cd(t_shell *shell, int i);
-int		ft_echo(t_shell *shell, int i);
+
+
+void	ft_cd(char **arg, int i);
+void	 ft_echo(char **str, int i);
 void	ft_pwd(void);
 int 	ft_env(void);
-int		ft_export(char *str);
-void	pipe_counter(t_shell *shell);
-void	shell_pipe_dup2(t_shell *shell);
-int	check_cmnd_pipe(t_shell *shell, int i);
+void	ft_unset(void);
+void	ft_export(void);
 
+
+int		ft_strcmp(char *asd, char *sda);
+int		ft_strcmp2(char *asd, char *sda);
+int		ft_strcmp3(char *asd, char *sda);
+void	ft_fill(void);
+int		lstcmp(char *str);
+void	ft_lstremover(void);
+void	ft_dstry_node(int c);
+
+int		quote_check(char *str);
+void	shell_pipe_dup2(void);
+void	pipe_counter(void);
 #endif
