@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/30 14:42:31 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/01 15:23:58 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	main(int argc, char **argv, char **env)
 		name = get_name(name);
 		add_history(line);
 		if (line[0] == 0)
+			continue;
+		if (!quote_check(line))
 			continue;
 		shell->str = ft_split(line, ' ');
 		shell->str_pipe = ft_split(line, '|');

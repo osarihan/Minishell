@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 15:22:50 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/30 18:35:00 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/01 13:13:39 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,23 +108,32 @@ int	ft_strcmp3(char *asd, char *sda)
 	int	i;
 	size_t len;
 
-	len = ft_strlen(sda);
 	i = 0;
 	while (asd[i] != '\0')
 	{
+		if (asd[i] == '=' && sda[i] == '=')
+			return(1);
 		if (asd[i] == sda[i])
 			i++;
-		else if (asd[i] != sda[i] && asd[i - 1] == '=' && sda[i - 1] == '=')
-			i++;
+		if (asd[i] == '=' && sda[i] == '=')
+			return(1);
+		// else if (asd[i] != sda[i] && asd[i - 1] == '=' && sda[i - 1] == '=')
+		// {
+		// 	return(1);
+		// }
 		else
-			return(0);
+		{
+			//printf("ben sifiriimm\n");
+			return (0);
+		}
 	}
-	if (ft_strchr(asd, '='))
-		return(1);
-	else
-	{
-		printf("minishell: export: `%s': not a valid identifier\n", asd);
-		return(0);
-	}
+	return(1);
+	//if (ft_strchr(asd, '='))
+	//	return(1);
+	//else
+	//{
+	//	printf("minishell: export: `%s': not a valid identifier\n", asd);
+	//	return(0);
+	//}
 }
 

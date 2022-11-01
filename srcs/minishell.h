@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/10/30 18:28:25 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/01 13:47:03 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_shell
 	t_list	*asd;
 	int	ctrl;
 	int	pipe;
+	int cmmp;
 }	t_shell;
 
 t_shell	*shell;
@@ -41,8 +42,8 @@ char *to_lower(char *str);
 
 int		check_cmnd(int i);
 int		other_cmnds(char **arg);
-int		ft_strcmp(char *asd, char *sda);
 char	*get_name(char *name);
+
 
 void	ft_cd(char **arg, int i);
 void	 ft_echo(char **str, int i);
@@ -50,13 +51,17 @@ void	ft_pwd(void);
 int 	ft_env(void);
 void	ft_unset(void);
 void	ft_export(void);
+
+
+int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);
-void	shell_pipe_dup2(void);
+int		ft_strcmp3(char *asd, char *sda);
 void	ft_fill(void);
-void	pipe_counter(void);
+int		lstcmp(char *str);
 void	ft_lstremover(void);
 void	ft_dstry_node(int c);
-int	lstcmp(char *str);
-void	ft_lstremover_export(char *str);
-int	ft_strcmp3(char *asd, char *sda);
+
+int		quote_check(char *str);
+void	shell_pipe_dup2(void);
+void	pipe_counter(void);
 #endif

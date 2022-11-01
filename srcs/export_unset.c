@@ -41,7 +41,6 @@ void ft_dstry_node(int c)
 
 	tmp = shell->asd;
 	tmp2 = shell->asd;
-
 	while (c > 1 && tmp != NULL)
 	{
 		if (tmp->next != NULL)
@@ -69,8 +68,7 @@ void	ft_export(void)
 			ft_lstadd_back(&shell->asd, ft_lstnew(shell->str[i++]));
 		else
 		{
-			printf("selam\n");
-			//ft_lstremover_export(shell->str[i]);
+			ft_dstry_node(shell->cmmp);
 			if (ft_strchr(shell->str[i], '='))
 				ft_lstadd_back(&shell->asd, ft_lstnew(shell->str[i]));
 			i++;
@@ -84,13 +82,15 @@ int	lstcmp(char *str)
 	t_list *temp;
 	t_list	*temp2;
 
+	shell->cmmp = 1;
 	temp = shell->asd;
 	temp = temp->next;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		if (ft_strcmp3(temp->content, str))
 			return (0);
 		temp = temp->next;
+		shell->cmmp++;
 	}
 	return(1);
 }
