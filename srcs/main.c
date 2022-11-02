@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
 	shell->ctrl = 0;
+	
 	name = get_name(name);
 	while (1)
 	{
