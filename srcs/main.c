@@ -56,6 +56,10 @@ int	main(int argc, char **argv, char **env)
 		if (!quote_check(line))
 			continue;
 		shell->str = ft_split(line, ' ');
+		if (shell->d_quote > 0 || shell->s_quote > 0)
+			pars_fquote();
+		// else
+		// 	pars();
 		pipe_counter();
 		if (shell->pipe > 0)
 		{
@@ -66,7 +70,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		else if (check_cmnd(i))
 		{
-			sleep(1);
+			//sleep(1);
 			continue;
 		}
 		free(line);

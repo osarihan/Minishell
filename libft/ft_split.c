@@ -46,9 +46,9 @@ static char	*malloc_strings(const char *s, char c)
 	while (s[i] && s[i] != c)
 	{
 		if (s[i] == 39)
-		{
-			return((const char *)quote(s));
-		}
+			return(quote(s, 39));
+		else if (s[i] == 34)
+			return(quote(s, 34));
 		word[i] = s[i];
 		i++;
 	}
@@ -76,11 +76,16 @@ char	**ft_split(char const *s, char c)
 		if (*s && *s != c)
 		{
 			tab[i] = malloc_strings(s, c);
-			printf("split:%s\n", tab[i]);
 			if (tab[i][0] == 39)
 			{
 				s++;
 				while (*s != 39)
+					s++;
+			}
+			else if (tab[i][0] == 34)
+			{
+				s++;
+				while (*s != 34)
 					s++;
 			}
 			i++;

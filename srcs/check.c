@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	*quote(char *str)
+char	*quote(char *str, int c)
 {
 	char	*new_str;
 	int	i = 0;
@@ -20,12 +20,12 @@ char	*quote(char *str)
 	new_str = malloc(100);
 	new_str[i] = str[i];
 	i++;
-	while(str[i] != 39)
+	while(str[i] != c)
 	{
 		new_str[i] = str[i];
 		i++;
 	}
-	new_str[i++] = 39;
+	new_str[i++] = c;
 	new_str[i] = '\0';
 	return (new_str);
 }
@@ -44,6 +44,8 @@ int	quote_check(char *str)
 			l++;
 		i++;
 	}
+	shell->s_quote = k;
+	shell->d_quote = l;
 	if (k % 2 == 0 && l % 2 == 0)
 		return (1);
 	else

@@ -96,5 +96,5 @@ int		print_hex(unsigned int n, char c);
 int		printer_ptr(unsigned long n);
 int		print_ptr(unsigned long n);
 /////M_SHELL/////
-char	*quote(char *str);
+char	*quote(char *str, int c);
 #endif
