@@ -36,14 +36,14 @@ int	main(int argc, char **argv, char **env)
 	char *name = NULL;
 	int i = 0;
 
-	shell = malloc(sizeof(t_shell *));
+	shell = malloc(sizeof(t_shell));
 	shell->environ = env;
 	printf("|----------------|Minishell|-----------------|\n");
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
-	name = get_name(name);
 	shell->ctrl = 0;
+	name = get_name(name);
 	while (1)
 	{
 		line = readline(name);
@@ -56,10 +56,10 @@ int	main(int argc, char **argv, char **env)
 		if (!quote_check(line))
 			continue;
 		shell->str = ft_split(line, ' ');
-		shell->str_pipe = ft_split(line, '|');
 		pipe_counter();
 		if (shell->pipe > 0)
 		{
+			shell->str_pipe = ft_split(line, '|');
 			shell_pipe_dup2();
 			sleep(1);
 			continue;

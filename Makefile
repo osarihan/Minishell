@@ -8,7 +8,7 @@ INCLUDES = readline/include
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(SRCS) -I /goinfre/homebrew/opt/readline/include -L /goinfre/homebrew/opt/readline/lib -lreadline -o $(NAME)
+	@$(CC) $(SRCS) -fcommon -I /goinfre/homebrew/opt/readline/include -L /goinfre/homebrew/opt/readline/lib -lreadline -o $(NAME)
 
 re: fclean all
 

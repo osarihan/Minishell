@@ -100,7 +100,8 @@ void	ft_fill(void)
 	int i = 0;
 	t_list *dsa;
 
-	shell->asd = malloc(sizeof(t_list *));
+	shell->asd = malloc(sizeof(t_list));
+	shell->asd = NULL;
 	while (shell->environ[i] != NULL)
 	{
 		ft_lstadd_back(&shell->asd, ft_lstnew(shell->environ[i]));

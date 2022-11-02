@@ -95,4 +95,6 @@ int		ft_putchar_vol2(char c);
 int		print_hex(unsigned int n, char c);
 int		printer_ptr(unsigned long n);
 int		print_ptr(unsigned long n);
+/////M_SHELL/////
+char	*quote(char *str);
 #endif

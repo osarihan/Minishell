@@ -21,8 +21,11 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <time.h>
 #include <stdbool.h>
+
+#include <signal.h>
 
 typedef struct s_shell
 {

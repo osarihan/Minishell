@@ -84,7 +84,7 @@ void	 ft_echo(char **str, int i)
 			if (ft_strcmp(str[i], "-n") && str[i + 1] == NULL && i == 1)
 				return ;
 			if (ft_strcmp(str[i], "-n") && str[i + 1] != NULL)
-				printf("A%s", str[i + 1]);
+				printf("%s", str[i + 1]);
 			else if (str[i + 1] == NULL)
 				printf("%s\n", str[i]);
 			else
