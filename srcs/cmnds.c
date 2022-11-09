@@ -54,21 +54,22 @@ void	ft_pwd(void)
 
 void	ft_cd(char **arg, int i)
 {
-	char *str = NULL;
+	char str[256];
+	char *str2 = NULL;
 
 	if (arg[i + 1] != NULL)
 	{
-		str = ft_strjoin(getcwd(str, sizeof(str)), "/");
+		str2 = ft_strjoin(getcwd(str, sizeof(str)), "/");
 		i++;
 		if (!arg[i])
 			return ;
-		str = ft_strjoin(str, arg[i]);
-		chdir(str);
+		str2 = ft_strjoin(str2, arg[i]);
+		chdir(str2);
 	}
 	else
 	{
-		str = ft_strjoin(getenv("HOME"), "/");
-		chdir(str);
+		str2 = ft_strjoin(getenv("HOME"), "/");
+		chdir(str2);
 	}
 }
 

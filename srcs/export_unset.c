@@ -62,6 +62,12 @@ void	ft_export(void)
 	int	i = 1;
 	if (!shell->ctrl++)
 		ft_fill();
+	if (shell->str[i] == NULL)
+	{
+		if (!shell->ctrl++);
+			ft_fill();
+		printf_alph();
+	}
 	while (shell->str[i])
 	{
 		if (lstcmp(shell->str[i]) && ft_strchr(shell->str[i], '='))//var mi yok mu yoksa girer
@@ -73,6 +79,7 @@ void	ft_export(void)
 				ft_lstadd_back(&shell->asd, ft_lstnew(shell->str[i]));
 			i++;
 		}
+		ultimate_alpha_index_finder();
 	}
 	return;
 }
@@ -108,5 +115,65 @@ void	ft_fill(void)
 	{
 		ft_lstadd_back(&shell->asd, ft_lstnew(shell->environ[i]));
 		i++;
+	}
+	ultimate_alpha_index_finder();
+}
+
+void	ultimate_alpha_index_finder(void) //listeyi siralar
+{
+	t_list *list_iter;
+	t_list *arg_iter;
+	char *str;
+	char *str2;
+	int i = 0;
+	int j = 0;
+
+	arg_iter = shell->asd->next;
+	list_iter = shell->asd;
+	while (list_iter)
+	{
+		str = list_iter->content;
+		while (arg_iter != NULL)
+		{
+			if (i == 0)
+				str2 = arg_iter->content;
+			if (ft_strcmp(str, str2) == 1)
+			{
+				arg_iter = arg_iter->next;
+				continue;
+			}
+			if (str[i] > str2[i])
+				j++;
+			else if (str[i] == str2[i])
+			{
+				i++;
+				continue;
+			}
+			arg_iter = arg_iter->next;
+			i = 0;
+		}
+		list_iter->index = j;
+		list_iter = list_iter->next;
+		arg_iter = shell->asd;
+		i = 0;
+		j = 0;
+	}
+}
+
+void	printf_alph(void) //sirali baski
+{
+	t_list *list_iter;
+	int i;
+
+	i = 0;
+	list_iter = shell->asd;
+	while (list_iter != NULL)
+	{
+		while (list_iter->index != i)
+			list_iter = list_iter->next;
+		printf("alfabetiik::%s --- indexxx: %d\n", list_iter->content, list_iter->index);
+		i++;
+		list_iter = shell->asd;
+		continue;
 	}
 }

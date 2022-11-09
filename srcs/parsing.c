@@ -8,7 +8,7 @@ int	find_size()
 	int	res = 0;
 	char *get;
 
-	get = malloc(1000);//////////////////////////////////////////////////////////////////////////////////
+	get = malloc(10000);//////////////////////////////////////////////////////////////////////////////////
 	while (shell->str[i])
 	{
 		j = 0;
@@ -36,6 +36,7 @@ int	find_size()
 		}
 		i++;
 	}
+	free(get);
 	return (res);
 }
 
@@ -52,15 +53,7 @@ char	*dollar_sign(char *str, int j, char *tmp, int t_i)
 	}
 	tmp2[i] = '\0';
 	tmp2 = getenv(tmp2);
-	i = 0;
-	while (tmp2[i])
-	{
-		tmp[t_i] = tmp2[i];
-		i++;
-		t_i++;
-	}
-	tmp[t_i] = '\0';
-	return (tmp);
+	return (tmp2);
 }
 
 
@@ -73,8 +66,6 @@ char	*pars_fquote()
 	int t_i = 0;
 	char *last_line;
 	int	len = 0;
-
-	int	k = 0;
 
 	tmp = malloc(find_size(shell->str) + 1);//for quote
 	while (shell->str[i])
@@ -105,10 +96,8 @@ char	*pars_fquote()
 					}
 				}
 				t_i = 0;
-				printf("TMP:%s	shell->str[%d]:%s\n", tmp, i, shell->str[i]);
 				len += ft_strlen(tmp);
 				shell->str[i] = tmp;
-
 			}
 			else if (shell->str[i][j] == 39)
 			{
@@ -125,8 +114,8 @@ char	*pars_fquote()
 				shell->str[i] = tmp;
 			}
 			j++;
+			len++;
 		}
-		//printf("SHELL->STR[%d]:%s\n", i,shell->str[i]);
 		i++;
 	}
 	i = 0;
@@ -136,7 +125,6 @@ char	*pars_fquote()
 	last_line = malloc(sizeof(char) * (len + 1));
 	while (shell->str[i])
 	{
-		//printf("SHELL STR[%d]:%s\n", i,shell->str[i]);
 		while (shell->str[i][j])
 		{
 			last_line[l] = shell->str[i][j];

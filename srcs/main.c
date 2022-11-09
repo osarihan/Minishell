@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **env)
 	int i = 0;
 
 	shell = malloc(sizeof(t_shell));
-	//shell->environ = env; SEG PROBLEM
+	//shell->environ = env;
 	printf("|----------------|Minishell|-----------------|\n");
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
@@ -59,7 +59,6 @@ int	main(int argc, char **argv, char **env)
 		shell->str = ft_split(line, ' ');
 		if (shell->d_quote > 0 || shell->s_quote > 0)
 			line = pars_fquote();
-		printf("last_line:%s\n", line);
 		// else
 		// 	pars();
 		pipe_counter();

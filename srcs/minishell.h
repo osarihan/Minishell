@@ -71,4 +71,9 @@ void	ft_dstry_node(int c);
 int		quote_check(char *str);
 void	shell_pipe_dup2(void);
 void	pipe_counter(void);
+
+
+void	ultimate_alpha_index_finder(void);
+void	printf_alph(void) ;
+
 #endif
