@@ -34,6 +34,7 @@ typedef struct s_shell
 	char	**str_pipe;
 	char	**temp;
 	t_list	*asd;
+	char	*tmp;
 	int	ctrl;
 	int	s_quote;
 	int	d_quote;
@@ -57,7 +58,7 @@ int 	ft_env(void);
 void	ft_unset(void);
 void	ft_export(void);
 
-void	pars_fquote();
+char	*pars_fquote();
 
 int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);

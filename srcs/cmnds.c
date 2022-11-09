@@ -101,6 +101,7 @@ int ft_env(void)
 
 	if (!shell->ctrl)
 	{
+		printf("ft_fill\n");
 		ft_fill();
 		shell->ctrl++;
 	}

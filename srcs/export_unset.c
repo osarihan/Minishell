@@ -102,6 +102,8 @@ void	ft_fill(void)
 
 	shell->asd = malloc(sizeof(t_list));
 	shell->asd = NULL;
+	printf("geldim\n");
+	printf("%s\n", shell->environ[i]);
 	while (shell->environ[i] != NULL)
 	{
 		ft_lstadd_back(&shell->asd, ft_lstnew(shell->environ[i]));

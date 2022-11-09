@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	*quote(char *str, int c)
+char	*quote(const char *str, int c)
 {
 	char	*new_str;
 	int	i = 0;
