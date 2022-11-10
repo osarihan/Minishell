@@ -28,7 +28,8 @@ int	find_size()
 					}
 					get[l] = '\0';
 					l = 0;
-					res += ft_strlen(getenv(get));
+					if (getenv(get) != NULL)
+						res += ft_strlen(getenv(get));
 				}
 				res++;
 				j++;
@@ -40,11 +41,29 @@ int	find_size()
 	return (res);
 }
 
-char	*dollar_sign(char *str, int j, char *tmp, int t_i)
+
+char	*dollar_sign(char *str, int j)
 {
-	char *tmp2;
+	char	*tmp;
+	char	*tmp2;
+	int	dd_status = 0;
 	int	i = 0;
 
+	tmp = malloc(10000);
+	tmp2 = tmp;
+	if (str[j] == '$')
+	{
+		tmp2 = ft_itoa(getpid());
+		while (++i < ft_strlen(tmp2));
+		dd_status = 1;
+		j++;
+	}
+	if (str[j] == '?')
+	{
+		tmp2[i] = '0';
+		i++;
+		j++;
+	}
 	while (str[j] != '\0' && str[j] != 32 && str[j] != 34)
 	{
 		tmp2[i] = str[j];
@@ -52,7 +71,18 @@ char	*dollar_sign(char *str, int j, char *tmp, int t_i)
 		j++;
 	}
 	tmp2[i] = '\0';
+	if (dd_status == 1)
+	{
+		free(tmp);
+		return (tmp2);
+	}
+	if (getenv(tmp2) == NULL)
+	{
+		free(tmp);
+		return(tmp2);
+	}
 	tmp2 = getenv(tmp2);
+	free(tmp);
 	return (tmp2);
 }
 
@@ -62,7 +92,7 @@ char	*pars_fquote()
 	int	i = 0;
 	int	j;
 	int	l = 0;
-	char *tmp;
+	char *tmp = NULL; //NULL vermezsek basta join atinca onune cop degerler gelir
 	int t_i = 0;
 	char *last_line;
 	int	len = 0;
@@ -81,11 +111,10 @@ char	*pars_fquote()
 					if (shell->str[i][j] == '$')
 					{
 						sleep(1);
-						tmp	= dollar_sign(shell->str[i], j + 1, tmp, t_i);
+						tmp	= ft_strjoin(tmp, dollar_sign(shell->str[i], j + 1));
 						while (shell->str[i][j] != 32 && shell->str[i][j] != '\0' && shell->str[i][j] != 34)
 							j++;
-						while(tmp[t_i]) // tmp nin index ini atilan deger kadar ilerletmek icin
-							t_i++;
+						while (++t_i < ft_strlen(tmp));//tmp index
 					}
 					else
 					{
@@ -97,7 +126,7 @@ char	*pars_fquote()
 				}
 				t_i = 0;
 				len += ft_strlen(tmp);
-				shell->str[i] = tmp;
+				shell->str[i] = ft_strdup(tmp); // tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
 			}
 			else if (shell->str[i][j] == 39)
 			{
@@ -116,6 +145,7 @@ char	*pars_fquote()
 			j++;
 			len++;
 		}
+		ft_memset(tmp, '\0', ft_strlen(tmp)); // tmp ile isimiz bitti icini bosaltiyoruz.
 		i++;
 	}
 	i = 0;
