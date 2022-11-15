@@ -32,14 +32,14 @@ typedef struct s_shell
 	char **environ;
 	char 	**str;
 	char	**str_pipe;
-	char	**temp;
+	char	*temp;
 	t_list	*asd;
-	char	*tmp;
 	int	ctrl;
 	int	s_quote;
 	int	d_quote;
 	int	pipe;
-	int cmmp;
+	int	cmmp;
+	int	len;
 }	t_shell;
 
 t_shell	*shell;
@@ -60,6 +60,7 @@ void	ft_export(void);
 
 char	*pars_fquote();
 
+char	**ft_split_mod(char const *s, char c);
 int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);
 int		ft_strcmp3(char *asd, char *sda);
@@ -75,5 +76,10 @@ void	pipe_counter(void);
 
 void	ultimate_alpha_index_finder(void);
 void	printf_alph(void) ;
+
+char	*d_quote(int i, int j, int t_i, char *tmp);
+char	*s_quote(int i, int j, int t_i, char *tmp);
+char	*final_line();
+char	*check_env(char *str);
 
 #endif

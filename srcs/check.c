@@ -16,17 +16,28 @@ char	*quote(const char *str, int c)
 {
 	char	*new_str;
 	int	i = 0;
+	int	j = 0;
 
-	new_str = malloc(100);
-	new_str[i] = str[i];
+	int	quote = 1;
+
+	new_str = malloc(10000);
+	new_str[j] = str[i];
+	j++;
 	i++;
-	while(str[i] != c)
+	while(str[i] != '\0' && shell->d_quote != quote)
 	{
-		new_str[i] = str[i];
+		if (str[i] == c && shell->d_quote != quote)
+		{
+			quote++;
+			i++;
+			continue;
+		}
+		new_str[j] = str[i];
+		j++;
 		i++;
 	}
-	new_str[i++] = c;
-	new_str[i] = '\0';
+	new_str[j++] = c;
+	new_str[j] = '\0';
 	return (new_str);
 }
 

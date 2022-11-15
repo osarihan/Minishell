@@ -95,7 +95,10 @@ int	lstcmp(char *str)
 	while (temp != NULL)
 	{
 		if (ft_strcmp3(temp->content, str))
+		{
+			printf("ret0\n");
 			return (0);
+		}
 		temp = temp->next;
 		shell->cmmp++;
 	}
@@ -109,8 +112,6 @@ void	ft_fill(void)
 
 	shell->asd = malloc(sizeof(t_list));
 	shell->asd = NULL;
-	printf("geldim\n");
-	printf("%s\n", shell->environ[i]);
 	while (shell->environ[i] != NULL)
 	{
 		ft_lstadd_back(&shell->asd, ft_lstnew(shell->environ[i]));

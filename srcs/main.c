@@ -37,12 +37,13 @@ int	main(int argc, char **argv, char **env)
 	int i = 0;
 
 	shell = malloc(sizeof(t_shell));
-	//shell->environ = env;
 	printf("|----------------|Minishell|-----------------|\n");
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
 	shell->ctrl = 0;
+	shell->len = 0;//for quote malloc
+	shell->temp = NULL;
 	name = get_name(name);
 	while (1)
 	{
@@ -56,7 +57,7 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		if (!quote_check(line))
 			continue;
-		shell->str = ft_split(line, ' ');
+		shell->str = ft_split_mod(line, ' ');//D_QUOTE MOD
 		if (shell->d_quote > 0 || shell->s_quote > 0)
 			line = pars_fquote();
 		// else
@@ -75,7 +76,6 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		}
 		free(line);
-		free(shell->tmp);
 	}
 	return(1);
 }

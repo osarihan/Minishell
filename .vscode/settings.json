@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"iomanip": "c"
+		"iomanip": "c",
+		"minishell.h": "c",
+		"cstdlib": "c"
 	}
 }
