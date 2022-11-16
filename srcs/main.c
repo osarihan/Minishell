@@ -26,56 +26,62 @@ void	sighandler(int signum)
 void	ctrl_D(char *line)
 {
 	printf("exit\n");
-	free(line);
+	free(shell->line);
 	exit(1);
 }
 
-int	main(int argc, char **argv, char **env)
+int	routine(char	**env)
 {
-	char *line;
-	char *name = NULL;
-	int i = 0;
+	shell->line = readline(shell->name);
+	shell->environ = env;
+	if (!shell->line)
+		ctrl_D(shell->line);
+	get_name();
+	add_history(shell->line);
+	if (shell->line[0] == 0)
+		return (0);
+	return (1);
+}
 
-	shell = malloc(sizeof(t_shell));
+void	assigment()
+{
 	printf("|----------------|Minishell|-----------------|\n");
+	shell = malloc(sizeof(t_shell));
+
+	get_name();
+
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
 	shell->ctrl = 0;
 	shell->len = 0;//for quote malloc
-	shell->temp = NULL;
-	name = get_name(name);
+	//shell->temp = NULL;
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	int i = 0;
+
+	assigment();
 	while (1)
 	{
-		shell->environ = env;
-		line = readline(name);
-		if (!line)
-			ctrl_D(line);
-		name = get_name(name);
-		add_history(line);
-		if (line[0] == 0)
+		if (!routine(env))
 			continue;
-		if (!quote_check(line))
+		if (!quote_check(shell->line))
 			continue;
-		shell->str = ft_split_mod(line, ' ');//D_QUOTE MOD
+		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
 		if (shell->d_quote > 0 || shell->s_quote > 0)
-			line = pars_fquote();
+			shell->line = pars_fquote();
 		// else
 		// 	pars();
-		pipe_counter();
-		if (shell->pipe > 0)
+		if (pipe_counter())
 		{
-			shell->str_pipe = ft_split(line, '|');
-			shell_pipe_dup2();
-			sleep(1);
+			pipe_status();
 			continue;
 		}
 		else if (check_cmnd(i))
-		{
-			//sleep(1);
 			continue;
-		}
-		free(line);
+		free(shell->line);
 	}
 	return(1);
 }

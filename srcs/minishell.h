@@ -29,6 +29,9 @@
 
 typedef struct s_shell
 {
+	char	*line;
+	char	*name;
+
 	char **environ;
 	char 	**str;
 	char	**str_pipe;
@@ -48,7 +51,7 @@ char *to_lower(char *str);
 
 int		check_cmnd(int i);
 int		other_cmnds(char **arg);
-char	*get_name(char *name);
+void	get_name(void);
 
 
 void	ft_cd(char **arg, int i);
@@ -70,8 +73,9 @@ void	ft_lstremover(void);
 void	ft_dstry_node(int c);
 
 int		quote_check(char *str);
+int		pipe_counter(void);
+void	pipe_status(void);
 void	shell_pipe_dup2(void);
-void	pipe_counter(void);
 
 
 void	ultimate_alpha_index_finder(void);
@@ -79,7 +83,7 @@ void	printf_alph(void) ;
 
 char	*d_quote(int i, int j, int t_i, char *tmp);
 char	*s_quote(int i, int j, int t_i, char *tmp);
-char	*final_line();
+char	*final_line(void);
 char	*check_env(char *str);
 
 #endif

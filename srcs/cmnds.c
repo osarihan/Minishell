@@ -42,10 +42,38 @@ int	other_cmnds(char **arg)
 	return (1);
 }
 
+void	pwd_change(void)
+{
+	t_list *l_tmp;
+	char	*tmp;
+	char	*tmp2;
+	int i = 0;
+
+	if (!shell->asd)
+		ft_fill();
+	l_tmp = shell->asd;
+
+	while (l_tmp != NULL)
+	{
+		while (tmp[i] != '=')
+		{
+			tmp2[i] = tmp[i];
+			printf("tmp:%s\n", tmp);
+			i++;
+		}
+		tmp2[i] = '\0';
+		if (ft_strcmp(tmp2, shell->temp))
+			printf("BULDUMMMMMMM\n\n\n");
+		l_tmp = l_tmp->next;
+		i = 0;
+	}
+}
+
 void	ft_pwd(void)
 {
 	char	cwd[256];
 
+	//pwd_change();
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 		printf("%s\n", cwd);
 	else

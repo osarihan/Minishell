@@ -95,10 +95,7 @@ int	lstcmp(char *str)
 	while (temp != NULL)
 	{
 		if (ft_strcmp3(temp->content, str))
-		{
-			printf("ret0\n");
 			return (0);
-		}
 		temp = temp->next;
 		shell->cmmp++;
 	}
