@@ -1,5 +1,29 @@
 #include "minishell.h"
 
+char	*pars()
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (shell->str[i])
+	{
+		printf("%s\n", shell->str[i]);
+		while (shell->str[i][j])
+		{
+			if (shell->str[i][j] == '$')
+			{
+				printf("dollar\n");
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+
+}
+
 int	find_size()
 {
 	int	i = 0;

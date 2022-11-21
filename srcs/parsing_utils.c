@@ -26,6 +26,7 @@ char	*dollar_sign(char *str, int j)
 	}
 	tmp2[i] = '\0';
 	shell->temp = tmp2;
+	printf("tmp2:%s\n", tmp2);
 	if (check_env(ft_strdup(tmp2)))
 		return (check_env(ft_strdup(tmp2)));
 	return (tmp2);
