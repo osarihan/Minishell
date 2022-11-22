@@ -30,10 +30,9 @@ void	ctrl_D(char *line)
 	exit(1);
 }
 
-int	routine(char	**env)
+int	routine(void)
 {
 	shell->line = readline(shell->name);
-	shell->environ = env;
 	if (!shell->line)
 		ctrl_D(shell->line);
 	get_name();
@@ -43,10 +42,28 @@ int	routine(char	**env)
 	return (1);
 }
 
-void	assigment()
+// void	env1(char **env)
+// {
+// 	int	i = 0;
+
+// 	while (env[i])
+// 		i++;
+// 	shell->environ = ft_calloc(i+1, sizeof(shell->environ));
+// 	i = 0;
+// 	while (env[i])
+// 	{
+// 		shell->environ[i] = ft_strdup(env[i]);
+// 		i++;
+// 	}
+// }
+
+void	assigment(char **env)
 {
 	printf("|----------------|Minishell|-----------------|\n");
 	shell = malloc(sizeof(t_shell));
+
+	shell->environ=env;
+	 //env1(env);
 
 	get_name();
 
@@ -58,14 +75,15 @@ void	assigment()
 	//shell->temp = NULL;
 }
 
+
 int	main(int argc, char **argv, char **env)
 {
 	int i = 0;
 
-	assigment();
+	assigment(env);
 	while (1)
 	{
-		if (!routine(env))
+		if (!routine())
 			continue;
 		if (!quote_check(shell->line))
 			continue;
@@ -80,7 +98,10 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		}
 		else if (check_cmnd(i))
+		{
+			sleep(1);
 			continue;
+		}
 		free(shell->line);
 	}
 	return(1);

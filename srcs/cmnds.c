@@ -48,22 +48,33 @@ void	pwd_change(void)
 	char	*tmp;
 	char	*tmp2;
 	int i = 0;
+	int	j = 0;
 
 	if (!shell->asd)
 		ft_fill();
 	l_tmp = shell->asd;
 
+	tmp = malloc(10000);
+	tmp2 = malloc(10000);
 	while (l_tmp != NULL)
 	{
+		tmp = l_tmp->content;
 		while (tmp[i] != '=')
 		{
 			tmp2[i] = tmp[i];
-			printf("tmp:%s\n", tmp);
 			i++;
 		}
 		tmp2[i] = '\0';
-		if (ft_strcmp(tmp2, shell->temp))
-			printf("BULDUMMMMMMM\n\n\n");
+		if (ft_strcmp(tmp2, "PWD"))
+		{
+			while (tmp[i++])
+			{
+				tmp2[j] = tmp[i];
+				j++;
+			}
+			printf("%s\n", tmp2);
+			return ;
+		}
 		l_tmp = l_tmp->next;
 		i = 0;
 	}
@@ -73,17 +84,18 @@ void	ft_pwd(void)
 {
 	char	cwd[256];
 
-	//pwd_change();
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-		printf("%s\n", cwd);
-	else
-		perror("");
+	pwd_change();
+	// if (getcwd(cwd, sizeof(cwd)) != NULL)
+	// 	printf("%s\n", cwd);
+	// else
+	// 	perror("");
 }
 
 void	ft_cd(char **arg, int i)
 {
 	char str[256];
 	char *str2 = NULL;
+	char *str3;
 
 	if (arg[i + 1] != NULL)
 	{
@@ -93,11 +105,19 @@ void	ft_cd(char **arg, int i)
 			return ;
 		str2 = ft_strjoin(str2, arg[i]);
 		chdir(str2);
+		getcwd(str, sizeof(str));
+		str3 = ft_strjoin("PWD=", str);
+		shell->str[i + 1] = str3;
+		ft_export();
 	}
 	else
 	{
 		str2 = ft_strjoin(getenv("HOME"), "/");
 		chdir(str2);
+		str3 = ft_strjoin("PWD=", str2);
+		shell->str[i + 1] = str3;
+		shell->str[i + 2] = NULL;
+		ft_export();
 	}
 }
 

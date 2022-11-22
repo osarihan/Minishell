@@ -57,7 +57,7 @@ void ft_dstry_node(int c)
 		tmp->next = NULL;
 }
 
-void	ft_export(void)
+void	ft_export()
 {
 	int	i = 1;
 	if (!shell->ctrl++)
@@ -158,7 +158,7 @@ void	ultimate_alpha_index_finder(void) //listeyi siralar
 	}
 }
 
-void    printf_alph(void) //sirali baski
+void	printf_alph(void) //sirali baski
 {
 	t_list *list_iter;
 	int i;
@@ -171,7 +171,7 @@ void    printf_alph(void) //sirali baski
 		if (list_iter == NULL)
 			return;
 		if ((char *)list_iter->content)
-			printf("declare -x %ss\n", list_iter->content);
+			printf("declare -x %s\n", list_iter->content);
 		i++;
 		list_iter = shell->asd;
 		continue;

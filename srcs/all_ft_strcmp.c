@@ -56,8 +56,6 @@ int	ft_strcmp3(char *asd, char *sda)
 			return(1);
 		if (asd[i] == sda[i])
 			i++;
-		if (asd[i] == '=' && sda[i] == '=')
-			return(1);
 		else
 			return (0);
 	}

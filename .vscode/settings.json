@@ -2,6 +2,8 @@
 	"files.associations": {
 		"iomanip": "c",
 		"minishell.h": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"sstream": "c",
+		"complex": "c"
 	}
 }
