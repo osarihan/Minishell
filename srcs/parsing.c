@@ -1,28 +1,28 @@
 #include "minishell.h"
 
-char	*pars()
-{
-	int	i;
-	int	j;
+// char	*pars()
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (shell->str[i])
-	{
-		printf("%s\n", shell->str[i]);
-		while (shell->str[i][j])
-		{
-			if (shell->str[i][j] == '$')
-			{
-				printf("dollar\n");
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
+// 	i = 0;
+// 	j = 0;
+// 	while (shell->str[i])
+// 	{
+// 		printf("%s\n", shell->str[i]);
+// 		while (shell->str[i][j])
+// 		{
+// 			if (shell->str[i][j] == '$')
+// 			{
+// 				printf("dollar\n");
+// 			}
+// 			j++;
+// 		}
+// 		j = 0;
+// 		i++;
+// 	}
 
-}
+// }
 
 int	find_size()
 {
@@ -73,7 +73,7 @@ char	*pars_fquote()
 	char *tmp = NULL; //NULL vermezsek basta join atinca onune cop degerler gelir
 	int t_i = 0;
 
-	tmp = malloc(find_size(shell->str) + 1);//for quote
+	tmp = malloc(find_size() + 1);//for quote
 	while (shell->str[i])
 	{
 		j = 0;

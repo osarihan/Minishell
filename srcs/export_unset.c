@@ -64,7 +64,7 @@ void	ft_export(void)
 		ft_fill();
 	if (shell->str[i] == NULL)
 	{
-		if (!shell->ctrl++);
+		if (!shell->ctrl++)
 			ft_fill();
 		printf_alph();
 	}
@@ -158,18 +158,20 @@ void	ultimate_alpha_index_finder(void) //listeyi siralar
 	}
 }
 
-void	printf_alph(void) //sirali baski
+void    printf_alph(void) //sirali baski
 {
 	t_list *list_iter;
 	int i;
-
 	i = 0;
 	list_iter = shell->asd;
-	while (list_iter != NULL)
+	while (list_iter->next != NULL)
 	{
-		while (list_iter->index != i)
+		while (list_iter && list_iter->index != i)
 			list_iter = list_iter->next;
-		printf("alfabetiik::%s --- indexxx: %d\n", list_iter->content, list_iter->index);
+		if (list_iter == NULL)
+			return;
+		if ((char *)list_iter->content)
+			printf("declare -x %ss\n", list_iter->content);
 		i++;
 		list_iter = shell->asd;
 		continue;
