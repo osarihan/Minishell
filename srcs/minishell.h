@@ -61,7 +61,7 @@ int 	ft_env(void);
 void	ft_unset(void);
 void	ft_export(void);
 
-char	*pars_fquote(void);
+char	*expand_fquote(void);
 char	*pars(void);
 
 char	**ft_split_mod(char const *s, char c);

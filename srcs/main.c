@@ -88,7 +88,7 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
 		if (shell->d_quote > 0 || shell->s_quote > 0)
-			shell->line = pars_fquote();
+			shell->line = expand_fquote();
 		// else
 		// 	shell->line = pars();
 		if (pipe_counter())

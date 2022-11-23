@@ -66,7 +66,7 @@ int	find_size()
 }
 
 
-char	*pars_fquote()
+char	*expand_fquote()
 {
 	int	i = 0;
 	int	j;

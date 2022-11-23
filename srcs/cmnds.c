@@ -97,6 +97,7 @@ void	ft_cd(char **arg, int i)
 	char *str2 = NULL;
 	char *str3;
 
+	printf("arg:%s\n", arg[i]);
 	if (arg[i + 1] != NULL)
 	{
 		str2 = ft_strjoin(getcwd(str, sizeof(str)), "/");
@@ -106,8 +107,10 @@ void	ft_cd(char **arg, int i)
 		str2 = ft_strjoin(str2, arg[i]);
 		chdir(str2);
 		getcwd(str, sizeof(str));
+		printf("str:%s\n", str);
 		str3 = ft_strjoin("PWD=", str);
-		shell->str[i + 1] = str3;
+		shell->str[i] = str3;
+		printf("%s\n", shell->str[i]);
 		ft_export();
 	}
 	else
