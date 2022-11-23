@@ -72,7 +72,6 @@ void	assigment(char **env)
 
 	shell->ctrl = 0;
 	shell->len = 0;//for quote malloc
-	//shell->temp = NULL;
 }
 
 

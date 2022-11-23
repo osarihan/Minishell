@@ -28,12 +28,12 @@ char	*dollar_sign(char *str, int j)
 	shell->temp = tmp2;
 	if (check_env(ft_strdup(tmp2)))
 		return (check_env(ft_strdup(tmp2)));
-	return (tmp2);
+	return ("");
 }
 
 char	*d_quote(int i, int j, int t_i, char *tmp)
 {
-	while (shell->str[i][j] != 34)
+	while (shell->str[i][j] != 34 && shell->str[i][j] != '\0')
 	{
 		if (shell->str[i][j] == '$')
 		{
@@ -41,18 +41,20 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 			tmp = ft_strjoin(tmp, dollar_sign(shell->str[i], j));
 			while (shell->str[i][j] != 32 && shell->str[i][j] != '\0' && shell->str[i][j] != 34 && shell->str[i][j] != '$')
 				j++;
-			while (++t_i < ft_strlen(tmp));//tmp index
+			while (t_i++ < ft_strlen(tmp));//tmp index
 		}
 		else
 		{
-			tmp[t_i] = shell->str[i][j];
-			t_i++;
-			tmp[t_i] = '\0';
-			j++;
+			if (shell->str[i][j])
+			{
+				tmp[t_i - 1] = shell->str[i][j];
+				t_i++;
+				j++;
+			}
 		}
 	}
 	shell->len += ft_strlen(tmp);// tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
-	shell->str[i] = ft_strdup(tmp);
+	ft_strlcpy(shell->str[i], tmp, (ft_strlen(tmp) + 1));
 	return (tmp);
 }
 

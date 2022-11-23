@@ -31,6 +31,10 @@ char *check_env(char *str)
 	{
 		tmp = ft_strdup(l_tmp->content);
 		while (tmp[i] != '=')
+			i++;
+		tmp2 = malloc(sizeof(char) * i);
+		i = 0;
+		while (tmp[i] != '=')
 		{
 			tmp2[i] = tmp[i];
 			i++;
