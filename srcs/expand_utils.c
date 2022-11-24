@@ -6,12 +6,6 @@ char	*dollar_sign(char *str, int j)
 	int	i = 0;
 
 	tmp2 = malloc(10000);
-	if (str[j] == '$')
-	{
-		tmp2 = ft_itoa(getpid());
-		while (++i < ft_strlen(tmp2));
-		j++;
-	}
 	if (str[j] == '?')
 	{
 		tmp2[i] = '0';
@@ -43,6 +37,19 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 				j++;
 			while (t_i++ < ft_strlen(tmp));//tmp index
 		}
+		else if (shell->str[i][j] == 39)//d_quote icinde tek tirnak
+		{
+			j++;
+			t_i--;
+			while (shell->str[i][j] != 39 && shell->str[i][j] != '\0')
+			{
+				tmp[t_i] = shell->str[i][j];
+				t_i++;
+				j++;
+			}
+			t_i++;
+			j++;
+		}
 		else
 		{
 			if (shell->str[i][j])
@@ -68,7 +75,8 @@ char	*s_quote(int i, int j, int t_i, char *tmp)
 	}
 	tmp[t_i] = '\0';
 	shell->len += ft_strlen(tmp);
-	shell->str[i] = ft_strdup(tmp);// tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
+	//shell->str[i] = ft_strdup(tmp);// tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
+	ft_strlcpy(shell->str[i], tmp, (ft_strlen(tmp) + 1));
 	return (tmp);
 }
 

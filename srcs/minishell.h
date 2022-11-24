@@ -62,7 +62,8 @@ void	ft_unset(void);
 void	ft_export(void);
 
 char	*expand_fquote(void);
-char	*pars(void);
+char	*expand(void);
+char	*dollar_sign(char *str, int j);
 
 char	**ft_split_mod(char const *s, char c);
 int		ft_strcmp(char *asd, char *sda);

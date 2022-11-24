@@ -1,28 +1,28 @@
 #include "minishell.h"
 
-// char	*pars()
-// {
-// 	int	i;
-// 	int	j;
+char	*expand()
+{
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	j = 0;
-// 	while (shell->str[i])
-// 	{
-// 		printf("%s\n", shell->str[i]);
-// 		while (shell->str[i][j])
-// 		{
-// 			if (shell->str[i][j] == '$')
-// 			{
-// 				printf("dollar\n");
-// 			}
-// 			j++;
-// 		}
-// 		j = 0;
-// 		i++;
-// 	}
-
-// }
+	i = 0;
+	j = 0;
+	while (shell->str[i])
+	{
+		while (shell->str[i][j])
+		{
+			if (shell->str[i][j] == '$')
+			{
+				j++;
+				shell->str[i] = dollar_sign(shell->str[i], j);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return("");
+}
 
 int	find_size()
 {
@@ -36,7 +36,7 @@ int	find_size()
 	while (shell->str[i])
 	{
 		j = 0;
-		if (shell->str[i][j] == 34 || shell->str[i][j] == 39)
+		if (shell->str[i][j] == 34)
 		{
 			j++;
 			while (shell->str[i][j] != 34 && shell->str[i][j] != 39 && shell->str[i][j] != '\0')
