@@ -67,7 +67,6 @@ char	**ft_split_mod(char const *s, char c)
 		if (*s && *s != c)
 		{
 			tab[i] = malloc_strings(s, c);
-			printf("split:%s\n", tab[i]);
 			if (tab[i][0] == 39)
 			{
 				s++;
@@ -91,6 +90,7 @@ char	**ft_split_mod(char const *s, char c)
 					j++;
 					s++;
 				}
+				tab[i][j] = '\0';
 			}
 			i++;
 			while (*s && *s != c)

@@ -60,6 +60,18 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 			}
 		}
 	}
+	if (shell->str[i][j + 1] > 32)//d_quote dan sonrasinda herhangi bisi varsa onu da tmp e ekliyoruz.
+	{
+		j++;//d_quote
+		t_i--;
+		while (shell->str[i][j] != '\0')
+		{
+			tmp[t_i] = shell->str[i][j];
+			t_i++;
+			j++;
+		}
+		tmp[t_i] = '\0';
+	}
 	shell->len += ft_strlen(tmp);// tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
 	ft_strlcpy(shell->str[i], tmp, (ft_strlen(tmp) + 1));
 	return (tmp);
