@@ -18,6 +18,8 @@ int	other_cmnds(char **arg)
 	char	**path;
 	int	pid;
 	int	i;
+	int	fd;
+	int	ret;
 
 	i = 0;
 	path = ft_split(ft_strdup(getenv("PATH")),':');
@@ -35,9 +37,11 @@ int	other_cmnds(char **arg)
 		if(execve(path[i], arg, environ) == -1)
 		{
 			printf("%s: command not found.\n", arg[0]);
-			exit(0);
+			exit(1);
 		}
 	}
+	waitpid(pid, &ret, 0);
+	shell->exit_status = ret % 255;
 	wait(NULL);
 	return (1);
 }
@@ -141,7 +145,6 @@ void	 ft_echo(char **str, int i)
 			i++;
 		}
 	}
-	//exit_status();
 }
 
 

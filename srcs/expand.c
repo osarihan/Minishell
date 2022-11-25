@@ -65,6 +65,8 @@ int	find_size()
 	return (res);
 }
 
+//'"$mete"'
+//quote
 
 char	*expand_fquote()
 {
@@ -80,14 +82,12 @@ char	*expand_fquote()
 		while(shell->str[i][j])
 		{
 			if (shell->str[i][j] == 34)
-			{
-				j++;
-				tmp = d_quote(i, j, t_i, tmp);
-			}
+				tmp = d_quote(i, ++j, t_i, tmp);
 			else if (shell->str[i][j] == 39)
 			{
-				j++;
-				tmp = s_quote(i, j, t_i, tmp);
+				tmp = s_quote(i, ++j, t_i, tmp);
+				while (shell->str[i][j] != 39)
+					j++;
 			}
 			j++;
 			shell->len++;

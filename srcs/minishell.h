@@ -43,6 +43,8 @@ typedef struct s_shell
 	int	pipe;
 	int	cmmp;
 	int	len;
+	int	exit_status;
+	int	fd;
 }	t_shell;
 
 t_shell	*shell;

@@ -35,7 +35,7 @@ int	routine(void)
 	shell->line = readline(shell->name);
 	if (!shell->line)
 		ctrl_D(shell->line);
-	get_name();
+	//get_name();
 	add_history(shell->line);
 	if (shell->line[0] == 0)
 		return (0);
@@ -62,7 +62,7 @@ void	assigment(char **env)
 	printf("|----------------|Minishell|-----------------|\n");
 	shell = malloc(sizeof(t_shell));
 
-	shell->environ=env;
+	shell->environ = env;
 	 //env1(env);
 
 	get_name();
@@ -98,7 +98,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		else if (check_cmnd(i))
 		{
-			sleep(1);
+			//sleep(1);
 			continue;
 		}
 		free(shell->line);

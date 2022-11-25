@@ -52,9 +52,12 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 		}
 		else
 		{
+			printf("char:%s\n", tmp);
+			printf("str char:%c\n", shell->str[i][j]);
+			printf("%d\n", t_i);
 			if (shell->str[i][j])
 			{
-				tmp[t_i - 1] = shell->str[i][j];
+				tmp[t_i - 1] = shell->str[i][j];//dolardan sorasini yazmasi icin
 				t_i++;
 				j++;
 			}
