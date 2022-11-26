@@ -27,11 +27,6 @@ char	*dollar_sign(char *str, int j)
 	return ("");
 }
 
-char b_a_d_quote(int i, int j, int t_i, char *tmp)
-{
-
-}
-
 char	*d_quote(int i, int j, int t_i, char *tmp)
 {
 	int len = 0;

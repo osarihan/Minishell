@@ -12,8 +12,11 @@ char	*expand()
 		while (shell->str[i][j])
 		{
 			if (shell->str[i][j] == '$')
-				ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], ++j), ft_strlen(dollar_sign(shell->str[i], j) + 1));
+			{
+				j++;
+				ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j) + 1));
 				//shell->str[i] = dollar_sign(shell->str[i], j);
+			}
 			j++;
 		}
 		j = 0;
