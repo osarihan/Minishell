@@ -37,6 +37,9 @@ typedef struct s_shell
 	char	**str_pipe;
 	char	*temp;
 	t_list	*asd;
+	t_list	*cmd;
+	t_list	*arg;
+	t_list	*token;
 	int	ctrl;
 	int	s_quote;
 	int	d_quote;

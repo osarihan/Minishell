@@ -74,6 +74,33 @@ void	assigment(char **env)
 	shell->len = 0;//for quote malloc
 }
 
+void lexer()
+{
+	t_list *arg;
+	int	i = 0;
+	int j;
+	shell->cmd = malloc(sizeof(t_list));
+	shell->arg = malloc(sizeof(t_list));
+	shell->token = malloc(sizeof(t_list));
+	shell->cmd = NULL;
+	shell->arg = NULL;
+	shell->token = NULL;
+	while (shell->str[i] != NULL && shell->str[i][0] != '|')
+	{
+		if (ft_strcmp(shell->str[i], "echo")  || ft_strcmp(shell->str[i], "cd") \
+				|| ft_strcmp(shell->str[i], "export") || ft_strcmp(shell->str[i], "unset") \
+				|| ft_strcmp(shell->str[i], "pwd") || ft_strcmp(shell->str[i], "env") \
+				|| ft_strcmp(shell->str[i], "exit"))
+		{
+			ft_lstadd_back(&shell->cmd, ft_lstnew(shell->str[i]));
+		}
+		else
+		{
+			ft_lstadd_back(&shell->arg, ft_lstnew(shell->str[i]));
+		}
+		i++;
+	}
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -87,6 +114,7 @@ int	main(int argc, char **argv, char **env)
 		if (!quote_check(shell->line))
 			continue;
 		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
+		lexer();
 		if (shell->d_quote > 0 || shell->s_quote > 0)
 			shell->line = expand_fquote();
 		else

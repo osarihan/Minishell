@@ -13,7 +13,7 @@ char *ret_env(int i, char *str)
 		i++;
 		j++;
 	}
-	ret[j] = '\0';
+	//ret[j] = '\0';
 	return (ret);
 }
 

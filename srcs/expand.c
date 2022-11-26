@@ -12,10 +12,8 @@ char	*expand()
 		while (shell->str[i][j])
 		{
 			if (shell->str[i][j] == '$')
-			{
-				j++;
-				shell->str[i] = dollar_sign(shell->str[i], j);
-			}
+				ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], ++j), ft_strlen(dollar_sign(shell->str[i], j) + 1));
+				//shell->str[i] = dollar_sign(shell->str[i], j);
 			j++;
 		}
 		j = 0;
@@ -43,6 +41,12 @@ int	find_size()
 			{
 				if (shell->str[i][j] == '$')
 				{
+					if (shell->str[i][j + 1] == 34)//"$" tek dolar durumu
+					{
+						get[l] = '$';//free hatasi almamak icin
+						res++;
+						break;
+					}
 					j++;
 					while (shell->str[i][j] != 34 && shell->str[i][j] != 32)
 					{
