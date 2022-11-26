@@ -1,11 +1,24 @@
 #include "minishell.h"
 
+int	size_finder(char *str, int j)
+{
+	int	len;
+
+	len = 0;
+	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$')
+	{
+		j++;
+		len++;
+	}
+	return (len);
+}
+
 char	*dollar_sign(char *str, int j)
 {
 	char	*tmp2;
 	int	i = 0;
 
-	tmp2 = malloc(10000);
+	tmp2 = malloc(size_finder(str, j) + 1);
 	if (str[j] == 34 || ft_strlen(str) == 1)//tek dolar durumu && ft_strlen olan tirnaksiz tek dolar durumu
 		return("$");
 	if (str[j] == '?')
@@ -21,9 +34,10 @@ char	*dollar_sign(char *str, int j)
 		j++;
 	}
 	tmp2[i] = '\0';
-	shell->temp = tmp2;
-	if (check_env(ft_strdup(tmp2)))
-		return (check_env(ft_strdup(tmp2)));
+	shell->temp = ft_strdup(tmp2);
+	free(tmp2);
+	if (check_env())
+		return (check_env());
 	return ("");
 }
 

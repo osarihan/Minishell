@@ -37,6 +37,7 @@ int	other_cmnds(char **arg)
 		if(execve(path[i], arg, environ) == -1)
 		{
 			printf("%s: command not found.\n", arg[0]);
+			free(path);
 			exit(1);
 		}
 	}
@@ -57,13 +58,11 @@ void	pwd_change(void)
 	if (!shell->asd)
 		ft_fill();
 	l_tmp = shell->asd;
-
-	tmp = malloc(10000);
-	tmp2 = malloc(10000);
+	tmp2 = malloc(ft_strlen("PWD") + 1);
 	while (l_tmp != NULL)
 	{
 		tmp = l_tmp->content;
-		while (tmp[i] != '=')
+		while (tmp[i] != '=' && i < 3)
 		{
 			tmp2[i] = tmp[i];
 			i++;
@@ -71,12 +70,8 @@ void	pwd_change(void)
 		tmp2[i] = '\0';
 		if (ft_strcmp(tmp2, "PWD"))
 		{
-			while (tmp[i++])
-			{
-				tmp2[j] = tmp[i];
-				j++;
-			}
-			printf("%s\n", tmp2);
+			printf("%s\n", &tmp[i]);
+			free(tmp2);
 			return ;
 		}
 		l_tmp = l_tmp->next;
@@ -86,13 +81,7 @@ void	pwd_change(void)
 
 void	ft_pwd(void)
 {
-	char	cwd[256];
-
 	pwd_change();
-	// if (getcwd(cwd, sizeof(cwd)) != NULL)
-	// 	printf("%s\n", cwd);
-	// else
-	// 	perror("");
 }
 
 void	ft_cd(char **arg, int i)
@@ -105,7 +94,7 @@ void	ft_cd(char **arg, int i)
 	if (arg[i + 1] != NULL)
 	{
 		shell->temp = ft_strdup("PWD");
-		str4 = ft_strjoin("OLDPWD=", check_env("PWD"));
+		str4 = ft_strjoin("OLDPWD=", check_env());
 		str2 = ft_strjoin(getcwd(str, sizeof(str)), "/");
 		i++;
 		if (!arg[i])
@@ -123,7 +112,7 @@ void	ft_cd(char **arg, int i)
 	else
 	{
 		shell->temp = ft_strdup("PWD");
-		str4 = ft_strjoin("OLDPWD=", check_env("PWD"));
+		str4 = ft_strjoin("OLDPWD=", check_env());
 		shell->str[i + 1] = str4;
 		shell->str[i + 2] = NULL;
 		ft_export();

@@ -42,28 +42,12 @@ int	routine(void)
 	return (1);
 }
 
-// void	env1(char **env)
-// {
-// 	int	i = 0;
-
-// 	while (env[i])
-// 		i++;
-// 	shell->environ = ft_calloc(i+1, sizeof(shell->environ));
-// 	i = 0;
-// 	while (env[i])
-// 	{
-// 		shell->environ[i] = ft_strdup(env[i]);
-// 		i++;
-// 	}
-// }
-
 void	assigment(char **env)
 {
 	printf("|----------------|Minishell|-----------------|\n");
 	shell = malloc(sizeof(t_shell));
 
 	shell->environ = env;
-	 //env1(env);
 
 	get_name();
 
@@ -110,11 +94,14 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		if (!routine())
+		{
+			free(shell->line);
 			continue;
+		}
 		if (!quote_check(shell->line))
 			continue;
 		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
-		lexer();
+		//lexer();
 		if (shell->d_quote > 0 || shell->s_quote > 0)
 			shell->line = expand_fquote();
 		else

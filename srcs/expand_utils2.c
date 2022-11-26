@@ -3,9 +3,18 @@
 char *ret_env(int i, char *str)
 {
 	char *ret;
+	char	*rtrn;
 	int j;
 
-	ret = malloc(10000);
+	int l_i = i;
+	int len = 0;
+
+	while (str[l_i])
+	{
+		l_i++;
+		len++;
+	}
+	ret = malloc(sizeof(char *) + (len + 1));
 	j = 0;
 	while (str[i])
 	{
@@ -13,11 +22,10 @@ char *ret_env(int i, char *str)
 		i++;
 		j++;
 	}
-	//ret[j] = '\0';
 	return (ret);
 }
 
-char *check_env(char *str)
+char *check_env(void)
 {
 	t_list *l_tmp;
 	char	*tmp;
@@ -45,5 +53,6 @@ char *check_env(char *str)
 		l_tmp = l_tmp->next;
 		i = 0;
 	}
+	free(tmp2);
 	return (NULL);
 }

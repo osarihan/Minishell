@@ -14,8 +14,9 @@ char	*expand()
 			if (shell->str[i][j] == '$')
 			{
 				j++;
-				ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j) + 1));
-				//shell->str[i] = dollar_sign(shell->str[i], j);
+				//ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j)));
+				printf("%s\n", shell->str[i]);
+				shell->str[i] = dollar_sign(shell->str[i], j);
 			}
 			j++;
 		}
@@ -33,7 +34,7 @@ int	find_size()
 	int	res = 0;
 	char *get;
 
-	get = malloc(10000);
+	get = malloc(size_finder(shell->str[i], j) + 1);
 	while (shell->str[i])
 	{
 		j = 0;

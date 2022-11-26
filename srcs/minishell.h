@@ -91,6 +91,7 @@ void	printf_alph(void) ;
 char	*d_quote(int i, int j, int t_i, char *tmp);
 char	*s_quote(int i, int j, int t_i, char *tmp);
 char	*final_line(void);
-char	*check_env(char *str);
+char	*check_env(void);
+int		size_finder(char *str, int j);
 
 #endif

@@ -20,7 +20,7 @@ char	*quote(const char *str, int c)
 
 	int	quote = 1;
 
-	new_str = malloc(10000);
+	new_str = malloc(ft_strlen(str) + 1);
 	new_str[j] = str[i];
 	j++;
 	i++;
