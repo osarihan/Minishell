@@ -100,25 +100,36 @@ void	ft_cd(char **arg, int i)
 	char str[256];
 	char *str2 = NULL;
 	char *str3;
-
+	char *str4;
+	printf(“arg:%s\n”, arg[i]);
 	if (arg[i + 1] != NULL)
 	{
-		str2 = ft_strjoin(getcwd(str, sizeof(str)), "/");
+		shell->temp = ft_strdup(“PWD”);
+		str4 = ft_strjoin(“OLDPWD=“, check_env(“PWD”));
+		str2 = ft_strjoin(getcwd(str, sizeof(str)), “/”);
 		i++;
 		if (!arg[i])
 			return ;
 		str2 = ft_strjoin(str2, arg[i]);
 		chdir(str2);
 		getcwd(str, sizeof(str));
-		str3 = ft_strjoin("PWD=", str);
+		str3 = ft_strjoin(“PWD=“, str);
 		shell->str[i] = str3;
+		ft_export();
+		shell->str[i + 1] = str4;
+		shell->str[i + 2] = NULL;
 		ft_export();
 	}
 	else
 	{
-		str2 = ft_strjoin(getenv("HOME"), "/");
+		shell->temp = ft_strdup(“PWD”);
+		str4 = ft_strjoin(“OLDPWD=“, check_env(“PWD”));
+		shell->str[i + 1] = str4;
+		shell->str[i + 2] = NULL;
+		ft_export();
+		str2 = ft_strjoin(getenv(“HOME”), “/”);
 		chdir(str2);
-		str3 = ft_strjoin("PWD=", str2);
+		str3 = ft_strjoin(“PWD=“, str2);
 		shell->str[i + 1] = str3;
 		shell->str[i + 2] = NULL;
 		ft_export();
