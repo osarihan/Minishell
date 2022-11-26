@@ -2,26 +2,38 @@
 
 char	*expand()
 {
+	t_list *iter;
 	int	i;
 	int	j;
-
+	char *tmp;
+	char *str;
 	i = 0;
 	j = 0;
-	while (shell->str[i])
+	int	len = 0;
+	iter = shell->arg;
+	tmp = malloc(10000);
+	while (iter != NULL)
 	{
-		while (shell->str[i][j])
+		str = ft_strdup(iter->content);
+		while (str[j])
 		{
-			if (shell->str[i][j] == '$')
+			if (str[j] == '$')
 			{
 				j++;
 				//ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j)));
-				printf("%s\n", shell->str[i]);
-				shell->str[i] = dollar_sign(shell->str[i], j);
+				tmp = ft_strjoin(tmp, dollar_sign(str, j));
+				printf("TMP:%s\n", tmp);
+			}
+			else
+			{
+				len = ft_strlen(tmp);
+				tmp[len] = str[j];
 			}
 			j++;
 		}
+		iter = iter->next;
+		free(str);
 		j = 0;
-		i++;
 	}
 	return("");
 }

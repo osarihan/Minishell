@@ -101,7 +101,7 @@ int	main(int argc, char **argv, char **env)
 		if (!quote_check(shell->line))
 			continue;
 		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
-		//lexer();
+		lexer();
 		if (shell->d_quote > 0 || shell->s_quote > 0)
 			shell->line = expand_fquote();
 		else
