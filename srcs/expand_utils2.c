@@ -22,6 +22,7 @@ char *ret_env(int i, char *str)
 		i++;
 		j++;
 	}
+	ret[j] = '\0';
 	return (ret);
 }
 

@@ -27,7 +27,7 @@ char	*dollar_sign(char *str, int j)
 		i++;
 		j++;
 	}
-	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$')
+	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
 	{
 		tmp2[i] = str[j];
 		i++;
@@ -56,14 +56,36 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 		}
 		else if (shell->str[i][j] == 39)//d_quote icinde tek tirnak
 		{
+			tmp[t_i] = 39;//tek tirnak attik.
+			t_i++;
 			j++;
-			t_i--;
 			while (shell->str[i][j] != 39 && shell->str[i][j] != '\0')
 			{
+				if (shell->str[i][j] == '$')
+				{
+					j++;
+					tmp = ft_strjoin(tmp, dollar_sign(shell->str[i], j));
+					printf("tmp:%s\n", tmp);
+					while (shell->str[i][j] != 32 && shell->str[i][j] != '\0' && shell->str[i][j] != 34 && shell->str[i][j] != '$' && shell->str[i][j] != 39)
+					{
+						printf("in while%c\n", shell->str[i][j]);
+						j++;
+					}
+					while (t_i++ < ft_strlen(tmp));
+				}
+				printf("J:%d\n", j);
+				printf("%c\n", shell->str[i][j]);
+				if (shell->str[i][j] == 39)
+					break;
 				tmp[t_i] = shell->str[i][j];
 				t_i++;
 				j++;
 			}
+			t_i = ft_strlen(tmp);
+			printf("tmp:%c t_i:%d		shell->str[i][j]:%c\n", tmp[t_i], t_i, shell->str[i][j]);
+			tmp[t_i] = 39;
+			printf("tmp:%c t_i:%d		shell->str[i][j]:%c\n", tmp[t_i], t_i, shell->str[i][j]);
+			printf("%s\n", tmp);
 			t_i++;
 			j++;
 		}
@@ -78,6 +100,7 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 			}
 		}
 	}
+	printf("end%c\n", shell->str[i][j]);
 	if (shell->str[i][j + 1] > 32)//d_quote dan sonrasinda herhangi bisi varsa onu da tmp e ekliyoruz.
 	{
 		j++;//d_quote
@@ -92,6 +115,7 @@ char	*d_quote(int i, int j, int t_i, char *tmp)
 	}
 	shell->len += ft_strlen(tmp);// tmp bir pointer old. icin shell->str ye yeni yer actik eger bunu dup olmadan yapsaydik assagida tmp nin icini '\0' ile doldurdugumuzda str de degisecekti...
 	ft_strlcpy(shell->str[i], tmp, (ft_strlen(tmp) + 1));
+	printf("TMP:%s %s\n", tmp, shell->str[i]);
 	return (tmp);
 }
 char	*s_quote(int i, int j, int t_i, char *tmp)

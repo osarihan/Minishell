@@ -11,7 +11,7 @@ char	*expand()
 	j = 0;
 	int	len = 0;
 	iter = shell->arg;
-	if (iter->content == NULL)
+	if (shell->arg == NULL)
 		return (NULL);
 	tmp = malloc(10000);
 	while (iter != NULL)
@@ -22,7 +22,6 @@ char	*expand()
 			if (str[j] == '$')
 			{
 				j++;
-				//ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j)));
 				tmp = ft_strjoin(tmp, dollar_sign(str, j));
 				while (str[j] != '$' && str[j] != '\0' && str[j] != 32)
 					j++;
@@ -38,7 +37,6 @@ char	*expand()
 		iter = iter->next;
 		free(str);
 		j = 0;
-
 	}
 	return("");
 }
@@ -107,7 +105,10 @@ char	*expand_fquote()
 		while(shell->str[i][j])
 		{
 			if (shell->str[i][j] == 34)
+			{
 				tmp = d_quote(i, ++j, t_i, tmp);
+				printf("ciktim%s\n", tmp);
+			}
 			else if (shell->str[i][j] == 39)
 			{
 				tmp = s_quote(i, ++j, t_i, tmp);
@@ -121,5 +122,6 @@ char	*expand_fquote()
 		i++;
 	}
 	free(tmp);
-	return(final_line());
+	//return(final_line());
+	return ("");
 }

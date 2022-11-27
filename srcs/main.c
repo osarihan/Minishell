@@ -58,10 +58,28 @@ void	assigment(char **env)
 	shell->len = 0;//for quote malloc
 }
 
+int	is_cmd(char	*str)
+{
+	char	**path;
+	int	i;
+
+	i = 0;
+	path = ft_split(ft_strdup(getenv("PATH")),':');
+	while (path[i])
+	{
+		path[i] = ft_strjoin(path[i],"/");
+		path[i] = ft_strjoin(path[i], str);
+		if(access(path[i], F_OK) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void lexer()
 {
 	t_list *arg;
-	t_list *iter;
+	t_list *iter = NULL;
 	int	i = 0;
 	int j;
 	shell->cmd = malloc(sizeof(t_list));
@@ -72,20 +90,14 @@ void lexer()
 	shell->token = NULL;
 	while (shell->str[i] != NULL && shell->str[i][0] != '|')
 	{
-		if (ft_strcmp(shell->str[i], "echo")  || ft_strcmp(shell->str[i], "cd") \
-				|| ft_strcmp(shell->str[i], "export") || ft_strcmp(shell->str[i], "unset") \
-				|| ft_strcmp(shell->str[i], "pwd") || ft_strcmp(shell->str[i], "env") \
-				|| ft_strcmp(shell->str[i], "exit") || ft_strcmp(shell->str[i], "clear"))
-		{
+		if (is_cmd(shell->str[i]))
 			ft_lstadd_back(&shell->cmd, ft_lstnew(shell->str[i]));
-		}
 		else
 		{
 			ft_lstadd_back(&shell->arg, ft_lstnew(shell->str[i]));
 			if (i == 1)
 				iter = shell->arg;
 			shell->arg->index = i;
-			printf("%d\n", shell->arg->index);
 			shell->arg = shell->arg->next;
 		}
 		i++;
@@ -110,10 +122,11 @@ int	main(int argc, char **argv, char **env)
 		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
 		lexer();
 		if (shell->d_quote > 0 || shell->s_quote > 0)
-			shell->line = expand_fquote();
-		else
-			expand();
-		printf("geldim\n");
+		{
+			expand_fquote();
+			//printf("linem lan:%s\n", shell->line);
+		}
+		expand();
 		if (pipe_counter())
 		{
 			pipe_status();
@@ -122,6 +135,8 @@ int	main(int argc, char **argv, char **env)
 		else if (check_cmnd(i))
 		{
 			//sleep(1);
+			free(shell->arg);
+			free(shell->cmd);
 			continue;
 		}
 		free(shell->line);
