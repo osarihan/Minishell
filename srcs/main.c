@@ -61,6 +61,7 @@ void	assigment(char **env)
 void lexer()
 {
 	t_list *arg;
+	t_list *iter;
 	int	i = 0;
 	int j;
 	shell->cmd = malloc(sizeof(t_list));
@@ -74,16 +75,22 @@ void lexer()
 		if (ft_strcmp(shell->str[i], "echo")  || ft_strcmp(shell->str[i], "cd") \
 				|| ft_strcmp(shell->str[i], "export") || ft_strcmp(shell->str[i], "unset") \
 				|| ft_strcmp(shell->str[i], "pwd") || ft_strcmp(shell->str[i], "env") \
-				|| ft_strcmp(shell->str[i], "exit"))
+				|| ft_strcmp(shell->str[i], "exit") || ft_strcmp(shell->str[i], "clear"))
 		{
 			ft_lstadd_back(&shell->cmd, ft_lstnew(shell->str[i]));
 		}
 		else
 		{
 			ft_lstadd_back(&shell->arg, ft_lstnew(shell->str[i]));
+			if (i == 1)
+				iter = shell->arg;
+			shell->arg->index = i;
+			printf("%d\n", shell->arg->index);
+			shell->arg = shell->arg->next;
 		}
 		i++;
 	}
+	shell->arg = iter;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -106,6 +113,7 @@ int	main(int argc, char **argv, char **env)
 			shell->line = expand_fquote();
 		else
 			expand();
+		printf("geldim\n");
 		if (pipe_counter())
 		{
 			pipe_status();

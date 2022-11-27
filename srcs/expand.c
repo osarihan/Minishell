@@ -11,6 +11,8 @@ char	*expand()
 	j = 0;
 	int	len = 0;
 	iter = shell->arg;
+	if (iter->content == NULL)
+		return (NULL);
 	tmp = malloc(10000);
 	while (iter != NULL)
 	{
@@ -22,7 +24,8 @@ char	*expand()
 				j++;
 				//ft_strlcpy(shell->str[i], dollar_sign(shell->str[i], j), ft_strlen(dollar_sign(shell->str[i], j)));
 				tmp = ft_strjoin(tmp, dollar_sign(str, j));
-				printf("TMP:%s\n", tmp);
+				while (str[j] != '$' && str[j] != '\0' && str[j] != 32)
+					j++;
 			}
 			else
 			{
@@ -31,9 +34,11 @@ char	*expand()
 			}
 			j++;
 		}
+		shell->str[iter->index] = tmp;
 		iter = iter->next;
 		free(str);
 		j = 0;
+
 	}
 	return("");
 }
