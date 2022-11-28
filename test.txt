@@ -1,0 +1,4 @@
+<Makefile cat| echo "$PWD 'hola'" ~/srcs | 'tr' -d / >outfile
+<Makefile cat| echo "$PWD 'hola'" ~/srcs | 'tr' -d / >outfile
+<Makefile cat| echo "$PWD 'hola'" ~/srcs | 'tr' -d / >outfile
+<Makefile cat| echo "$PWD 'hola'" ~/srcs | 'tr' -d / >outfile

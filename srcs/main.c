@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/01 15:23:58 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:09:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	routine(void)
 	shell->line = readline(shell->name);
 	if (!shell->line)
 		ctrl_D(shell->line);
-	//get_name();
 	add_history(shell->line);
 	if (shell->line[0] == 0)
 		return (0);
@@ -49,60 +48,43 @@ void	assigment(char **env)
 
 	shell->environ = env;
 
-	get_name();
-
+	//get_name();
+	shell->name = "31>";
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
+	//shell->arg = malloc(sizeof(t_list));
 	shell->ctrl = 0;
 	shell->len = 0;//for quote malloc
 }
 
-int	is_cmd(char	*str)
+void lexer(void)
 {
-	char	**path;
-	int	i;
-
-	i = 0;
-	path = ft_split(ft_strdup(getenv("PATH")),':');
-	while (path[i])
+	int cnt;
+	while (*shell->line)
 	{
-		path[i] = ft_strjoin(path[i],"/");
-		path[i] = ft_strjoin(path[i], str);
-		if(access(path[i], F_OK) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void lexer()
-{
-	t_list *arg;
-	t_list *iter = NULL;
-	int	i = 0;
-	int j;
-	shell->cmd = malloc(sizeof(t_list));
-	shell->arg = malloc(sizeof(t_list));
-	shell->token = malloc(sizeof(t_list));
-	shell->cmd = NULL;
-	shell->arg = NULL;
-	shell->token = NULL;
-	while (shell->str[i] != NULL && shell->str[i][0] != '|')
-	{
-		if (is_cmd(shell->str[i]))
-			ft_lstadd_back(&shell->cmd, ft_lstnew(shell->str[i]));
-		else
+		space_skip();
+		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
 		{
-			ft_lstadd_back(&shell->arg, ft_lstnew(shell->str[i]));
-			if (i == 1)
-				iter = shell->arg;
-			shell->arg->index = i;
-			shell->arg = shell->arg->next;
+			printf("aa\n");
+			cnt = cmnd_take();
+			lexur(cnt);
+			printf("lstlasdf::.%s\n", ft_lstlast(shell->arg)->content);
+			continue;
 		}
-		i++;
+		cnt = token_compr();
+		if (cnt > 0)
+			lexur(cnt);
+		cnt = text_cmpr();
+		if (cnt > 0)
+			lexur(cnt);
 	}
-	shell->arg = iter;
+	while (shell->arg != NULL)
+	{
+		printf("args:::::%s\n", shell->arg->content);
+		shell->arg = shell->arg->next;
+	}
+	exit(0);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -117,29 +99,8 @@ int	main(int argc, char **argv, char **env)
 			free(shell->line);
 			continue;
 		}
-		if (!quote_check(shell->line))
-			continue;
-		shell->str = ft_split_mod(shell->line, ' ');//D_QUOTE MOD
+		//printf("%s\n")
 		lexer();
-		if (shell->d_quote > 0 || shell->s_quote > 0)
-		{
-			expand_fquote();
-			//printf("linem lan:%s\n", shell->line);
-		}
-		expand();
-		if (pipe_counter())
-		{
-			pipe_status();
-			continue;
-		}
-		else if (check_cmnd(i))
-		{
-			//sleep(1);
-			free(shell->arg);
-			free(shell->cmd);
-			continue;
-		}
-		free(shell->line);
 	}
 	return(1);
 }

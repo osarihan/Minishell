@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/01 13:47:03 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:09:08 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,46 +52,17 @@ typedef struct s_shell
 
 t_shell	*shell;
 
-char *to_lower(char *str);
-
-int		check_cmnd(int i);
-int		other_cmnds(char **arg);
-void	get_name(void);
-
-
-void	ft_cd(char **arg, int i);
-void	 ft_echo(char **str, int i);
-void	ft_pwd(void);
-int 	ft_env(void);
-void	ft_unset(void);
-void	ft_export(void);
-
-char	*expand_fquote(void);
-char	*expand(void);
-char	*dollar_sign(char *str, int j);
-
-char	**ft_split_mod(char const *s, char c);
-int		ft_strcmp(char *asd, char *sda);
-int		ft_strcmp2(char *asd, char *sda);
-int		ft_strcmp3(char *asd, char *sda);
-void	ft_fill(void);
-int		lstcmp(char *str);
-void	ft_lstremover(void);
-void	ft_dstry_node(int c);
-
-int		quote_check(char *str);
-int		pipe_counter(void);
-void	pipe_status(void);
-void	shell_pipe_dup2(void);
-
-
-void	ultimate_alpha_index_finder(void);
-void	printf_alph(void) ;
-
-char	*d_quote(int i, int j, int t_i, char *tmp);
-char	*s_quote(int i, int j, int t_i, char *tmp);
-char	*final_line(void);
-char	*check_env(void);
-int		size_finder(char *str, int j);
-
+void	sighandler(int signum);
+void	ctrl_D(char *line);
+int		routine(void);
+void	assigment(char **env);
+int		is_cmd(char	*str);
+//lexer
+void 	lexer(void);
+void	space_skip(void);
+void	lexur(int cnt);
+int		text_cmpr(void);
+int		token_compr(void);
+int	cmnd_take(void);
+int	ft_strcmp(char *asd, char *sda);
 #endif

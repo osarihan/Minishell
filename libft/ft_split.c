@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:34:54 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/01 14:08:22 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:11:45 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static char	*malloc_strings(const char *s, char c)
 	i = 0;
 	while (s[i] && s[i] != c)
 	{
-		if (s[i] == 39)
-			return(quote(s, 39));
-		else if (s[i] == 34)
-			return(quote(s, 34));
+		//if (s[i] == 39)
+		//	return(quote(s, 39));
+		//else if (s[i] == 34)
+		//	return(quote(s, 34));
 		word[i] = s[i];
 		i++;
 	}
