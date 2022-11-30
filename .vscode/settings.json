@@ -6,5 +6,6 @@
 		"sstream": "c",
 		"complex": "c",
 		"source_location": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }

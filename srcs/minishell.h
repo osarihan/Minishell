@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:09:08 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:24:05 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		routine(void);
 void	assigment(char **env);
 int		is_cmd(char	*str);
 //lexer
+void here_doc(int i);
 void 	lexer(void);
 void	space_skip(void);
 void	lexur(int cnt);

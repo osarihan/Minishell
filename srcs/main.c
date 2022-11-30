@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/30 01:00:59 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:04:58 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sighandler(int signum)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line(); // yeni satira gectigimizi belirtir
-		rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
+		//rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
 		rl_redisplay();
 	}
 }
@@ -61,44 +61,56 @@ void	assigment(char **env)
 void lexer(void)
 {
 	int cnt;
+
 	while (*shell->line)
 	{
-		//printf("shell->line::%s\n", shell->line);
 		space_skip();
-		//printf("123");
 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
 		{
 			cnt = cmnd_take();
-			//printf("girdi!!!");
 			lexur(cnt);
 			continue;
 		}
 		cnt = token_compr();
 		
-		//printf("cnt_after_token_compr::%d\n", cnt);
 		if (cnt > 0)
 			lexur(cnt);
 		cnt = text_cmpr();
-		//printf("cnt_after_text_compr::%d\n", cnt);
 		if (cnt > 0)
 			lexur(cnt);
 	}
 	t_list *iter;
-
 	iter = shell->arg;
 	while (iter != NULL)
 	{
-		printf("args:::::%s\n", iter->content);
+		printf("ilk hali: %s\n", iter->content);
 		iter = iter->next;
 	}
+	printf("---------------------------------\n");
 	return;
+}
+
+static int ft_lstfinder(char *str, int i)
+{
+	t_list *iter;
+
+	iter = shell->arg;
+	while (!ft_strcmp(str, iter->content))
+	{
+		iter = iter->next;
+		i++;
+	}
+	i--;
+	return (i);
+		
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	int i = 0;
-
+	int a = 1;
 	assigment(env);
+
 	while (1)
 	{
 		if (!routine())
@@ -106,8 +118,21 @@ int	main(int argc, char **argv, char **env)
 			free(shell->line);
 			continue;
 		}
-		//printf("%s\n")
 		lexer();
+		a = ft_lstfinder("<<", a);
+		printf("aa\n");
+		printf("%d\n", a);
+		if (a > 0)
+			here_doc(a);
+
+		t_list *iter;
+
+		iter = shell->arg;
+		while (iter != NULL)
+		{
+			printf("args:::::%s\n", iter->content);
+			iter = iter->next;
+		}
 		shell->arg = NULL;
 	}
 	return(1);
