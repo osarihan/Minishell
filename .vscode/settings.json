@@ -4,6 +4,7 @@
 		"minishell.h": "c",
 		"cstdlib": "c",
 		"sstream": "c",
-		"complex": "c"
+		"complex": "c",
+		"source_location": "c"
 	}
 }

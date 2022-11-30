@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:13:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:12:00 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:48:18 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ int	text_cmpr(void)
 			i++;
 			while (shell->line[i] != 34 && shell->line[i] != '\0')
 				i++;
+			while (shell->line[i] != ' ' && shell->line[i] != '\0')
+				i++;
 			return (i + 1);
 		}
 		if (shell->line[i] == 39)
 		{
 			i++;
 			while (shell->line[i] != 39 && shell->line[i] != '\0')
+				i++;
+			while (shell->line[i] != ' ' && shell->line[i] != '\0')
 				i++;
 			return (i + 1);
 		}
@@ -75,7 +79,7 @@ void	lexur(int cnt)
 	char *tmp;
 	int i = 0;
 
-	tmp = malloc(sizeof(char *) * cnt);
+	tmp = malloc(sizeof(char *) * cnt + 1);
 	while (cnt > 0)
 	{
 		tmp[i] = *shell->line;
@@ -83,20 +87,31 @@ void	lexur(int cnt)
 		cnt--;
 		i++;
 	}
+	tmp[i] = '\0';
 	ft_lstadd_back(&shell->arg, ft_lstnew(tmp));	
 }
 
 void	space_skip()
 {
-	while (*shell->line <= 32)
+	int i;
+
+	i = 0;
+	while (shell->line[i] <= 32 && shell->line[i + 1] != '\0')
+	{
 		shell->line++;
+	}
+	if (((shell->line[i] >= 9 && shell->line[i] <= 13) || shell->line[i] == 32) && (shell->line[i + 1] == '\0'))
+	{
+		*shell->line = '\0';
+		return;
+	}
 }
 
 int	cmnd_take(void)
 {
 	int i = 0;
 
-	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
+	while (shell->line[i] != ' ' && shell->line[i] != '\0' && shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|')
 		i++;
 	return(i);
 }

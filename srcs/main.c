@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:09:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/30 01:00:59 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,35 @@ void lexer(void)
 	int cnt;
 	while (*shell->line)
 	{
+		//printf("shell->line::%s\n", shell->line);
 		space_skip();
+		//printf("123");
 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
 		{
-			printf("aa\n");
 			cnt = cmnd_take();
+			//printf("girdi!!!");
 			lexur(cnt);
-			printf("lstlasdf::.%s\n", ft_lstlast(shell->arg)->content);
 			continue;
 		}
 		cnt = token_compr();
+		
+		//printf("cnt_after_token_compr::%d\n", cnt);
 		if (cnt > 0)
 			lexur(cnt);
 		cnt = text_cmpr();
+		//printf("cnt_after_text_compr::%d\n", cnt);
 		if (cnt > 0)
 			lexur(cnt);
 	}
-	while (shell->arg != NULL)
+	t_list *iter;
+
+	iter = shell->arg;
+	while (iter != NULL)
 	{
-		printf("args:::::%s\n", shell->arg->content);
-		shell->arg = shell->arg->next;
+		printf("args:::::%s\n", iter->content);
+		iter = iter->next;
 	}
-	exit(0);
+	return;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -101,6 +108,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		//printf("%s\n")
 		lexer();
+		shell->arg = NULL;
 	}
 	return(1);
 }
