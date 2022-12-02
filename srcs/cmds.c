@@ -90,13 +90,14 @@ char	**list_to_2D()
 
 	i = 0;
 	iter = shell->arg;
+	str = malloc(sizeof(char **) * ft_lstsize(shell->arg) + 1);
 	while (iter != NULL)
 	{
-		str[i] = malloc(ft_strlen(iter->content) + 1);
-		str[i] = iter->content;
+		str[i] = ft_strdup(iter->content);
 		i++;
 		iter = iter->next;
 	}
+	str[i] = NULL;
 	return(str);
 }
 
@@ -132,5 +133,6 @@ int	other_cmnds(char **arg)
 	waitpid(pid, &ret, 0);
 	shell->exit_status = ret % 255;
 	wait(NULL);
+	free(arg);
 	return (1);
 }
