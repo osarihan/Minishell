@@ -6,31 +6,11 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:13:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/30 00:48:18 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:12:00 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_strcmp(char *asd, char *sda)
-{
-	int i;
-	size_t len;
-
-	len = ft_strlen(sda);
-	i = 0;
-	while (len)
-	{
-		if (asd[i] == sda[i])
-			i++;
-		else
-			return(0);
-		len--;
-	}
-	if (asd[i] != '\0')
-		return(0);
-	return(1);
-}
 
 int	token_compr(void)
 {
@@ -48,7 +28,7 @@ int	token_compr(void)
 int	text_cmpr(void)
 {
 	int i = 0;
-	
+
 	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
 	{
 		if (shell->line[i] == 34)
@@ -88,30 +68,29 @@ void	lexur(int cnt)
 		i++;
 	}
 	tmp[i] = '\0';
-	ft_lstadd_back(&shell->arg, ft_lstnew(tmp));	
+	ft_lstadd_back(&shell->arg, ft_lstnew(tmp));
 }
 
 void	space_skip()
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (shell->line[i] <= 32 && shell->line[i + 1] != '\0')
-	{
 		shell->line++;
-	}
-	if (((shell->line[i] >= 9 && shell->line[i] <= 13) || shell->line[i] == 32) && (shell->line[i + 1] == '\0'))
+	if (shell->line[i] <= 32 && shell->line[i + 1] == '\0')
 	{
 		*shell->line = '\0';
-		return;
+		return ;
 	}
 }
+
 
 int	cmnd_take(void)
 {
 	int i = 0;
 
-	while (shell->line[i] != ' ' && shell->line[i] != '\0' && shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|')
+	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
 		i++;
 	return(i);
 }

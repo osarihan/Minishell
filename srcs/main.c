@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/30 15:04:58 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:09:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,17 @@ void	assigment(char **env)
 	shell = malloc(sizeof(t_shell));
 
 	shell->environ = env;
+	shell->ctrl = 0;
 
-	//get_name();
-	shell->name = "31>";
+	get_name();
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
-	//shell->arg = malloc(sizeof(t_list));
-	shell->ctrl = 0;
-	shell->len = 0;//for quote malloc
 }
 
 void lexer(void)
 {
 	int cnt;
-
 	while (*shell->line)
 	{
 		space_skip();
@@ -72,45 +68,17 @@ void lexer(void)
 			continue;
 		}
 		cnt = token_compr();
-		
 		if (cnt > 0)
 			lexur(cnt);
 		cnt = text_cmpr();
 		if (cnt > 0)
 			lexur(cnt);
 	}
-	t_list *iter;
-	iter = shell->arg;
-	while (iter != NULL)
-	{
-		printf("ilk hali: %s\n", iter->content);
-		iter = iter->next;
-	}
-	printf("---------------------------------\n");
-	return;
-}
-
-static int ft_lstfinder(char *str, int i)
-{
-	t_list *iter;
-
-	iter = shell->arg;
-	while (!ft_strcmp(str, iter->content))
-	{
-		iter = iter->next;
-		i++;
-	}
-	i--;
-	return (i);
-		
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	int i = 0;
-	int a = 1;
 	assigment(env);
-
 	while (1)
 	{
 		if (!routine())
@@ -119,21 +87,18 @@ int	main(int argc, char **argv, char **env)
 			continue;
 		}
 		lexer();
-		a = ft_lstfinder("<<", a);
-		printf("aa\n");
-		printf("%d\n", a);
-		if (a > 0)
-			here_doc(a);
-
-		t_list *iter;
-
-		iter = shell->arg;
-		while (iter != NULL)
-		{
-			printf("args:::::%s\n", iter->content);
-			iter = iter->next;
-		}
+		expander();
+		executor();
+		// t_list *iter;
+		// iter = shell->arg;
+		// while (iter != NULL)
+		// {
+		// 	printf("argsLAST:::::%s\n", iter->content);
+		// 	iter = iter->next;
+		// }
+		//if (run_cmd())
 		shell->arg = NULL;
+		//free(shell->line);
 	}
 	return(1);
 }
