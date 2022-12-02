@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+
+
 int	pars_size(t_list *list)
 {
 	int	len;
@@ -23,7 +25,7 @@ void	pars_pipe()
 	iter = shell->arg;
 	while (iter != NULL)
 	{
-		if (i++ != 0)
+		if (i++ != 0)//tekrar ilerlemesini engellemek icin assagida degil ve ilk geldiginde calismamasi icin i
 			iter = iter->next;
 		tmp = ft_calloc(pars_size(iter), sizeof(char *));
 		while (iter != NULL && !ft_strcmp(iter->content, "|"))
@@ -35,15 +37,16 @@ void	pars_pipe()
 		ft_lstadd_back(&shell->pipe_arg, ft_lstnew(ft_strdup(tmp)));
 		free(tmp);
 	}
-	while (shell->pipe_arg != NULL)
-	{
-		printf("shell->pipe_arg:%s\n", shell->pipe_arg->content);
-		shell->pipe_arg = shell->pipe_arg->next;
-	}
+	// while (shell->pipe_arg != NULL)
+	// {
+	// 	printf("shell->pipe_arg:%s\n", shell->pipe_arg->content);
+	// 	shell->pipe_arg = shell->pipe_arg->next;
+	// }
 	//free(tmp);
 }
 
 void	run_cmd_with_pipe()
 {
 	pars_pipe();
+	//pipe();
 }

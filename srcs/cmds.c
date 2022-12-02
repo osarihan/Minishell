@@ -57,7 +57,6 @@ void	 ft_echo()
 	int	i;
 
 	i = 1;
-	content = list_data(shell->arg, 0);
 	if (list_data(shell->arg, i) == NULL)
 		printf("\n");
 	else
