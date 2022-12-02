@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:13:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:12:00 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:28:15 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,29 @@ int	cmnd_take(void)
 	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
 		i++;
 	return(i);
+}
+
+void cmnd_cut(int x)
+{
+	char *tmp;
+	int i;
+
+	i = 0;
+	tmp = malloc(sizeof(char *) * x);
+	while (*shell->line > 32)
+	{
+		if (*shell->line == 34 || *shell->line == 39)
+			shell->line++;
+		else if (*shell->line != ' ' && *shell->line != '\0' && *shell->line != '>' && *shell->line != '<' && *shell->line != '|')
+		{
+			tmp[i] = *shell->line;
+			shell->line++;
+			i++;
+		}
+		else
+			break;
+	}
+	tmp[i] = '\0';
+	if (tmp[0] != '\0')
+		ft_lstadd_back(&shell->arg, ft_lstnew(tmp));
 }

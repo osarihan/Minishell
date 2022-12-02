@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:09:08 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:28:49 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		text_cmpr(void);
 int		token_compr(void);
 int		cmnd_take(void);
 int		ft_strcmp(char *asd, char *sda);
+void 	cmnd_cut(int x);
 //expander
 void	expander(void);
 char	*dollar_sign(char *str, int j);

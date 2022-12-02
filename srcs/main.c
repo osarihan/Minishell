@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/11/28 16:09:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/02 10:28:59 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void lexer(void)
 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
 		{
 			cnt = cmnd_take();
-			lexur(cnt);
-			continue;
+			if (cnt > 0)
+				cmnd_cut(cnt);
 		}
 		cnt = token_compr();
 		if (cnt > 0)
