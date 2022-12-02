@@ -41,7 +41,7 @@ void ft_dstry_node(int c)
 		tmp->next = NULL;
 }
 
-void	ft_lstremover(void)
+void	ft_lstremover(t_list *list)
 {
 	int i = 1;
 	char *tmp;
@@ -51,10 +51,10 @@ void	ft_lstremover(void)
 
 	int c = 0;
 	c += 1;
-	content = list_data(shell->arg, 1);
+	content = list_data(list, 1);
 	while (content)
 	{
-		content = list_data(shell->arg, i);
+		content = list_data(list, i);
 		tmplst = shell->asd->next;
 		while(tmplst)
 		{

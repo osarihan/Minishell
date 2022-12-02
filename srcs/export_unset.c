@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-void	ft_unset(void)
+void	ft_unset(t_list *list)
 {
-	ft_lstremover();
+	ft_lstremover(list);
 }
 
 void	ft_fill()
@@ -18,12 +18,12 @@ void	ft_fill()
 	ultimate_alpha_index_finder();
 }
 
-void	ft_export()
+void	ft_export(t_list *list)
 {
 	int	i = 1;
 	char	*content;
 
-	content = list_data(shell->arg, i);
+	content = list_data(list, i);
 	if (!shell->ctrl++)
 		ft_fill();
 	if (content == NULL)
@@ -43,7 +43,7 @@ void	ft_export()
 				ft_lstadd_back(&shell->asd, ft_lstnew(content));
 		}
 		i++;
-		content = list_data(shell->arg, i);
+		content = list_data(list, i);
 		ultimate_alpha_index_finder();
 	}
 	return;

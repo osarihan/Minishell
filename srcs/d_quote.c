@@ -82,7 +82,7 @@ char	*dollar_sign(char *str, int j)
 		return("$\0");
 	if (str[j] == '?')
 	{
-		tmp2[i] = '0';
+		tmp2[i] = ;
 		i++;
 		j++;
 	}

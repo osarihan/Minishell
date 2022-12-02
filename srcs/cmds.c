@@ -51,45 +51,45 @@ void	ft_pwd(void)
 	}
 }
 
-void	 ft_echo()
+void	 ft_echo(t_list *list)
 {
 	char	*content;
 	int	i;
 
 	i = 1;
-	if (list_data(shell->arg, i) == NULL)
+	if (list_data(list, i) == NULL)
 		printf("\n");
 	else
 	{
-		content = list_data(shell->arg, i);
+		content = list_data(list, i);
 		while (content != NULL)
 		{
-			if (ft_strcmp(content, "-n") && list_data(shell->arg, i + 1) == NULL && i == 1)
+			if (ft_strcmp(content, "-n") && list_data(list, i + 1) == NULL && i == 1)
 				return ;
-			if (ft_strcmp(content, "-n") && list_data(shell->arg, i + 1) != NULL)
+			if (ft_strcmp(content, "-n") && list_data(list, i + 1) != NULL)
 			{
-				printf("%s", list_data(shell->arg, i + 1));
+				printf("%s", list_data(list, i + 1));
 				i++;
 			}
-			else if (list_data(shell->arg, i + 1) == NULL)
+			else if (list_data(list, i + 1) == NULL)
 				printf("%s\n", content);
 			else
 				printf("%s ", content);
 			i++;
-			content = list_data(shell->arg, i);
+			content = list_data(list, i);
 		}
 	}
 }
 
-char	**list_to_2D()
+char	**list_to_2D(t_list *list)
 {
 	t_list	*iter;
 	char	**str;
 	int		i;
 
 	i = 0;
-	iter = shell->arg;
-	str = malloc(sizeof(char **) * ft_lstsize(shell->arg) + 1);
+	iter = list;
+	str = malloc(sizeof(char **) * ft_lstsize(list) + 1);
 	while (iter != NULL)
 	{
 		str[i] = ft_strdup(iter->content);

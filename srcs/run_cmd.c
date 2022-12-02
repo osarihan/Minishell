@@ -20,21 +20,21 @@ char *to_lower(char *str)
 	return (str);
 }
 
-int	run_cmd()
+int	run_cmd(t_list *list)
 {
 	char	*content;
 
-	content = ft_strdup(shell->arg->content);
+	content = ft_strdup(list->content);
 	// if (!ft_strcmp(content, "CD"))
 	// 	content = to_lower(content);
 	if (ft_strcmp(content, "cd"))
-		ft_cd();
-	if (ft_strcmp(content, "export"))
-		ft_export();
+		ft_cd(list);
+	else if (ft_strcmp(content, "export"))
+		ft_export(list);
 	else if (ft_strcmp(content, "unset"))
-		ft_unset();
+		ft_unset(list);
 	else if (ft_strcmp(content, "echo"))
-		ft_echo();
+		ft_echo(list);
 	else if (ft_strcmp(content, "pwd") || \
 					ft_strcmp(content, "PWD"))
 		ft_pwd();
@@ -42,7 +42,7 @@ int	run_cmd()
 		ft_env();
 	else if (ft_strcmp(content, "exit"))
 		exit(0);
-	else if (other_cmnds(list_to_2D()))
+	else if (other_cmnds(list_to_2D(list)))
 		return (1);
 	else
 		return (0);

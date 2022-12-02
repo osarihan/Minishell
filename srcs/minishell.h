@@ -55,18 +55,18 @@ void	assigment(char **env);
 void	get_name(void);
 int		is_cmd(char	*str);
 char	*check_env(void);
-char	**list_to_2D(void);
+char	**list_to_2D(t_list *list);
 //ft_strcmp
 int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);
 int		ft_strcmp3(char *asd, char *sda);
 //export
-void	ft_export(void);
+void	ft_export(t_list *list);
 void	ft_fill(void);
 void	ultimate_alpha_index_finder(void);
 void	printf_alph(void);
 //unset
-void	ft_unset(void);
+void	ft_unset(t_list *list);
 //lexer
 void 	lexer(void);
 void	space_skip(void);
@@ -88,15 +88,17 @@ char	*list_data(t_list *root, int index);
 t_list	*list_f_data(t_list *root, int index);
 int		lstcmp(char *str);
 void	ft_dstry_node(int c);
-void	ft_lstremover(void);
+void	ft_lstremover(t_list *list);
 //run_cmd
-int		run_cmd(void);
+int		run_cmd(t_list *list);
 void	run_cmd_with_pipe(void);
 //cmds
 int		ft_env(void);
 void	ft_pwd(void);
-void	ft_echo(void);
-void	ft_cd(void);
+void	ft_echo(t_list *list);
+void	ft_cd(t_list *list);
 int		other_cmnds(char **arg);
+//pipe
+void	pipe_f(void);
 
 #endif

@@ -28,8 +28,8 @@ void	executor()
 	status = pipe_status();
 	if (status)
 		run_cmd_with_pipe();
-	else if (!status)
-		run_cmd();
+	if (!status)
+		run_cmd(shell->arg);
 	else
 		return ;
 }
