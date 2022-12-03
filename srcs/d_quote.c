@@ -84,10 +84,19 @@ char	*dollar_sign(char *str, int j)
 	if (str[j] == '?')
 	{
 		ex_status = ft_itoa(shell->exit_status);
-		printf("exit_status:%s\n", ex_status);
-		//tmp2[i] = ;
-		i++;
+		while (ex_status[i])
+		{
+			tmp2[i] = ex_status[i];
+			i++;
+		}
 		j++;
+		while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
+		{
+			tmp2[i] = str[j];
+			j++;
+			i++;
+		}
+		return(tmp2);
 	}
 	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
 	{

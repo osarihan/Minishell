@@ -21,6 +21,8 @@ void	expand(int	index)
 				i++;
 			while (++j < ft_strlen(tmp));
 		}
+		if (content[i] == '$')
+			continue;
 		tmp[j] = content[i];
 		j++;
 		i++;

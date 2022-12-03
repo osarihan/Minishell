@@ -129,7 +129,7 @@ int	other_cmnds(char **arg)
 		{
 			printf("%s: command not found.\n", arg[0]);
 			free(path);
-			exit(1);
+			exit(127);
 		}
 	}
 	waitpid(pid, &ret, 0);

@@ -28,6 +28,8 @@ int len_count(int number)
 		nbr = nbr / 10;
 		count++;
 	}
+	if (count == 0)
+		return (1);
 	return (count);
 }
 
@@ -49,7 +51,7 @@ int take_power_ten(int nbr)
 int find_bas(int number, int line)
 {
 	int turn;
-	
+
 	turn = ((number / (take_power_ten(line - 1))) % 10);
 	return(turn);
 }

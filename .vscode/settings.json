@@ -5,7 +5,8 @@
 		"cstdlib": "c",
 		"sstream": "c",
 		"complex": "c",
-		"source_location": "c"
+		"source_location": "c",
+		"iterator": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
