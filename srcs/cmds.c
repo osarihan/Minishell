@@ -84,57 +84,12 @@ void	 ft_echo(t_list *list)
 	shell->exit_status = 0;
 }
 
-char	**list_to_2D(t_list *list)
+void	ft_exit(t_list *list)
 {
-	t_list	*iter;
-	char	**str;
-	int		i;
-
-	i = 0;
-	iter = list;
-	str = malloc(sizeof(char **) * ft_lstsize(list) + 1);
-	while (iter != NULL)
+	if (list->next != NULL)
 	{
-		str[i] = ft_strdup(iter->content);
-		i++;
-		iter = iter->next;
+		list = list->next;
+		shell->exit_status = ft_atoi(list->content);
 	}
-	str[i] = NULL;
-	return(str);
-}
-
-int	other_cmnds(char **arg)
-{
-	extern char **environ;
-	char	**path;
-	int	pid;
-	int	i;
-	int	fd;
-	int	ret;
-
-	i = 0;
-	path = ft_split(ft_strdup(getenv("PATH")),':');
-	while (path[i])
-	{
-		path[i] = ft_strjoin(path[i],"/");
-		path[i] = ft_strjoin(path[i], arg[0]);
-		if(access(path[i], F_OK) == 0)
-			break;
-		i++;
-	}
-	pid = fork();
-	if (pid == 0)
-	{
-		if(execve(path[i], arg, environ) == -1)
-		{
-			printf("%s: command not found.\n", arg[0]);
-			free(path);
-			exit(127);
-		}
-	}
-	waitpid(pid, &ret, 0);
-	shell->exit_status = ret % 255;
-	wait(NULL);
-	free(arg);
-	return (1);
+	exit(0);
 }

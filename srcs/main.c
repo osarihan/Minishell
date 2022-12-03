@@ -16,7 +16,7 @@ void	sighandler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		write(1, "\n", 1);
+		printf("\n");
 		rl_on_new_line(); // yeni satira gectigimizi belirtir
 		//rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
 		rl_redisplay();
@@ -48,33 +48,13 @@ void	assigment(char **env)
 
 	shell->environ = env;
 	shell->ctrl = 0;
+	shell->saved_stdout = dup(1);
 
 	get_name();
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 
 }
-
-// void lexer(void)
-// {
-// 	int cnt;
-// 	while (*shell->line)
-// 	{
-// 		space_skip();
-// 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
-// 		{
-// 			cnt = cmnd_take();
-// 			if (cnt > 0)
-// 				cmnd_cut(cnt);
-// 		}
-// 		cnt = token_compr();
-// 		if (cnt > 0)
-// 			lexur(cnt);
-// 		cnt = text_cmpr();
-// 		if (cnt > 0)
-// 			lexur(cnt);
-// 	}
-// }
 
 int	lexer(void)
 {
@@ -105,14 +85,14 @@ int	lexer(void)
 int	main(int argc, char **argv, char **env)
 {
 	assigment(env);
-	while (1)
+	while (true)
 	{
 		if (!routine())
 		{
 			free(shell->line);
 			continue;
 		}
-		if (lexer() == 0)
+		if (!lexer())
 			continue;
 		expander();
 		executor();
@@ -123,7 +103,6 @@ int	main(int argc, char **argv, char **env)
 		// 	printf("argsLAST:::::%s\n", iter->content);
 		// 	iter = iter->next;
 		// }
-		//if (run_cmd())
 		shell->arg = NULL;
 		//free(shell->line);
 	}

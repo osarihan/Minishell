@@ -24,7 +24,6 @@
 #include <sys/wait.h>
 #include <time.h>
 #include <stdbool.h>
-
 #include <signal.h>
 
 #define S_QUOTE 39
@@ -35,7 +34,7 @@ typedef struct s_shell
 	char	*line;
 	char	*name;
 
-	char **environ;
+	char	**environ;
 	char	*temp;
 	t_list	*asd;
 	t_list	*arg;
@@ -44,18 +43,18 @@ typedef struct s_shell
 	int	pipe;
 	int	cmmp;
 	int	exit_status;
+	int	saved_stdout;
 }	t_shell;
 
 t_shell	*shell;
 
-void	sighandler(int signum);
-void	ctrl_D(char *line);
+char	*check_env(void);
+//main
 int		routine(void);
 void	assigment(char **env);
-void	get_name(void);
-int		is_cmd(char	*str);
-char	*check_env(void);
-char	**list_to_2D(t_list *list);
+//signal
+void	sighandler(int signum);
+void	ctrl_D(char *line);
 //ft_strcmp
 int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);
@@ -89,16 +88,22 @@ t_list	*list_f_data(t_list *root, int index);
 int		lstcmp(char *str);
 void	ft_dstry_node(int c);
 void	ft_lstremover(t_list *list);
+char	**list_to_2D(t_list *list);
 //run_cmd
-int		run_cmd(t_list *list);
+void	run_cmd(t_list *list);
 void	run_cmd_with_pipe(void);
 //cmds
 int		ft_env(void);
 void	ft_pwd(void);
 void	ft_echo(t_list *list);
 void	ft_cd(t_list *list);
-int		other_cmnds(char **arg);
+void	ft_exit(t_list *list);
+void	other_cmnds(char **arg);
 //pipe
 void	pipe_f(void);
+//utils
+void	reset_stdout(void);
+void	get_name(void);
+void	to_lower(t_list *list, char *cmd);
 
 #endif

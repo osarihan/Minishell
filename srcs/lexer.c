@@ -12,18 +12,6 @@
 
 #include "minishell.h"
 
-// int	token_compr(void)
-// {
-// 	int i = 0;
-// 	if (shell->line[i] == '>' || shell->line[i] == '<' || shell->line[i] == '|')
-// 	{
-// 		if ((shell->line[i] == '>' && shell->line[i + 1] == '>') || (shell->line[i] == '<' && shell->line[i + 1] == '<'))
-// 			return(2);
-// 		else
-// 			return (1);
-// 	}
-// 	return(0);
-// }
 int token_compr(void)
 {
 	int i = 0;

@@ -96,6 +96,7 @@ char	*dollar_sign(char *str, int j)
 			j++;
 			i++;
 		}
+		tmp2[i] = '\0';
 		return(tmp2);
 	}
 	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)

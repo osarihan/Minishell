@@ -14,19 +14,6 @@ void	pipe_counter()
 	}
 }
 
-// int	pars_size(t_list *list)
-// {
-// 	int	len;
-
-// 	len = 0;
-// 	while (list != NULL && !ft_strcmp(list->content, "|"))
-// 	{
-// 		len += ft_strlen(list->content);
-// 		list = list->next;
-// 	}
-// 	return (len);
-// }
-
 void	run_cmd_with_pipe()
 {
 	pipe_counter();
