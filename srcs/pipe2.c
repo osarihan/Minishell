@@ -17,8 +17,6 @@ void	check_cmnd2()
 {
 	while (!ft_strcmp(shell->arg->content, "|") && shell->arg != NULL)
 	{
-		if (shell->arg == NULL)
-			break;
 		ft_lstadd_back(&shell->pipe_arg, ft_lstnew(shell->arg->content));
 		shell->arg = shell->arg->next;
 		if (shell->arg == NULL)
@@ -52,10 +50,7 @@ void	pipe_f()
 
 	fd = malloc(sizeof(int *) * shell->pipe + 1);
 	while (i <= shell->pipe)
-	{
-		fd[i] = malloc(sizeof(int) * 2);
-		i++;
-	}
+		fd[i++] = malloc(sizeof(int) * 2);
 	create_pipe(fd);
 	i = 0;
 	if (!fork())//child
@@ -86,7 +81,7 @@ void	pipe_f()
 			i++;
 		}
 		///parent
-		usleep(200);
+		usleep(5500);
 		wr_close_pipe(fd);
 		wait(NULL);
 	}

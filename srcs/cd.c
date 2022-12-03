@@ -45,4 +45,5 @@ void	ft_cd(t_list *list)
 	}
 	else
 		just_cd(i, old_pwd, list);
+	shell->exit_status = 0;
 }

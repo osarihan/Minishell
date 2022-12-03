@@ -3,6 +3,7 @@
 void	ft_unset(t_list *list)
 {
 	ft_lstremover(list);
+	shell->exit_status = 0;
 }
 
 void	ft_fill()
@@ -46,6 +47,7 @@ void	ft_export(t_list *list)
 		content = list_data(list, i);
 		ultimate_alpha_index_finder();
 	}
+	shell->exit_status = 0;
 	return;
 }
 

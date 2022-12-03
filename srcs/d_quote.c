@@ -75,6 +75,7 @@ char *check_env(void)
 char	*dollar_sign(char *str, int j)
 {
 	char	*tmp2;
+	char	*ex_status;
 	int	i = 0;
 
 	tmp2 = malloc(size_finder(str, j) + 1);
@@ -82,7 +83,9 @@ char	*dollar_sign(char *str, int j)
 		return("$\0");
 	if (str[j] == '?')
 	{
-		tmp2[i] = ;
+		ex_status = ft_itoa(shell->exit_status);
+		printf("exit_status:%s\n", ex_status);
+		//tmp2[i] = ;
 		i++;
 		j++;
 	}

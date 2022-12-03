@@ -16,6 +16,7 @@ int ft_env(void)
 		printf("%s\n", tmp->content);
 		tmp = tmp->next;
 	}
+	shell->exit_status = 0;
 	return (1);
 }
 
@@ -49,6 +50,7 @@ void	ft_pwd(void)
 		l_tmp = l_tmp->next;
 		i = 0;
 	}
+	shell->exit_status = 0;
 }
 
 void	 ft_echo(t_list *list)
@@ -79,6 +81,7 @@ void	 ft_echo(t_list *list)
 			content = list_data(list, i);
 		}
 	}
+	shell->exit_status = 0;
 }
 
 char	**list_to_2D(t_list *list)

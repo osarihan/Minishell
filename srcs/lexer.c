@@ -12,13 +12,38 @@
 
 #include "minishell.h"
 
-int	token_compr(void)
+// int	token_compr(void)
+// {
+// 	int i = 0;
+// 	if (shell->line[i] == '>' || shell->line[i] == '<' || shell->line[i] == '|')
+// 	{
+// 		if ((shell->line[i] == '>' && shell->line[i + 1] == '>') || (shell->line[i] == '<' && shell->line[i + 1] == '<'))
+// 			return(2);
+// 		else
+// 			return (1);
+// 	}
+// 	return(0);
+// }
+int token_compr(void)
 {
 	int i = 0;
 	if (shell->line[i] == '>' || shell->line[i] == '<' || shell->line[i] == '|')
 	{
 		if ((shell->line[i] == '>' && shell->line[i + 1] == '>') || (shell->line[i] == '<' && shell->line[i + 1] == '<'))
-			return(2);
+		{
+			if (shell->line[i + 2] == '>' || shell->line[i + 2] == '<')
+			{
+				write(2, "minishell: parse error near '<'\n", 33);
+				return (-1);
+			}
+			else
+				return(2);
+		}
+		else if (shell->line[i] == '|' && shell->line[i + 1] == '|')
+		{
+			write(2, "minishell: syntax error near expected token '|'\n", 49);
+			return (-1);
+		}
 		else
 			return (1);
 	}
@@ -90,6 +115,11 @@ int	cmnd_take(void)
 {
 	int i = 0;
 
+	if (shell->line[0] == '|')
+	{
+		write(2, "minishell: syntax error near unexpected token `|'\n", 51);
+		return (-1);
+	}
 	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
 		i++;
 	return(i);

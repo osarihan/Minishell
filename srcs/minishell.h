@@ -68,7 +68,7 @@ void	printf_alph(void);
 //unset
 void	ft_unset(t_list *list);
 //lexer
-void 	lexer(void);
+int		lexer(void);
 void	space_skip(void);
 void	lexur(int cnt);
 int		text_cmpr(void);

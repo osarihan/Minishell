@@ -55,7 +55,28 @@ void	assigment(char **env)
 
 }
 
-void lexer(void)
+// void lexer(void)
+// {
+// 	int cnt;
+// 	while (*shell->line)
+// 	{
+// 		space_skip();
+// 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
+// 		{
+// 			cnt = cmnd_take();
+// 			if (cnt > 0)
+// 				cmnd_cut(cnt);
+// 		}
+// 		cnt = token_compr();
+// 		if (cnt > 0)
+// 			lexur(cnt);
+// 		cnt = text_cmpr();
+// 		if (cnt > 0)
+// 			lexur(cnt);
+// 	}
+// }
+
+int	lexer(void)
 {
 	int cnt;
 	while (*shell->line)
@@ -64,16 +85,21 @@ void lexer(void)
 		if (shell->arg == NULL || ft_strcmp("|", ft_lstlast(shell->arg)->content))
 		{
 			cnt = cmnd_take();
-			if (cnt > 0)
+			if (cnt == -1)
+				return (0);
+			else if (cnt > 0)
 				cmnd_cut(cnt);
 		}
 		cnt = token_compr();
 		if (cnt > 0)
 			lexur(cnt);
+		else if (cnt == -1)
+			return(0);
 		cnt = text_cmpr();
 		if (cnt > 0)
 			lexur(cnt);
 	}
+	return (1);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -86,7 +112,8 @@ int	main(int argc, char **argv, char **env)
 			free(shell->line);
 			continue;
 		}
-		lexer();
+		if (lexer() == 0)
+			continue;
 		expander();
 		executor();
 		// t_list *iter;
