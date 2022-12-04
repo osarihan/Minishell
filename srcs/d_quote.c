@@ -16,7 +16,6 @@ int	size_finder(char *str, int j)
 char *ret_env(int i, char *str)
 {
 	char *ret;
-	char	*rtrn;
 	int j;
 
 	int l_i = i;
@@ -36,6 +35,7 @@ char *ret_env(int i, char *str)
 		j++;
 	}
 	ret[j] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -64,7 +64,10 @@ char *check_env(void)
 		}
 		tmp2[i] = '\0';
 		if (ft_strcmp(tmp2, shell->temp))
+		{
+			free(tmp2);
 			return (ret_env(i + 1, tmp));
+		}
 		l_tmp = l_tmp->next;
 		free(tmp2);
 		free(tmp);
@@ -97,6 +100,7 @@ char	*dollar_sign(char *str, int j)
 			i++;
 		}
 		tmp2[i] = '\0';
+		free(ex_status);
 		return(tmp2);
 	}
 	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
@@ -108,6 +112,7 @@ char	*dollar_sign(char *str, int j)
 	tmp2[i] = '\0';
 	shell->temp = ft_strdup(tmp2);
 	free(tmp2);
+	free(str);
 	if (check_env())
 		return (check_env());
 	return ("");
@@ -120,6 +125,7 @@ void	d_quote(int	index)
 	tmp = malloc(10000);///////////////////////////////////
 	ft_bzero(tmp, 10000);
 	char	*rtn_dollar;
+	char	*iter_tmp;
 	int	i;
 	int	j;
 
@@ -135,6 +141,7 @@ void	d_quote(int	index)
 		{
 			i++;
 			rtn_dollar = dollar_sign(content, i);
+			iter_tmp = rtn_dollar;
 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0' && content[i] != D_QUOTE && content[i] != S_QUOTE)
 				i++;
 			while (*rtn_dollar)
@@ -155,4 +162,6 @@ void	d_quote(int	index)
 	tmp[j] = '\0';
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
+	free(content);
+	free(iter_tmp);
 }

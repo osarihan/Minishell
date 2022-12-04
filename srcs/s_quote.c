@@ -19,7 +19,7 @@ void	s_quote(int index)
 		j++;
 		i++;
 	}
-	tmp[j] = '\0';
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);// for free
 	free(tmp);
+	free(content);
 }

@@ -59,6 +59,9 @@ void	assigment(char **env)
 int	lexer(void)
 {
 	int cnt;
+	char *tmp;
+
+	tmp = shell->line;
 	while (*shell->line)
 	{
 		space_skip();
@@ -79,7 +82,18 @@ int	lexer(void)
 		if (cnt > 0)
 			lexur(cnt);
 	}
+	free(tmp);
 	return (1);
+}
+
+static void lst_free(void)
+{
+	while (shell->arg != NULL)
+	{
+		free(shell->arg->content);
+		free(shell->arg);
+		shell->arg = shell->arg->next;
+	}
 }
 
 int	main(int argc, char **argv, char **env)
@@ -103,8 +117,9 @@ int	main(int argc, char **argv, char **env)
 		// 	printf("argsLAST:::::%s\n", iter->content);
 		// 	iter = iter->next;
 		// }
-		shell->arg = NULL;
-		free(shell->arg);
+		free(shell->temp);
+		lst_free();
+		//shell->arg = NULL;
 	}
 	return(1);
 }

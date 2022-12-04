@@ -60,11 +60,11 @@ void	ft_lstremover(t_list *list)
 		{
 			tmp = (char *)tmplst->content;
 			if (tmplst == NULL || content == NULL)
-				return;
+				break;
 			if (ft_strcmp2(tmp, content))
 			{
 				ft_dstry_node(c);
-				return;
+				break;
 			}
 			tmplst = tmplst->next;
 			c++;

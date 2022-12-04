@@ -39,11 +39,12 @@ void	ft_cd(t_list *list)
 		old_pwd = ft_strjoin("OLDPWD=", check_env());
 		pwd = ft_strjoin(getcwd(str, sizeof(str)), "/");
 		i++;
-		pwd = ft_strjoin(pwd, list_data(list, i));
+		pwd = ft_strjoin2(pwd, list_data(list, i));
 		chdir(pwd);
 		update_pwd(i, old_pwd, list);
 	}
 	else
 		just_cd(i, old_pwd, list);
 	shell->exit_status = 0;
+	free(content);
 }
