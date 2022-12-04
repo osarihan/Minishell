@@ -25,7 +25,7 @@ void	sighandler(int signum)
 
 void	ctrl_D(char *line)
 {
-	printf("exit\n");
+	printf("\b\bexit\n");
 	free(shell->line);
 	exit(1);
 }
@@ -104,7 +104,7 @@ int	main(int argc, char **argv, char **env)
 		// 	iter = iter->next;
 		// }
 		shell->arg = NULL;
-		//free(shell->line);
+		free(shell->arg);
 	}
 	return(1);
 }

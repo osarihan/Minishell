@@ -59,6 +59,8 @@ void	ft_lstremover(t_list *list)
 		while(tmplst)
 		{
 			tmp = (char *)tmplst->content;
+			if (tmplst == NULL || content == NULL)
+				return;
 			if (ft_strcmp2(tmp, content))
 			{
 				ft_dstry_node(c);

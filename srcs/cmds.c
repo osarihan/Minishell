@@ -67,7 +67,7 @@ void	 ft_echo(t_list *list)
 		while (content != NULL)
 		{
 			if (ft_strcmp(content, "-n") && list_data(list, i + 1) == NULL && i == 1)
-				return ;
+				break;
 			if (ft_strcmp(content, "-n") && list_data(list, i + 1) != NULL)
 			{
 				printf("%s", list_data(list, i + 1));
@@ -81,6 +81,7 @@ void	 ft_echo(t_list *list)
 			content = list_data(list, i);
 		}
 	}
+	free(content);
 	shell->exit_status = 0;
 }
 

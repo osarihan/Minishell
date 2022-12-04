@@ -26,6 +26,7 @@
 #include <stdbool.h>
 #include <signal.h>
 
+
 #define S_QUOTE 39
 #define D_QUOTE 34
 
@@ -36,6 +37,7 @@ typedef struct s_shell
 
 	char	**environ;
 	char	*temp;
+	t_list	*declare;
 	t_list	*asd;
 	t_list	*arg;
 	t_list	*pipe_arg;
@@ -49,6 +51,7 @@ typedef struct s_shell
 t_shell	*shell;
 
 char	*check_env(void);
+char	*ft_strjoin2(char *s1, char *s2);
 //main
 int		routine(void);
 void	assigment(char **env);
@@ -63,6 +66,8 @@ int		ft_strcmp3(char *asd, char *sda);
 void	ft_export(t_list *list);
 void	ft_fill(void);
 void	ultimate_alpha_index_finder(void);
+void	ultimate_alpha_index_finder_declared(void);
+void	printf_alph_declared(void);
 void	printf_alph(void);
 //unset
 void	ft_unset(t_list *list);

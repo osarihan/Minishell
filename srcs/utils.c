@@ -24,4 +24,5 @@ void	to_lower(t_list *list, char *cmd)
 		i++;
 	}
 	list->content = ft_strdup(cmd);
+	free(cmd);
 }

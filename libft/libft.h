@@ -54,7 +54,7 @@ char	*ft_strchr(const char *s, int x);
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
