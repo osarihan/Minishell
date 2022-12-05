@@ -21,10 +21,10 @@ void	ft_fill()
 	ultimate_alpha_index_finder();
 }
 
-void    ft_export(t_list *list)
+void	ft_export(t_list *list)
 {
 	int i = 1;
-	char    *content;
+	char	*content;
 	content = list_data(list, i);
 	if (!shell->ctrl++)
 		ft_fill();
@@ -53,7 +53,7 @@ void    ft_export(t_list *list)
 	shell->exit_status = 0;
 	return;
 }
-void    ultimate_alpha_index_finder(void) //listeyi siralar
+void	ultimate_alpha_index_finder(void) //listeyi siralar
 {
 	t_list *list_iter;
 	t_list *arg_iter;
@@ -92,7 +92,7 @@ void    ultimate_alpha_index_finder(void) //listeyi siralar
 		j = 0;
 	}
 }
-void    ultimate_alpha_index_finder_declared(void) //listeyi siralar
+void	ultimate_alpha_index_finder_declared(void) //listeyi siralar
 {
 	t_list *list_iter;
 	t_list *arg_iter;
@@ -131,7 +131,7 @@ void    ultimate_alpha_index_finder_declared(void) //listeyi siralar
 		j = 0;
 	}
 }
-void    printf_alph_declared(void) //sirali baski
+void	printf_alph_declared(void) //sirali baski
 {
 	t_list *list_iter;
 	int i;
@@ -150,7 +150,7 @@ void    printf_alph_declared(void) //sirali baski
 		continue;
 	}
 }
-void    printf_alph(void) //sirali baski
+void	printf_alph(void) //sirali baski
 {
 	t_list *list_iter;
 	int i;
@@ -169,5 +169,6 @@ void    printf_alph(void) //sirali baski
 		continue;
 	}
 	ultimate_alpha_index_finder_declared();
+	printf("geldim\n");
 	printf_alph_declared();
 }

@@ -30,7 +30,7 @@ void	expand(int	index)
 	tmp[j] = '\0';
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
-	free(content);
+	//free(content); DOUBLE FREE ERR
 }
 
 int	quote_check(char *str)

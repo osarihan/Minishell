@@ -65,7 +65,7 @@ char *check_env(void)
 		tmp2[i] = '\0';
 		if (ft_strcmp(tmp2, shell->temp))
 		{
-			free(tmp2);
+			//free(tmp2);
 			return (ret_env(i + 1, tmp));
 		}
 		l_tmp = l_tmp->next;
@@ -112,7 +112,7 @@ char	*dollar_sign(char *str, int j)
 	tmp2[i] = '\0';
 	shell->temp = ft_strdup(tmp2);
 	free(tmp2);
-	free(str);
+	//free(str);
 	if (check_env())
 		return (check_env());
 	return ("");
@@ -137,7 +137,7 @@ void	d_quote(int	index)
 	{
 		if (content[i] == D_QUOTE)
 			i++;
-		if (content[i] == '$')
+		else if (content[i] == '$')
 		{
 			i++;
 			rtn_dollar = dollar_sign(content, i);
@@ -162,6 +162,55 @@ void	d_quote(int	index)
 	tmp[j] = '\0';
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
-	free(content);
-	free(iter_tmp);
+	//free(content);
+	//free(iter_tmp);
 }
+
+// void	d_quote(int	index)
+// {
+// 	char	*content;
+// 	char	*tmp;
+// 	tmp = malloc(10000);///////////////////////////////////
+// 	ft_bzero(tmp, 10000);
+// 	char	*rtn_dollar;
+// 	char	*iter_tmp;
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	content = list_data(shell->arg, index);
+// 	printf("CON:%s\n", content);
+// 	i = 0;
+// 	while (content[i])
+// 	{
+// 		if (content[i] == D_QUOTE)
+// 			i++;
+// 		if (content[i] == '$')
+// 		{
+// 			tmp = ft_strjoin(tmp, dollar_sign(content, ++i));
+// 			printf("rtn:%s\n", rtn_dollar);
+// 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0' && content[i] != D_QUOTE && content[i] != S_QUOTE)
+// 			{
+// 				printf("CON[I]:%c\n", content[i]);
+// 				i++;
+// 			}
+// 			while (++j < ft_strlen(tmp));
+// 			if (content[i] == '$')
+// 				continue;
+// 		}
+// 		else
+// 		{
+// 			tmp[j] = content[i];
+// 			i++;
+// 			j++;
+// 		}
+// 	}
+// 	tmp[j] = '\0';
+// 	printf("tmpfirst::%s\n", tmp);
+// 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
+// 	printf("tmplast::%s\n", tmp);
+// 	//free(tmp);
+// 	//free(content);
+// 	//free(iter_tmp);
+// }

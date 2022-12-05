@@ -18,7 +18,7 @@ void	sighandler(int signum)
 	{
 		printf("\n");
 		rl_on_new_line(); // yeni satira gectigimizi belirtir
-		//rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
+		rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
 		rl_redisplay();
 	}
 }
@@ -71,7 +71,10 @@ int	lexer(void)
 			if (cnt == -1)
 				return (0);
 			else if (cnt > 0)
+			{
 				cmnd_cut(cnt);
+				continue;
+			}
 		}
 		cnt = token_compr();
 		if (cnt > 0)
@@ -91,9 +94,9 @@ static void lst_free(void)
 	while (shell->arg != NULL)
 	{
 		free(shell->arg->content);
-		free(shell->arg);
 		shell->arg = shell->arg->next;
 	}
+	free(shell->arg);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -108,8 +111,6 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (!lexer())
 			continue;
-		expander();
-		executor();
 		// t_list *iter;
 		// iter = shell->arg;
 		// while (iter != NULL)
@@ -117,8 +118,12 @@ int	main(int argc, char **argv, char **env)
 		// 	printf("argsLAST:::::%s\n", iter->content);
 		// 	iter = iter->next;
 		// }
-		free(shell->temp);
+		expander();
+		executor();
+		//free(shell->temp);
+
 		lst_free();
+
 		//shell->arg = NULL;
 	}
 	return(1);

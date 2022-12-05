@@ -51,7 +51,7 @@ int	text_cmpr(void)
 				i++;
 			while (shell->line[i] != ' ' && shell->line[i] != '\0')
 				i++;
-			return (i + 1);
+			return (i);
 		}
 		if (shell->line[i] == 39)
 		{
@@ -60,7 +60,7 @@ int	text_cmpr(void)
 				i++;
 			while (shell->line[i] != ' ' && shell->line[i] != '\0')
 				i++;
-			return (i + 1);
+			return (i);
 		}
 		i++;
 	}

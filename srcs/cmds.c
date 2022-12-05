@@ -92,5 +92,5 @@ void	ft_exit(t_list *list)
 		list = list->next;
 		shell->exit_status = ft_atoi(list->content);
 	}
-	exit(0);
+	exit(shell->exit_status);
 }
