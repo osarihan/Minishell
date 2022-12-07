@@ -72,6 +72,7 @@ void	ft_lstremover(t_list *list)
 		i++;
 		c = 1;
 	}
+	free(content);
 }
 
 char	*list_data(t_list *root, int index)
@@ -87,16 +88,6 @@ char	*list_data(t_list *root, int index)
 		return (NULL);
 	return (iter->content);
 }
-
-// char	*list_data(t_list **list, int index)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i++ != index)
-// 		(*list) = (*list)->next;
-// 	return ((*list)->content);
-// }
 
 t_list	*list_f_data(t_list *root, int index)
 {

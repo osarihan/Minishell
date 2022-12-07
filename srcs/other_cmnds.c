@@ -55,7 +55,7 @@ char	*f_path(char **arg)
 void	other_cmnds(char **arg)
 {
 	//char	**path;
-	char	*path_plus;
+	//char	*path_plus;
 	int	pid;
 	int	i;
 	int	ret;
@@ -80,6 +80,10 @@ void	other_cmnds(char **arg)
 	waitpid(pid, &ret, 0);
 	shell->exit_status = ret % 255;
 	wait(NULL);
-	//free(path);
-	//free(arg);
+	while (arg[i])
+	{
+		free(arg[i]);
+		i++;
+	}
+	free(arg);
 }

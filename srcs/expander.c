@@ -16,7 +16,7 @@ void	expand(int	index)
 	{
 		if (content[i] == '$')
 		{
-			tmp = ft_strjoin(tmp, dollar_sign(content, ++i));
+			tmp = ft_strjoin2(tmp, dollar_sign(content, ++i));
 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0')
 				i++;
 			while (++j < ft_strlen(tmp));
@@ -28,9 +28,9 @@ void	expand(int	index)
 		i++;
 	}
 	tmp[j] = '\0';
+	free(content);
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
-	//free(content); DOUBLE FREE ERR
 }
 
 int	quote_check(char *str)
@@ -73,4 +73,3 @@ void	expander()
 		free(content);
 	}
 }
-

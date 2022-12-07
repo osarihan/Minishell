@@ -112,7 +112,7 @@ char	*dollar_sign(char *str, int j)
 	tmp2[i] = '\0';
 	shell->temp = ft_strdup(tmp2);
 	free(tmp2);
-	//free(str);
+	free(str);
 	if (check_env())
 		return (check_env());
 	return ("");
@@ -140,8 +140,9 @@ void	d_quote(int	index)
 		else if (content[i] == '$')
 		{
 			i++;
-			rtn_dollar = dollar_sign(content, i);
+			rtn_dollar = dollar_sign(content,  i);
 			iter_tmp = rtn_dollar;
+			printf("rtn:%s\n", rtn_dollar);
 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0' && content[i] != D_QUOTE && content[i] != S_QUOTE)
 				i++;
 			while (*rtn_dollar)
@@ -161,9 +162,10 @@ void	d_quote(int	index)
 	}
 	tmp[j] = '\0';
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
+	free(iter_tmp);
 	free(tmp);
-	//free(content);
-	//free(iter_tmp);
+	free(content);
+	//printf("rtn:%s\n", rtn_dollar);
 }
 
 // void	d_quote(int	index)

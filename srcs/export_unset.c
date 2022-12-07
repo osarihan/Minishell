@@ -24,18 +24,25 @@ void	ft_fill()
 void	ft_export(t_list *list)
 {
 	int i = 1;
-	char	*content;
-	content = list_data(list, i);
+	char	*content1;
+	char 	*content;
+	content1 = list_data(list, i);
+	if (content1 != NULL)
+		content = ft_strdup(content1);
+	else
+		content = NULL;
 	if (!shell->ctrl++)
 		ft_fill();
 	if (content == NULL)
 	{
-		if (!shell->ctrl++)
-			ft_fill();
+		// if (!shell->ctrl++)
+		// 	ft_fill();
 		printf_alph();
 	}
-	while (content)
+	while (content != NULL)
 	{
+		if (content == NULL)
+			break;
 		if (lstcmp(content) && ft_strchr(content, '='))//var mi yok mu yoksa girer
 			ft_lstadd_back(&shell->asd, ft_lstnew(content));
 		else if (lstcmp(content) && !ft_strchr(content, '='))
@@ -61,6 +68,7 @@ void	ultimate_alpha_index_finder(void) //listeyi siralar
 	char *str2;
 	int i = 0;
 	int j = 0;
+
 	arg_iter = shell->asd->next;
 	list_iter = shell->asd;
 	while (list_iter)
@@ -100,6 +108,9 @@ void	ultimate_alpha_index_finder_declared(void) //listeyi siralar
 	char *str2;
 	int i = 0;
 	int j = 0;
+
+	if (shell->declare == NULL)
+		return;
 	arg_iter = shell->declare->next;
 	list_iter = shell->declare;
 	while (list_iter)
@@ -169,6 +180,5 @@ void	printf_alph(void) //sirali baski
 		continue;
 	}
 	ultimate_alpha_index_finder_declared();
-	printf("geldim\n");
 	printf_alph_declared();
 }

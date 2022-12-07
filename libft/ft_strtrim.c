@@ -53,7 +53,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (s1 == NULL)
 		return (NULL);
 	if (set == NULL)
-		return (ft_strdup(s1));
+		return (ft_strdup((char *)s1));
 	start = ft_getstart(s1, set);
 	end = ft_getend(s1, set);
 	if (start >= end)

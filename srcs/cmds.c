@@ -10,7 +10,6 @@ int ft_env(void)
 		shell->ctrl++;
 	}
 	tmp = shell->asd;
-	tmp = tmp->next;
 	while (tmp != NULL)
 	{
 		printf("%s\n", tmp->content);
