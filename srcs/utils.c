@@ -27,12 +27,12 @@ void	to_lower(t_list *list, char *cmd)
 	free(cmd);
 }
 
-static void lst_free(void)
-{
-	while (shell->arg != NULL)
-	{
-		free(shell->arg->content);
-		free(shell->arg);
-		shell->arg = shell->arg->next;
-	}
-}
+// static void lst_free(void)
+// {
+// 	while (shell->arg != NULL)
+// 	{
+// 		free(shell->arg->content);
+// 		free(shell->arg);
+// 		shell->arg = shell->arg->next;
+// 	}
+// }

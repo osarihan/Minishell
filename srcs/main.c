@@ -89,29 +89,29 @@ int	lexer(void)
 	return (1);
 }
 
-// void lst_free(void)
-// {
-// 	t_list	*iter;
-
-// 	while (shell->arg != NULL)
-// 	{
-// 		iter = shell->arg;
-// 		free(shell->arg->content);
-// 		shell->arg = shell->arg->next;
-// 		free(iter);
-// 	}
-// 	//free(shell->arg);
-// }
-
 void lst_free(void)
 {
+	t_list	*iter;
+
+
 	while (shell->arg != NULL)
 	{
+		iter = shell->arg;
 		free(shell->arg->content);
-		free(shell->arg);
 		shell->arg = shell->arg->next;
+		free(iter);
 	}
 }
+
+// void lst_free(void)
+// {
+// 	while (shell->arg != NULL)
+// 	{
+// 		free(shell->arg->content);
+// 		free(shell->arg);
+// 		shell->arg = shell->arg->next;
+// 	}
+// }
 
 
 int	main(int argc, char **argv, char **env)
@@ -126,22 +126,17 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (!lexer())
 			continue;
-		// t_list *iter;
-		// iter = shell->arg;
-		// while (iter != NULL)
-		// {
-		// 	printf("argsLAST:::::%s\n", iter->content);
-		// 	iter = iter->next;
-		// }
 		expander();
+		t_list *iter;
+		iter = shell->arg;
+		while (iter != NULL)
+		{
+			printf("argsLAST:::::%s\n", iter->content);
+			iter = iter->next;
+		}
 		executor();
-		// while (shell->arg)
-		// {
-		// 	free(shell->arg->content);
-		// 	shell->arg = shell->arg->next;
-		// }
-		// free(shell->arg);
 		lst_free();
+		//system("leaks minishell");
 	}
 	return(1);
 }

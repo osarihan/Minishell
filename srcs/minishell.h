@@ -46,11 +46,16 @@ typedef struct s_shell
 	int	cmmp;
 	int	exit_status;
 	int	saved_stdout;
+	char	*to_open;
+	int	r_red;
+	int	l_red;
+	int	heredoc_cnt;
+
 }	t_shell;
 
 t_shell	*shell;
 
-char	*check_env(void);
+char	*check_env(char *desired_env);
 char	*ft_strjoin2(char *s1, char *s2);
 //main
 int		routine(void);
@@ -79,7 +84,7 @@ int		text_cmpr(void);
 int		token_compr(void);
 int		cmnd_take(void);
 int		ft_strcmp(char *asd, char *sda);
-void 	cmnd_cut(int x);
+void cmnd_cut(int x);
 //expander
 void	expander(void);
 char	*dollar_sign(char *str, int j);
@@ -94,6 +99,8 @@ int		lstcmp(char *str);
 void	ft_dstry_node(int c);
 void	ft_lstremover(t_list *list);
 char	**list_to_2D(t_list *list);
+void ft_dstry_node2(t_list *iter, int c);
+int lstcmp2(t_list *iter, char *str);
 //run_cmd
 void	run_cmd(t_list *list);
 void	run_cmd_with_pipe(void);
@@ -110,5 +117,18 @@ void	pipe_f(void);
 void	reset_stdout(void);
 void	get_name(void);
 void	to_lower(t_list *list, char *cmd);
-
+//redirect
+void	right_redirect(int index);
+int		redirect_check(void);
+void	run_cmd_with_red(void);
+void	cut_redirect(int index);
+int		where_is_redirect(char *str);
+//heredoc
+void    heredoc_prompt(int index);
+void    run_heredoc(int i);
+void    cut_heredoc(int index);
+void    heredoc(void);
+int 	heredoc_check(void);
+int		heredoc_cnt(void);
+int		heredoc_finder();
 #endif

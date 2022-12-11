@@ -49,8 +49,9 @@ void	ft_lstremover(t_list *list)
 	char	*content;
 	t_list *tmplst;
 
-	int c = 0;
-	c += 1;
+	int c;
+
+	c = 1;
 	content = list_data(list, 1);
 	while (content)
 	{
@@ -72,7 +73,6 @@ void	ft_lstremover(t_list *list)
 		i++;
 		c = 1;
 	}
-	free(content);
 }
 
 char	*list_data(t_list *root, int index)

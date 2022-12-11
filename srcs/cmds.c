@@ -80,7 +80,6 @@ void	 ft_echo(t_list *list)
 			content = list_data(list, i);
 		}
 	}
-	free(content);
 	shell->exit_status = 0;
 }
 

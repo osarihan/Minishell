@@ -54,26 +54,11 @@ char	*f_path(char **arg)
 
 void	other_cmnds(char **arg)
 {
-	//char	**path;
-	//char	*path_plus;
 	int	pid;
 	int	i;
 	int	ret;
 
 	i = 0;
-
-	// path_plus = ft_strjoin(getenv("PATH"), ":./");
-	// path = ft_split(path_plus,':');
-	// while (path[i])
-	// {
-	// 	path[i] = ft_strjoin(path[i],"/");
-	// 	path[i] = ft_strjoin(path[i], arg[0]);
-	// 	printf("path[i]:%s\n", path[i]);
-	// 	if(access(path[i], F_OK) == 0)
-	// 		break;
-	// 	i++;
-	// }
-
 	pid = fork();
 	if (pid == 0)
 		exec(f_path(arg), arg);

@@ -4,19 +4,22 @@ void	expand(int	index)
 {
 	char	*content;
 	char	*tmp;
-	tmp = malloc(10000);
-	ft_bzero(tmp, 10000);//trash cleaner
+	//tmp = malloc(10000);
+	//ft_bzero(tmp, 10000);//trash cleaner
 	int		i;
 	int		j;
 
 	j = 0;
 	i = 0;
-	content = list_data(shell->arg, index);
+	tmp = ft_calloc(10000, sizeof(char));
+	content = ft_strdup(list_data(shell->arg, index));
 	while (content[i])
 	{
 		if (content[i] == '$')
 		{
-			tmp = ft_strjoin2(tmp, dollar_sign(content, ++i));
+			printf("TMP0:%s\n", tmp);
+			tmp = ft_strjoin2(tmp, dollar_sign(ft_strdup(content), ++i));
+			printf("TMP1:%s\n", tmp);
 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0')
 				i++;
 			while (++j < ft_strlen(tmp));
@@ -28,9 +31,9 @@ void	expand(int	index)
 		i++;
 	}
 	tmp[j] = '\0';
-	free(content);
-	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
+	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
+	free(content);
 }
 
 int	quote_check(char *str)

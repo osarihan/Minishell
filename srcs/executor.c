@@ -25,11 +25,16 @@ void	executor()
 {
 	int	status;
 
-	status = pipe_status();
-	if (status)
-		run_cmd_with_pipe();
-	if (!status)
-		run_cmd(shell->arg);
-	else
-		return ;
+	if (!heredoc_check())
+	{
+		status = pipe_status();
+		if (status)
+			run_cmd_with_pipe();
+		if (!status)
+			run_cmd(shell->arg);
+		else
+			return ;
+	}
+	// else
+	// 	heredoc();
 }

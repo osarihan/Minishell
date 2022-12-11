@@ -1,4 +1,4 @@
-#include "minishell.h"
+	#include "minishell.h"
 
 void	ft_unset(t_list *list)
 {
@@ -21,6 +21,47 @@ void	ft_fill()
 	ultimate_alpha_index_finder();
 }
 
+// void	ft_export(t_list *list)
+// {
+// 	int i = 1;
+// 	char	*content1;
+// 	char 	*content;
+// 	content1 = list_data(list, i);
+// 	if (content1 != NULL)
+// 		content = ft_strdup(content1);
+// 	else
+// 		content = NULL;
+// 	if (!shell->ctrl++)
+// 		ft_fill();
+// 	if (content == NULL)
+// 	{
+// 		// if (!shell->ctrl++)
+// 		// 	ft_fill();
+// 		printf_alph();
+// 	}
+// 	while (content != NULL)
+// 	{
+// 		if (content == NULL)
+// 			break;
+// 		if (lstcmp(content) && ft_strchr(content, '='))//var mi yok mu yoksa girer
+// 			ft_lstadd_back(&shell->asd, ft_lstnew(content));
+// 		else if (lstcmp(content) && !ft_strchr(content, '='))
+// 			ft_lstadd_back(&shell->declare, ft_lstnew(content));
+// 		else
+// 		{
+// 			ft_dstry_node(shell->cmmp);
+// 			if (ft_strchr(content, '='))
+// 				ft_lstadd_back(&shell->asd, ft_lstnew(content));
+// 		}
+// 		i++;
+// 		content = list_data(list, i);
+// 		ultimate_alpha_index_finder();
+// 	}
+// 	shell->exit_status = 0;
+// 	return;
+// }
+
+
 void	ft_export(t_list *list)
 {
 	int i = 1;
@@ -28,38 +69,35 @@ void	ft_export(t_list *list)
 	char 	*content;
 	content1 = list_data(list, i);
 	if (content1 != NULL)
-		content = ft_strdup(content1);
+		content = content1;
 	else
 		content = NULL;
 	if (!shell->ctrl++)
 		ft_fill();
 	if (content == NULL)
-	{
-		// if (!shell->ctrl++)
-		// 	ft_fill();
 		printf_alph();
-	}
 	while (content != NULL)
 	{
 		if (content == NULL)
 			break;
 		if (lstcmp(content) && ft_strchr(content, '='))//var mi yok mu yoksa girer
-			ft_lstadd_back(&shell->asd, ft_lstnew(content));
+			ft_lstadd_back(&shell->asd, ft_lstnew(ft_strdup(content)));
 		else if (lstcmp(content) && !ft_strchr(content, '='))
-			ft_lstadd_back(&shell->declare, ft_lstnew(content));
+			ft_lstadd_back(&shell->declare, ft_lstnew(ft_strdup(content)));
 		else
 		{
 			ft_dstry_node(shell->cmmp);
 			if (ft_strchr(content, '='))
-				ft_lstadd_back(&shell->asd, ft_lstnew(content));
+				ft_lstadd_back(&shell->asd, ft_lstnew(ft_strdup(content)));
 		}
 		i++;
 		content = list_data(list, i);
-		ultimate_alpha_index_finder();
 	}
+	ultimate_alpha_index_finder();
 	shell->exit_status = 0;
 	return;
 }
+
 void	ultimate_alpha_index_finder(void) //listeyi siralar
 {
 	t_list *list_iter;
