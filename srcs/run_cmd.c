@@ -12,8 +12,7 @@ void	run_cmd(t_list *list)
 		ft_unset(list);
 	else if (ft_strcmp(list->content, "echo"))
 		ft_echo(list);
-	else if (ft_strcmp(list->content, "pwd") || \
-					ft_strcmp(list->content, "PWD"))
+	else if (ft_strcmp(list->content, "pwd"))
 		ft_pwd();
 	else if (ft_strcmp(list->content, "env"))
 		ft_env();

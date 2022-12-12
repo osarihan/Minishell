@@ -5,8 +5,7 @@ void	just_cd(int i, t_list *list)
 	char	*str;
 	char	*old_pwd;
 
-	//shell->temp = ft_strdup("PWD");
-	old_pwd = ft_strjoin("OLDPWD=", check_env("PWD"));
+	old_pwd = ft_strjoin("OLDPWD=", check_env(ft_strdup("PWD")));
 	ft_lstadd_back(&list, ft_lstnew(ft_strjoin("OLDPWD=", old_pwd)));
 	ft_export(list);
 	str = ft_strjoin(getenv("HOME"), "/");
@@ -20,8 +19,7 @@ void	update_pwd(int i, t_list *list)
 	char	str[256];
 	char	*old_pwd;
 
-	//shell->temp = ft_strdup("PWD");
-	old_pwd = ft_strjoin("OLDPWD=", check_env("PWD"));
+	old_pwd = ft_strjoin("OLDPWD=", check_env(ft_strdup("PWD")));
 	list_f_data(list, i)->content = ft_strdup(old_pwd);
 	ft_export(list);
 	getcwd(str, sizeof(str));

@@ -52,7 +52,7 @@ int	quote_check(char *str)
 	return (0);
 }
 
-void	expander()
+void	 expander()
 {
 	t_list	*iter;
 	char	*content;
