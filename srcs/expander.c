@@ -12,13 +12,13 @@ void	expand(int	index)
 	j = 0;
 	i = 0;
 	tmp = ft_calloc(10000, sizeof(char));
-	content = ft_strdup(list_data(shell->arg, index));
+	content = list_data(shell->arg, index);///////////////////////////////////// ft_strdup() leak olusturuyor.
 	while (content[i])
 	{
 		if (content[i] == '$')
 		{
 			printf("TMP0:%s\n", tmp);
-			tmp = ft_strjoin2(tmp, dollar_sign(ft_strdup(content), ++i));
+			tmp = ft_strjoin3(tmp, dollar_sign(ft_strdup(content), ++i));
 			printf("TMP1:%s\n", tmp);
 			while(content[i] != 32 && content[i] != '$' && content[i] != '\0')
 				i++;
@@ -31,9 +31,11 @@ void	expand(int	index)
 		i++;
 	}
 	tmp[j] = '\0';
-	free(tmp);
+	printf("con:%s ::%p\n", content, content);
+	printf("tmp:%s ::%p\n", tmp, tmp);
 	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
 	free(content);
+	free(tmp);
 }
 
 int	quote_check(char *str)

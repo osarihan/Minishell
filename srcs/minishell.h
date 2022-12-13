@@ -57,6 +57,7 @@ t_shell	*shell;
 
 char	*check_env(char *desired_env);
 char	*ft_strjoin2(char *s1, char *s2);
+char    *ft_strjoin3(char *s1, char *s2);
 //main
 int		routine(void);
 void	assigment(char **env);

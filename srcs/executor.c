@@ -24,7 +24,8 @@ int	pipe_status()
 void	executor()
 {
 	int	status;
-
+	if (shell->arg == NULL)
+		return ;
 	if (!heredoc_check())
 	{
 		status = pipe_status();

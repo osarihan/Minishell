@@ -108,6 +108,7 @@ char	*dollar_sign(char *str, int j)
 {
 	char	*env;
 	char	*tmp;
+	char 	*ret;
 	int	i;
 
 	i = 0;
@@ -127,5 +128,7 @@ char	*dollar_sign(char *str, int j)
 	env = check_env(tmp);
 	if (env == NULL)
 		return ("");
-	return (env);
+	ret = ft_strdup(env);
+	free(env);
+	return (ret);
 }

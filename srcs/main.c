@@ -134,9 +134,9 @@ int	main(int argc, char **argv, char **env)
 			printf("argsLAST:::::%s\n", iter->content);
 			iter = iter->next;
 		}
+		system("leaks minishell");
 		executor();
 		lst_free();
-		//system("leaks minishell");
 	}
 	return(1);
 }
