@@ -115,6 +115,7 @@ void	other_cmnds(char **arg);
 //pipe
 void	pipe_f(void);
 //utils
+void	reset_stdin(void);
 void	reset_stdout(void);
 void	get_name(void);
 void	to_lower(t_list *list, char *cmd);

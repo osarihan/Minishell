@@ -36,8 +36,6 @@ void	ft_cd(t_list *list)
 	char *old_pwd;
 
 	i = 0;
-	// shell->temp = ft_strdup("PWD");
-	// old_pwd = ft_strjoin("OLDPWD=", check_env());
 	if (list_data(list, i + 1) != NULL)
 	{
 		pwd = ft_strjoin(getcwd(str, sizeof(str)), "/");

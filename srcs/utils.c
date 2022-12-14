@@ -1,5 +1,11 @@
 #include "minishell.h"
 
+void    reset_stdin()
+{
+    dup2(shell->saved_stdin, STDIN_FILENO);
+    close(shell->saved_stdin);
+}
+
 void	reset_stdout()
 {
 	dup2(shell->saved_stdout, STDOUT_FILENO);

@@ -13,11 +13,10 @@ void	wr_close_pipe(int **fd)
 	}
 }
 
-void	check_cmnd2(int **fd, int i)
+void    check_cmnd2(int **fd, int i)
 {
-	int	stat;
-	int	index;
-
+	int stat;
+	int index;
 	index = 0;
 	stat = 0;
 	while (!ft_strcmp(shell->arg->content, "|") && shell->arg != NULL)
@@ -26,15 +25,20 @@ void	check_cmnd2(int **fd, int i)
 		shell->arg = shell->arg->next;
 		if (shell->arg == NULL)
 			break;
-		if (ft_strcmp(shell->arg->content, ">"))
+		if (ft_strcmp(shell->arg->content, ">") || ft_strcmp(shell->arg->content, ">>") || ft_strcmp(shell->arg->content, "<") || ft_strcmp(shell->arg->content, "<<"))
 		{
-			stat = 1;
+			stat = which_red(shell->arg->content);
 			break;
 		}
 		index++;
 	}
-	if (stat)
-		right_redirect(index - 1);
+	if (stat > 0)
+	{
+		if (ft_strcmp(list_data(shell->arg, index), ">") || ft_strcmp(list_data(shell->arg, index), ">>") || ft_strcmp(list_data(shell->arg, index), "<") || ft_strcmp(list_data(shell->arg, index), "<<"))
+			redirect_decider(stat, index);
+		else
+			redirect_decider(stat, index - 1);
+	}
 	else if (i == 0)
 		dup2(fd[0][1], 1);
 	else if (i != shell->pipe)
