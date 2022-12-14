@@ -117,7 +117,7 @@ int heredoc_check(void)
 	int i = 0;
 	while (shell->arg)
 	{
-		if (!lstcmp2(shell->arg, "<<") || !lstcmp2(shell->arg, ">>"))
+		if (!lstcmp2(shell->arg, "<<"))
 		{
 			printf ("heredoca gitt\n");
 			shell->heredoc_cnt = heredoc_cnt();

@@ -1,0 +1,15 @@
+total 2992
+drwxr-xr-x  14 osarihan  2021_kocaeli      476 Dec 14 13:12 .
+drwxr-xr-x  15 osarihan  2021_kocaeli      510 Dec 14 12:12 ..
+-rw-r--r--@  1 osarihan  2021_kocaeli     6148 Dec 14 13:05 .DS_Store
+drwxr-xr-x  12 osarihan  2021_kocaeli      408 Dec 14 12:12 .git
+-rwxr-xr-x   1 osarihan  2021_kocaeli        8 Dec 14 13:11 .heredoc
+drwxr-xr-x   3 osarihan  2021_kocaeli      102 Dec 14 12:12 .vscode
+-rw-r--r--   1 osarihan  2021_kocaeli      331 Dec 14 12:12 Makefile
+-rw-r--r--   1 osarihan  2021_kocaeli        0 Dec 14 13:12 a
+drwxr-xr-x  52 osarihan  2021_kocaeli     1768 Dec 14 12:12 libft
+-rwxr-xr-x   1 osarihan  2021_kocaeli    90416 Dec 14 13:12 minishell
+-rw-r--r--   1 osarihan  2021_kocaeli  1409227 Dec 14 12:12 minishell_en.pdf
+-rw-r--r--   1 osarihan  2021_kocaeli       59 Dec 14 12:12 outfile
+drwxr-xr-x  25 osarihan  2021_kocaeli      850 Dec 14 12:12 srcs
+-rw-r--r--   1 osarihan  2021_kocaeli      248 Dec 14 12:12 test.txt

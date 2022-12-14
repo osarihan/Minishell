@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/02 10:28:59 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:09:25 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ void	assigment(char **env)
 	shell->environ = env;
 	shell->ctrl = 0;
 	shell->saved_stdout = dup(1);
-
+	shell->saved_stdin = dup(0);
+	shell->dl_red = 0;
+	shell->dr_red = 0;
+	shell->r_red = 0;
+	shell->l_red = 0;
 	get_name();
 	signal(SIGINT, sighandler); // ctrl-C
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
@@ -131,10 +135,10 @@ int	main(int argc, char **argv, char **env)
 		iter = shell->arg;
 		while (iter != NULL)
 		{
-			printf("argsLAST:::::%s\n", iter->content);
+			//printf("argsLAST:::::%s\n", iter->content);
 			iter = iter->next;
 		}
-		system("leaks minishell");
+		//system("leaks minishell");
 		executor();
 		lst_free();
 	}

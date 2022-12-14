@@ -36,6 +36,7 @@ void    double_right_redirect(int index)
 	dup2(fd, 1);
 	close (fd);
 }
+
 int redirect_check(void)
 {
 	int i;
@@ -72,7 +73,9 @@ int which_red(char *content)
 		return (3);
 	else if (ft_strcmp(content, "<<"))
 		return (4);
+	return (0);
 }
+
 void redirect_decider(int stat, int index)
 {
 	if (stat == 1)
@@ -84,6 +87,7 @@ void redirect_decider(int stat, int index)
 	else if (stat == 4)
 		run_heredoc(index);
 }
+
 void    cut_redirect(int index)
 {
 	ft_dstry_node2(shell->arg, index);
