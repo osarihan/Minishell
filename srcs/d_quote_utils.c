@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   d_quote_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 13:35:11 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/14 15:29:03 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	size_finder(char *str, int j)
@@ -24,7 +36,8 @@ char	*question_mark(int i, int j, char *tmp, char *str)
 		i++;
 	}
 	j++;
-	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
+	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 \
+			&& str[j] != '$' && str[j] != 39)
 	{
 		tmp[i] = str[j];
 		j++;
@@ -35,12 +48,12 @@ char	*question_mark(int i, int j, char *tmp, char *str)
 	return (tmp);
 }
 
-char *ret_env(int i, char *str)
+char	*ret_env(int i, char *str)
 {
-	char *ret;
-	int j;
-	int l_i;
-	int len;
+	char	*ret;
+	int		j;
+	int		l_i;
+	int		len;
 
 	l_i = i;
 	len = 0;
@@ -48,11 +61,11 @@ char *ret_env(int i, char *str)
 		len++;
 	ret = malloc(sizeof(char *) + (len + 1));
 	j = 0;
-	while (str[i])
+	while (str[i++])
 	{
-		ret[j] = str[i];
-		i++;
-		j++;
+		ret[j++] = str[i];
+		// i++;
+		// j++;
 	}
 	ret[j] = '\0';
 	return (ret);
@@ -77,11 +90,11 @@ char	*take_before_equal(char *content)
 	return (env_name);
 }
 
-char *check_env(char *desired_env)
+char	*check_env(char *desired_env)
 {
-	t_list *l_tmp;
+	t_list	*l_tmp;
 	char	*env_name;
-	int i;
+	int		i;
 
 	i = 0;
 	if (!shell->asd)
@@ -93,9 +106,10 @@ char *check_env(char *desired_env)
 		if (ft_strcmp(env_name, desired_env))
 		{
 			free(desired_env);
-			while (i++ < ft_strlen(env_name));
+			while (i < ft_strlen(env_name))
+				i++;
 			free(env_name);
-			return(ret_env(i, l_tmp->content));
+			return (ret_env(i, l_tmp->content));
 		}
 		l_tmp = l_tmp->next;
 		free(env_name);
@@ -108,16 +122,17 @@ char	*dollar_sign(char *str, int j)
 {
 	char	*env;
 	char	*tmp;
-	char 	*ret;
-	int	i;
+	char	*ret;
+	int		i;
 
 	i = 0;
 	tmp = malloc(size_finder(str, j) + 1);
-	if (str[j] == D_QUOTE || ft_strlen(str) == 1)//tek dolar durumu && ft_strlen olan tirnaksiz tek dolar durumu
-		return("$\0");
+	if (str[j] == D_QUOTE || ft_strlen(str) == 1)
+		return ("$\0");
 	if (str[j] == '?')
 		return (question_mark(i, j, tmp, str));
-	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 && str[j] != '$' && str[j] != 39)
+	while (str[j] != '\0' && str[j] != 32 && str[j] != 34 \
+			&& str[j] != '$' && str[j] != 39)
 	{
 		tmp[i] = str[j];
 		i++;

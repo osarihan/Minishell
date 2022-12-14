@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 13:48:30 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/14 15:05:31 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	pipe_status()
+int	pipe_status(void)
 {
 	t_list	*iter;
 
@@ -11,7 +23,7 @@ int	pipe_status()
 		{
 			if (iter->next == NULL)
 			{
-				ft_putstr_fd("Error: A few arguments after pipe\n", STDERR_FILENO);
+				ft_putstr_fd("Error: A few arguments after pipe\n", 2);
 				return (-1);
 			}
 			return (1);
@@ -21,7 +33,7 @@ int	pipe_status()
 	return (0);
 }
 
-static void reset_shellint()
+static void	reset_shellint(void)
 {
 	shell->l_red = 0;
 	shell->r_red = 0;
@@ -29,9 +41,10 @@ static void reset_shellint()
 	shell->dl_red = 0;
 }
 
-void	executor()
+void	executor(void)
 {
-	int status;
+	int	status;
+
 	if (shell->arg == NULL)
 		return ;
 	redirect_check();
@@ -78,7 +91,8 @@ void	executor()
 			}
 			wait(NULL);
 		}
-		else if (!status && !(shell->dl_red || shell->r_red || shell->l_red || shell->dr_red))
+		else if (!status && !(shell->dl_red || shell->r_red \
+				|| shell->l_red || shell->dr_red))
 			run_cmd(shell->arg);
 		reset_stdout();
 		reset_stdin();

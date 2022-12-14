@@ -1,24 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 15:11:32 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/14 15:16:06 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	expand(int	index)
+void	expand(int index)
 {
 	char	*content;
 	char	*tmp;
-	//tmp = malloc(10000);
-	//ft_bzero(tmp, 10000);//trash cleaner
 	int		i;
 	int		j;
 
 	j = 0;
 	i = 0;
 	tmp = ft_calloc(10000, sizeof(char));
-	content = list_data(shell->arg, index);///////////////////////////////////// ft_strdup() leak olusturuyor.
+	content = list_data(shell->arg, index);
 	while (content[i])
 	{
 		if (content[i] == '$')
 		{
 			tmp = ft_strjoin3(tmp, dollar_sign(ft_strdup(content), ++i));
-			while(content[i] != 32 && content[i] != '$' && content[i] != '\0')
+			while (content[i] != 32 && content[i] != '$' && content[i] != '\0')
 				i++;
 			while (++j < ft_strlen(tmp));
 		}

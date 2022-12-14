@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmds.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 13:30:38 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/14 13:34:47 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int ft_env(void)
+int	ft_env(void)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!shell->ctrl)
 	{
@@ -21,12 +33,14 @@ int ft_env(void)
 
 void	ft_pwd(void)
 {
-	t_list *l_tmp;
+	t_list	*l_tmp;
 	char	*tmp;
 	char	*tmp2;
-	int i = 0;
-	int	j = 0;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	if (!shell->asd)
 		ft_fill();
 	l_tmp = shell->asd;
@@ -52,10 +66,10 @@ void	ft_pwd(void)
 	shell->exit_status = 0;
 }
 
-void	 ft_echo(t_list *list)
+void	ft_echo(t_list *list)
 {
 	char	*content;
-	int	i;
+	int		i;
 
 	i = 1;
 	if (list_data(list, i) == NULL)
@@ -65,8 +79,9 @@ void	 ft_echo(t_list *list)
 		content = list_data(list, i);
 		while (content != NULL)
 		{
-			if (ft_strcmp(content, "-n") && list_data(list, i + 1) == NULL && i == 1)
-				break;
+			if (ft_strcmp(content, "-n") \
+				&& list_data(list, i + 1) == NULL && i == 1)
+				break ;
 			if (ft_strcmp(content, "-n") && list_data(list, i + 1) != NULL)
 			{
 				printf("%s", list_data(list, i + 1));

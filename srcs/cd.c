@@ -32,7 +32,7 @@ void	update_pwd(int i, t_list *list)
 {
 	char	str[256];
 	char	*old_pwd;
-	char 	*content;
+	char	*content;
 
 	old_pwd = ft_strjoin("OLDPWD=", check_env(ft_strdup("PWD")));
 	list_f_data(list, i)->content = ft_strdup(old_pwd);
@@ -45,12 +45,13 @@ void	update_pwd(int i, t_list *list)
 
 void	ft_cd(t_list *list)
 {
-	int	i;
-	char str[256];
-	char *pwd = NULL;
-	char *str3;
-	char *old_pwd;
+	int		i;
+	char	str[256];
+	char	*pwd;
+	char	*str3;
+	char	*old_pwd;
 
+	pwd = NULL;
 	i = 0;
 	if (list_data(list, i + 1) != NULL)
 	{
