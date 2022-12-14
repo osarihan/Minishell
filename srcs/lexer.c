@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:13:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/02 10:28:15 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/14 13:23:19 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,9 @@ int	cmnd_take(void)
 		return (-1);
 	}
 	while ((shell->line[i] != ' ' && shell->line[i] != '\0') && (shell->line[i] != '>' && shell->line[i] != '<' && shell->line[i] != '|'))
+	{
 		i++;
+	}
 	return(i);
 }
 

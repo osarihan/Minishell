@@ -22,6 +22,7 @@ void ft_dstry_node(int c)
 {
 	t_list *tmp;
 	t_list *tmp2;
+	t_list *cleaner;
 
 	tmp = shell->asd;
 	tmp2 = shell->asd;
@@ -31,6 +32,10 @@ void ft_dstry_node(int c)
 			tmp = tmp->next;
 		c--;
 	}
+
+	cleaner = tmp->next;
+	free(cleaner->content);
+	free(cleaner);
 	if (tmp->next->next != NULL)
 		tmp2 = tmp->next->next;
 	else
