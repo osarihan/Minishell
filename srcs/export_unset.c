@@ -45,6 +45,14 @@ void	ft_export(t_list *list)
 			ft_lstadd_back(&shell->declare, ft_lstnew(ft_strdup(content)));
 		else
 		{
+			printf("ccontent::%s\n", list->content);
+					t_list *iter;
+			iter = shell->arg;
+			while (iter != NULL)
+			{
+				printf("argsLAST:::::%s\n", iter->content);
+				iter = iter->next;
+			}
 			ft_dstry_node(shell->cmmp);
 			if (ft_strchr(content, '='))
 				ft_lstadd_back(&shell->asd, ft_lstnew(ft_strdup(content)));

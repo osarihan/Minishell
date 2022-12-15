@@ -1,10 +1,11 @@
 #include "minishell.h"
 
-char    *ft_strjoin2(char *s1, char *s2)
+char	*ft_strjoin2(char *s1, char *s2)
 {
 	char	*str;
-	int     i;
-	int     j;
+	int		i;
+	int		j;
+
 	i = -1;
 	j = 0;
 	if (!s2)
@@ -23,11 +24,12 @@ char    *ft_strjoin2(char *s1, char *s2)
 	return (str);
 }
 
-char    *ft_strjoin3(char *s1, char *s2)
+char	*ft_strjoin3(char *s1, char *s2)
 {
 	char	*str;
-	int     i;
-	int     j;
+	int		i;
+	int		j;
+
 	i = -1;
 	j = 0;
 	if (!s2)
@@ -43,6 +45,7 @@ char    *ft_strjoin3(char *s1, char *s2)
 		str[i++] = s2[j++];
 	str[i] = '\0';
 	free(s1);
-	free(s2);
+	if (s2[0] > 32)
+		free(s2);
 	return (str);
 }

@@ -34,8 +34,8 @@ void ft_dstry_node(int c)
 	}
 
 	cleaner = tmp->next;
-	free(cleaner->content);
-	free(cleaner);
+	//free(cleaner->content);
+	//free(cleaner);
 	if (tmp->next->next != NULL)
 		tmp2 = tmp->next->next;
 	else
