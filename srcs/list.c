@@ -1,38 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 17:15:02 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	lstcmp(char *str)
 {
-	t_list *temp;
+	t_list	*temp;
 	t_list	*temp2;
 
-	shell->cmmp = 1;
-	temp = shell->asd;
+	g_shell->cmmp = 1;
+	temp = g_shell->asd;
 	temp = temp->next;
 	while (temp != NULL)
 	{
 		if (ft_strcmp3(temp->content, str))
 			return (0);
 		temp = temp->next;
-		shell->cmmp++;
+		g_shell->cmmp++;
 	}
-	return(1);
+	return (1);
 }
 
-void ft_dstry_node(int c)
+void	ft_dstry_node(int c)
 {
-	t_list *tmp;
-	t_list *tmp2;
-	t_list *cleaner;
+	t_list	*tmp;
+	t_list	*tmp2;
+	t_list	*cleaner;
 
-	tmp = shell->asd;
-	tmp2 = shell->asd;
+	tmp = g_shell->asd;
+	tmp2 = g_shell->asd;
 	while (c > 1 && tmp != NULL)
 	{
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		c--;
 	}
-
 	cleaner = tmp->next;
 	//free(cleaner->content);
 	//free(cleaner);
@@ -48,29 +59,27 @@ void ft_dstry_node(int c)
 
 void	ft_lstremover(t_list *list)
 {
-	int i = 1;
-	char *tmp;
-	char *tmp2;
+	char	*tmp;
+	char	*tmp2;
 	char	*content;
-	t_list *tmplst;
+	t_list	*tmplst;
 
-	int c;
-
-	c = 1;
+	int (i) = 1;
+	int (c) = 1;
 	content = list_data(list, 1);
 	while (content)
 	{
 		content = list_data(list, i);
-		tmplst = shell->asd->next;
-		while(tmplst)
+		tmplst = g_shell->asd->next;
+		while (tmplst)
 		{
 			tmp = (char *)tmplst->content;
 			if (tmplst == NULL || content == NULL)
-				break;
+				break ;
 			if (ft_strcmp2(tmp, content))
 			{
 				ft_dstry_node(c);
-				break;
+				break ;
 			}
 			tmplst = tmplst->next;
 			c++;
@@ -83,7 +92,7 @@ void	ft_lstremover(t_list *list)
 char	*list_data(t_list *root, int index)
 {
 	t_list	*iter;
-	int	i;
+	int		i;
 
 	iter = root;
 	i = 0;
@@ -96,8 +105,8 @@ char	*list_data(t_list *root, int index)
 
 t_list	*list_f_data(t_list *root, int index)
 {
-	t_list *list;
-	int	i;
+	t_list	*list;
+	int		i;
 
 	list = root;
 	i = 0;

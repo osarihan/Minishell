@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 16:44:53 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int heredoc_cnt()
+int	heredoc_cnt(void)
 {
-	int i;
-	t_list *iter;
-	iter = shell->arg;
+	int		i;
+	t_list	*iter;
+
+	iter = g_shell->arg;
 	i = 0;
 	while (iter)
 	{
@@ -14,12 +27,14 @@ int heredoc_cnt()
 	}
 	return (i);
 }
-int heredoc_finder()
+
+int	heredoc_finder(void)
 {
-	int i;
-	t_list *iter;
+	int		i;
+	t_list	*iter;
+
 	i = 0;
-	iter = shell->arg;
+	iter = g_shell->arg;
 	while (iter)
 	{
 		if (ft_strcmp(iter->content, "<<"))

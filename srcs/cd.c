@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:16:55 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/15 16:25:43 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	just_cd(int i, t_list *list)
 {
 	char	*str;
 	char	*old_pwd;
+	char	*content;
 
 	old_pwd = ft_strjoin("OLDPWD=", check_env(ft_strdup("PWD")));
 	ft_lstadd_back(&list, ft_lstnew(old_pwd));
 	ft_export(list);
 	str = ft_strjoin(getenv("HOME"), "/");
 	chdir(str);
-	list_f_data(list, i + 1)->content = ft_strjoin("PWD=", str);
+	content = ft_strjoin("PWD=", str);
+	list_f_data(list, i + 1)->content = content;
 	ft_export(list);
 }
 
@@ -30,12 +32,14 @@ void	update_pwd(int i, t_list *list)
 {
 	char	str[256];
 	char	*old_pwd;
+	char	*content;
 
 	old_pwd = ft_strjoin("OLDPWD=", check_env(ft_strdup("PWD")));
 	list_f_data(list, i)->content = ft_strdup(old_pwd);
 	ft_export(list);
 	getcwd(str, sizeof(str));
-	list_f_data(list, i)->content = ft_strjoin("PWD=", str);
+	content = ft_strjoin("PWD=", str);
+	list_f_data(list, i)->content = content;
 	ft_export(list);
 }
 
@@ -64,5 +68,5 @@ void	ft_cd(t_list *list)
 	}
 	else
 		just_cd(i, list);
-	shell->exit_status = 0;
+	g_shell->exit_status = 0;
 }

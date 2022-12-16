@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 17:59:35 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/16 17:59:36 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	run_cmd(t_list *list)
@@ -19,5 +31,5 @@ void	run_cmd(t_list *list)
 	else if (ft_strcmp(list->content, "exit"))
 		ft_exit(list);
 	else
-		other_cmnds(list_to_2D(list));
+		other_cmnds(list_to_2d(list));
 }

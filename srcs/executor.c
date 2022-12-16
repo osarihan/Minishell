@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:48:30 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/14 15:05:31 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/16 18:04:16 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	pipe_status(void)
 {
 	t_list	*iter;
 
-	iter = shell->arg;
+	iter = g_shell->arg;
 	while (iter != NULL)
 	{
 		if (ft_strcmp(iter->content, "|"))
@@ -35,17 +35,17 @@ int	pipe_status(void)
 
 static void	reset_shellint(void)
 {
-	shell->l_red = 0;
-	shell->r_red = 0;
-	shell->dr_red = 0;
-	shell->dl_red = 0;
+	g_shell->l_red = 0;
+	g_shell->r_red = 0;
+	g_shell->dr_red = 0;
+	g_shell->dl_red = 0;
 }
 
 void	executor(void)
 {
 	int	status;
 
-	if (shell->arg == NULL)
+	if (g_shell->arg == NULL)
 		return ;
 	redirect_check();
 	heredoc_check();
@@ -54,46 +54,47 @@ void	executor(void)
 		run_cmd_with_pipe();
 	if (!status)
 	{
-		if (shell->dl_red || shell->r_red || shell->l_red || shell->dr_red)
+		if (g_shell->dl_red || g_shell->r_red \
+			|| g_shell->l_red || g_shell->dr_red)
 		{
 			if (!fork())
 			{
-				if (shell->dl_red)
+				if (g_shell->dl_red)
 				{
-					if (ft_strcmp(shell->arg->next->content, "<<"))
+					if (ft_strcmp(g_shell->arg->next->content, "<<"))
 						run_heredoc(1);
 					else
 						run_heredoc(2); // SAYDIR
 				}
-				else if (shell->r_red)
+				else if (g_shell->r_red)
 				{
-					if (ft_strcmp(shell->arg->next->content, ">"))
+					if (ft_strcmp(g_shell->arg->next->content, ">"))
 						right_redirect(1);
 					else
 						right_redirect(2);
 				}
-				else if (shell->l_red)
+				else if (g_shell->l_red)
 				{
-					if (ft_strcmp(shell->arg->next->content, "<"))
+					if (ft_strcmp(g_shell->arg->next->content, "<"))
 						left_redirect(1);
 					else
 						left_redirect(2);
 				}
-				else if (shell->dr_red)
+				else if (g_shell->dr_red)
 				{
-					if (ft_strcmp(shell->arg->next->content, ">>"))
+					if (ft_strcmp(g_shell->arg->next->content, ">>"))
 						double_right_redirect(1);
 					else
 						double_right_redirect(2);
 				}
-				run_cmd(shell->arg);
+				run_cmd(g_shell->arg);
 				exit(0);
 			}
 			wait(NULL);
 		}
-		else if (!status && !(shell->dl_red || shell->r_red \
-				|| shell->l_red || shell->dr_red))
-			run_cmd(shell->arg);
+		else if (!status && !(g_shell->dl_red || g_shell->r_red \
+				|| g_shell->l_red || g_shell->dr_red))
+			run_cmd(g_shell->arg);
 		reset_stdout();
 		reset_stdin();
 		reset_shellint();

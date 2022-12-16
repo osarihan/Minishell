@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 17:16:09 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/16 17:16:38 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int lstcmp2(t_list *iter, char *str)
+int	lstcmp2(t_list *iter, char *str)
 {
-	t_list *temp;
-	t_list  *temp2;
+	t_list	*temp;
+	t_list	*temp2;
+
 	temp = iter;
 	while (temp != NULL)
 	{
@@ -11,12 +24,14 @@ int lstcmp2(t_list *iter, char *str)
 			return (0);
 		temp = temp->next;
 	}
-	return(1);
+	return (1);
 }
-void ft_dstry_node2(t_list *iter, int c)
+
+void	ft_dstry_node2(t_list *iter, int c)
 {
-	t_list *tmp;
-	t_list *tmp2;
+	t_list	*tmp;
+	t_list	*tmp2;
+
 	tmp = iter;
 	tmp2 = iter;
 	if (c == 0)

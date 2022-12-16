@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:30:38 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/14 13:34:47 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ int	ft_env(void)
 {
 	t_list	*tmp;
 
-	if (!shell->ctrl)
+	if (!g_shell->ctrl)
 	{
 		ft_fill();
-		shell->ctrl++;
+		g_shell->ctrl++;
 	}
-	tmp = shell->asd;
+	tmp = g_shell->asd;
 	while (tmp != NULL)
 	{
 		printf("%s\n", tmp->content);
 		tmp = tmp->next;
 	}
-	shell->exit_status = 0;
+	g_shell->exit_status = 0;
 	return (1);
 }
 
@@ -41,9 +41,9 @@ void	ft_pwd(void)
 
 	i = 0;
 	j = 0;
-	if (!shell->asd)
+	if (!g_shell->asd)
 		ft_fill();
-	l_tmp = shell->asd;
+	l_tmp = g_shell->asd;
 	tmp2 = malloc(ft_strlen("PWD") + 1);
 	while (l_tmp != NULL)
 	{
@@ -63,7 +63,7 @@ void	ft_pwd(void)
 		l_tmp = l_tmp->next;
 		i = 0;
 	}
-	shell->exit_status = 0;
+	g_shell->exit_status = 0;
 }
 
 void	ft_echo(t_list *list)
@@ -95,7 +95,7 @@ void	ft_echo(t_list *list)
 			content = list_data(list, i);
 		}
 	}
-	shell->exit_status = 0;
+	g_shell->exit_status = 0;
 }
 
 void	ft_exit(t_list *list)
@@ -103,7 +103,7 @@ void	ft_exit(t_list *list)
 	if (list->next != NULL)
 	{
 		list = list->next;
-		shell->exit_status = ft_atoi(list->content);
+		g_shell->exit_status = ft_atoi(list->content);
 	}
-	exit(shell->exit_status);
+	exit(g_shell->exit_status);
 }

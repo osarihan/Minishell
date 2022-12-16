@@ -1,72 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/16 17:55:42 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/16 18:06:43 by oozcan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void    right_redirect(int index)
+int	redirect_check(void)
 {
-	int fd;
-	int pid;
-	shell->to_open = list_data(shell->arg, index + 1);
-	cut_redirect(index);
-	fd = open(shell->to_open, O_RDWR | O_CREAT | O_TRUNC, 0777);
-	if (fd < 0)
-		return;
-	dup2(fd, 1);
-	close (fd);
-}
-void    left_redirect(int index)
-{
-	int fd;
-	int pid;
-	shell->to_open = list_data(shell->arg, index + 1);
-	cut_redirect(index);
-	fd = open(shell->to_open, O_RDWR, 0777);
-	if (fd < 0)
-		return;
-	dup2(fd, 0);
-	close(fd);
-}
-void    double_right_redirect(int index)
-{
-	int fd;
-	int pid;
-	shell->to_open = list_data(shell->arg, index + 1);
-	cut_redirect(index);
-	fd = open(shell->to_open, O_RDWR | O_APPEND, 0777);
-	if (fd < 0)
-		return;
-	dup2(fd, 1);
-	close (fd);
-}
+	t_list	*iter;
 
-int redirect_check(void)
-{
-	int i;
-	t_list *iter;
-	i = 0;
-	if (shell->arg == NULL)
+	int (i) = 0;
+	if (g_shell->arg == NULL)
 		return (0);
-	iter = shell->arg;
+	iter = g_shell->arg;
 	while (iter)
 	{
-		if (ft_strcmp(iter->content, "<") || ft_strcmp(iter->content, ">") || ft_strcmp(iter->content, ">>") || ft_strcmp(iter->content, "<<"))
+		if (ft_strcmp(iter->content, "<") || ft_strcmp(iter->content, ">") \
+			|| ft_strcmp(iter->content, ">>") || ft_strcmp(iter->content, "<<"))
 		{
 			if (ft_strcmp(iter->content, "<"))
-				shell->l_red++;
+				g_shell->l_red++;
 			else if (ft_strcmp(iter->content, ">"))
-				shell->r_red++;
+				g_shell->r_red++;
 			else if (ft_strcmp(iter->content, ">>"))
-				shell->dr_red++;
+				g_shell->dr_red++;
 			else if (ft_strcmp(iter->content, "<<"))
-				shell->dl_red++;
+				g_shell->dl_red++;
 			i++;
 		}
 		iter = iter->next;
 	}
 	return (i);
 }
-int which_red(char *content)
+
+int	which_red(char *content)
 {
 	if (ft_strcmp(content, ">"))
-		return(1);
+		return (1);
 	else if (ft_strcmp(content, ">>"))
 		return (2);
 	else if (ft_strcmp(content, "<"))
@@ -76,7 +53,7 @@ int which_red(char *content)
 	return (0);
 }
 
-void redirect_decider(int stat, int index)
+void	redirect_decider(int stat, int index)
 {
 	if (stat == 1)
 		right_redirect(index);
@@ -88,8 +65,8 @@ void redirect_decider(int stat, int index)
 		run_heredoc(index);
 }
 
-void    cut_redirect(int index)
+void	cut_redirect(int index)
 {
-	ft_dstry_node2(shell->arg, index);
-	ft_dstry_node2(shell->arg, index);
+	ft_dstry_node2(g_shell->arg, index);
+	ft_dstry_node2(g_shell->arg, index);
 }

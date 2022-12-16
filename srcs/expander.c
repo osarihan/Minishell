@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:11:32 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/15 15:20:18 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	expand(int index)
 	j = 0;
 	i = 0;
 	tmp = ft_calloc(10000, sizeof(char));
-	content = list_data(shell->arg, index);
+	content = list_data(g_shell->arg, index);
 	while (content[i])
 	{
 		if (content[i] == '$')
@@ -30,16 +30,17 @@ void	expand(int index)
 			tmp = ft_strjoin3(tmp, dollar_sign(ft_strdup(content), ++i));
 			while (content[i] != 32 && content[i] != '$' && content[i] != '\0')
 				i++;
-			while (++j < ft_strlen(tmp));
+			while (j < ft_strlen(tmp))
+				++j;
 		}
 		if (content[i] == '$')
-			continue;
+			continue ;
 		tmp[j] = content[i];
 		j++;
 		i++;
 	}
 	tmp[j] = '\0';
-	list_f_data(shell->arg, index)->content = ft_strdup(tmp);
+	list_f_data(g_shell->arg, index)->content = ft_strdup(tmp);
 	free(content);
 	free(tmp);
 }
@@ -60,7 +61,7 @@ int	quote_check(char *str)
 	return (0);
 }
 
-void	 expander()
+void	expander(void)
 {
 	t_list	*iter;
 	char	*content;
@@ -68,7 +69,7 @@ void	 expander()
 	int		index;
 
 	index = 0;
-	iter = shell->arg;
+	iter = g_shell->arg;
 	while (iter != NULL)
 	{
 		content = ft_strdup(iter->content);
