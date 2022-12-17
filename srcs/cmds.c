@@ -33,67 +33,46 @@ int	ft_env(void)
 
 void	ft_pwd(void)
 {
-	t_list	*l_tmp;
-	char	*tmp;
-	char	*tmp2;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
 	if (!g_shell->asd)
 		ft_fill();
-	l_tmp = g_shell->asd;
-	tmp2 = malloc(ft_strlen("PWD") + 1);
-	while (l_tmp != NULL)
-	{
-		tmp = l_tmp->content;
-		while (tmp[i] != '=' && i < 3)
-		{
-			tmp2[i] = tmp[i];
-			i++;
-		}
-		tmp2[i] = '\0';
-		if (ft_strcmp(tmp2, "PWD"))
-		{
-			printf("%s\n", &tmp[++i]);
-			free(tmp2);
-			return ;
-		}
-		l_tmp = l_tmp->next;
-		i = 0;
-	}
+	printf("%s\n", check_env(ft_strdup("PWD")));
 	g_shell->exit_status = 0;
+}
+
+void	ft_echo_n(t_list *list, int i)
+{
+	if (list_data(list, i) == NULL)
+		return ;
+	while (list_data(list, i) != NULL)
+	{
+		if (list_data(list, i + 1) == NULL)
+			printf("%s", list_data(list, i));
+		else
+			printf("%s ", list_data(list, i));
+		i++;
+	}
 }
 
 void	ft_echo(t_list *list)
 {
-	char	*content;
-	int		i;
-
-	i = 1;
+	int (i) = 1;
 	if (list_data(list, i) == NULL)
 		printf("\n");
 	else
 	{
-		content = list_data(list, i);
-		while (content != NULL)
+		if (!ft_strcmp(list_data(list, i), "-n"))
 		{
-			if (ft_strcmp(content, "-n") \
-				&& list_data(list, i + 1) == NULL && i == 1)
-				break ;
-			if (ft_strcmp(content, "-n") && list_data(list, i + 1) != NULL)
+			while (list_data(list, i) != NULL)
 			{
-				printf("%s", list_data(list, i + 1));
+				if (list_data(list, i + 1) == NULL)
+					printf("%s\n", list_data(list, i));
+				else
+					printf("%s ", list_data(list, i));
 				i++;
 			}
-			else if (list_data(list, i + 1) == NULL)
-				printf("%s\n", content);
-			else
-				printf("%s ", content);
-			i++;
-			content = list_data(list, i);
 		}
+		else
+			ft_echo_n(list, ++i);
 	}
 	g_shell->exit_status = 0;
 }

@@ -12,18 +12,10 @@
 
 #include "minishell.h"
 
-void	d_quote(int index)
+char	*d_quote_loop(char *content, char *tmp, char *rtn_dollar, char *itr_tmp)
 {
-	char	*content;
-	char	*tmp;
-	char	*rtn_dollar;
-	char	*iter_tmp;
-
 	int (i) = 0;
 	int (j) = 0;
-	tmp = malloc(10000);
-	ft_bzero(tmp, 10000);
-	content = list_data(g_shell->arg, index);
 	while (content[i])
 	{
 		if (content[i] == D_QUOTE)
@@ -31,29 +23,36 @@ void	d_quote(int index)
 		if (content[i] == '$')
 		{
 			rtn_dollar = dollar_sign(ft_strdup(content), ++i);
-			iter_tmp = rtn_dollar;
+			itr_tmp = rtn_dollar;
 			while (content[i] != 32 && content[i] != '$' && content[i] != '\0' \
 					&& content[i] != D_QUOTE && content[i] != S_QUOTE)
 				i++;
 			while (*rtn_dollar)
-			{
-				tmp[j] = (*rtn_dollar);
-				rtn_dollar++;
-				j++;
-			}
+				tmp[j++] = (*rtn_dollar++);
 			tmp[j] = '\0';
 		}
 		else
-		{
-			tmp[j] = content[i];
-			i++;
-			j++;
-		}
+			tmp[j++] = content[i++];
 	}
-	if (iter_tmp[0] > 32)
-		free(iter_tmp);
-	tmp[j] = '\0';
+	// if (itr_tmp[0] > 32)
+	// 	free(itr_tmp);
+	free(content);
+	return (tmp);
+}
+
+void	d_quote(int index)
+{
+	char	*content;
+	char	*tmp;
+	char	*rtn_dollar;
+	char	*itr_tmp;
+
+	tmp = malloc(10000);
+	ft_bzero(tmp, 10000);
+	content = list_data(g_shell->arg, index);
+	tmp = d_quote_loop(content, tmp, rtn_dollar, itr_tmp);
+	//tmp[j] = '\0';
 	list_f_data(g_shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
-	free(content);
+	//free(content);
 }

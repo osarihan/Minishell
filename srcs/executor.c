@@ -41,6 +41,54 @@ static void	reset_shellint(void)
 	g_shell->dl_red = 0;
 }
 
+void	run_cmd_with_d_redirect(void)
+{
+	if (!fork())
+	{
+		if (g_shell->dl_red)
+		{
+			if (ft_strcmp(g_shell->arg->next->content, "<<"))
+				run_heredoc(1);
+			else
+				run_heredoc(2); // SAYDIR
+		}
+		else if (g_shell->dr_red)
+		{
+			if (ft_strcmp(g_shell->arg->next->content, ">>"))
+				double_right_redirect(1);
+			else
+				double_right_redirect(2);
+		}
+		run_cmd(g_shell->arg);
+		exit(0);
+	}
+	wait(NULL);
+}
+
+void	run_cmd_with_redirect(void)
+{
+	if (!fork())
+	{
+		if (g_shell->r_red)
+		{
+			if (ft_strcmp(g_shell->arg->next->content, ">"))
+				right_redirect(1);
+			else
+				right_redirect(2);
+		}
+		else if (g_shell->l_red)
+		{
+			if (ft_strcmp(g_shell->arg->next->content, "<"))
+				left_redirect(1);
+			else
+				left_redirect(2);
+		}
+		run_cmd(g_shell->arg);
+		exit(0);
+	}
+	wait(NULL);
+}
+
 void	executor(void)
 {
 	int	status;
@@ -54,44 +102,10 @@ void	executor(void)
 		run_cmd_with_pipe();
 	if (!status)
 	{
-		if (g_shell->dl_red || g_shell->r_red \
-			|| g_shell->l_red || g_shell->dr_red)
-		{
-			if (!fork())
-			{
-				if (g_shell->dl_red)
-				{
-					if (ft_strcmp(g_shell->arg->next->content, "<<"))
-						run_heredoc(1);
-					else
-						run_heredoc(2); // SAYDIR
-				}
-				else if (g_shell->r_red)
-				{
-					if (ft_strcmp(g_shell->arg->next->content, ">"))
-						right_redirect(1);
-					else
-						right_redirect(2);
-				}
-				else if (g_shell->l_red)
-				{
-					if (ft_strcmp(g_shell->arg->next->content, "<"))
-						left_redirect(1);
-					else
-						left_redirect(2);
-				}
-				else if (g_shell->dr_red)
-				{
-					if (ft_strcmp(g_shell->arg->next->content, ">>"))
-						double_right_redirect(1);
-					else
-						double_right_redirect(2);
-				}
-				run_cmd(g_shell->arg);
-				exit(0);
-			}
-			wait(NULL);
-		}
+		if (g_shell->r_red || g_shell->l_red)
+			run_cmd_with_redirect();
+		else if (g_shell->dl_red || g_shell->dr_red)
+			run_cmd_with_d_redirect();
 		else if (!status && !(g_shell->dl_red || g_shell->r_red \
 				|| g_shell->l_red || g_shell->dr_red))
 			run_cmd(g_shell->arg);

@@ -14,15 +14,10 @@
 
 void	expand(int index)
 {
-	char	*content;
-	char	*tmp;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 0;
-	tmp = ft_calloc(10000, sizeof(char));
-	content = list_data(g_shell->arg, index);
+	char *(tmp) = ft_calloc(10000, sizeof(char));
+	char *(content) = list_data(g_shell->arg, index);
+	int (i) = 0;
+	int (j) = 0;
 	while (content[i])
 	{
 		if (content[i] == '$')
