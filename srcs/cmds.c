@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:30:38 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 15:06:05 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ void	ft_echo_n(t_list *list, int i)
 {
 	if (list_data(list, i) == NULL)
 		return ;
+	while (ft_strcmp(list_data(list, i), "-n"))
+	{
+		if (list_data(list, i) != NULL)
+			i++;
+		if (list_data(list, i) == NULL)
+			return ;
+	}
 	while (list_data(list, i) != NULL)
 	{
 		if (list_data(list, i + 1) == NULL)

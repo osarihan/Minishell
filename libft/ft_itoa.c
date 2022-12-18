@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:27:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/08/27 22:54:37 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/18 15:19:17 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int len_count(int number)
+int	len_count(int number)
 {
-	int count;
-	int nbr;
+	int	count;
+	int	nbr;
 
 	nbr = number;
 	count = 0;
@@ -23,7 +23,7 @@ int len_count(int number)
 	{
 		nbr = nbr * -1;
 	}
-	while(nbr > 0)
+	while (nbr > 0)
 	{
 		nbr = nbr / 10;
 		count++;
@@ -33,41 +33,39 @@ int len_count(int number)
 	return (count);
 }
 
-int take_power_ten(int nbr)
+int	take_power_ten(int nbr)
 {
-	int total;
+	int	total;
 
 	total = 1;
 	if (nbr == 0)
-		return(1);
+		return (1);
 	while (nbr > 0)
 	{
 		total = total * 10;
 		nbr--;
 	}
- 	return(total);
+	return (total);
 }
 
-int find_bas(int number, int line)
+int	find_bas(int number, int line)
 {
-	int turn;
+	int	turn;
 
 	turn = ((number / (take_power_ten(line - 1))) % 10);
-	return(turn);
+	return (turn);
 }
 
 char	*ft_itoa(int nbr)
 {
-	int j = 1;
-	char *str;
-	int i = 0;
-	unsigned int len;
-	len = len_count(nbr);
-	str = malloc(sizeof(char *) * len);
+	unsigned int (len) = len_count(nbr);
+	char *(str) = malloc(sizeof(char *) * len);
+	int (i) = 0;
+	int (j) = 1;
 	if (nbr == -2147483648)
 	{
 		str = "-2147483648";
-		return(str);
+		return (str);
 	}
 	if (nbr < 0)
 	{
@@ -83,5 +81,5 @@ char	*ft_itoa(int nbr)
 		len--;
 	}
 	str[i] = '\0';
-	return(str);
+	return (str);
 }
