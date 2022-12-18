@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:47:18 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 15:43:01 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	heredoc_prompt(int index)
 
 	eof = list_data(g_shell->arg, index + 1);
 	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (fd < 0)
-		return ;
-	while (true)
+	while (true && fd)
 	{
 		to_write = readline(">");
 		if (ft_strcmp(to_write, eof))
@@ -40,7 +38,6 @@ void	heredoc_prompt(int index)
 		free(to_write);
 	}
 	close(fd);
-	return ;
 }
 
 void	run_heredoc(int i)

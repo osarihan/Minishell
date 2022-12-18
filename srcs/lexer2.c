@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:13:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/16 18:10:22 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:11:59 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,28 @@ int	token_compr(void)
 	return (0);
 }
 
+int	text_returner_out_of_ideas(int x, int i)
+{
+	if (x == 1)
+	{
+		while (g_shell->line[i] != 34 && g_shell->line[i] != '\0')
+			i++;
+		while (g_shell->line[i] != ' ' && g_shell->line[i] != '\0')
+			i++;
+		return (i);
+	}
+	else if (x == 2)
+	{
+			i++;
+		while (g_shell->line[i] != 39 && g_shell->line[i] != '\0')
+			i++;
+		while (g_shell->line[i] != ' ' && g_shell->line[i] != '\0')
+			i++;
+		return (i);
+	}
+	return (31);
+}
+
 int	text_cmpr(void)
 {
 	int (i) = 0;
@@ -49,21 +71,11 @@ int	text_cmpr(void)
 	{
 		if (g_shell->line[i] == 34)
 		{
-			i++;
-			while (g_shell->line[i] != 34 && g_shell->line[i] != '\0')
-				i++;
-			while (g_shell->line[i] != ' ' && g_shell->line[i] != '\0')
-				i++;
-			return (i);
+			text_returner_out_of_ideas(1, i);
 		}
 		if (g_shell->line[i] == 39)
 		{
-			i++;
-			while (g_shell->line[i] != 39 && g_shell->line[i] != '\0')
-				i++;
-			while (g_shell->line[i] != ' ' && g_shell->line[i] != '\0')
-				i++;
-			return (i);
+			text_returner_out_of_ideas(2, i);
 		}
 		i++;
 	}

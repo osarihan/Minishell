@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 19:00:22 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 19:53:08 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 17:57:52 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	check_cmnd2(int **fd, int i)
 	while (!ft_strcmp(g_shell->arg->content, "|") && g_shell->arg != NULL)
 	{
 		ft_lstadd_back(&g_shell->pipe_arg, ft_lstnew(g_shell->arg->content));
+		if (index == 0)
+		{
+			printf("sa\n");
+			g_shell->iter = g_shell->pipe_arg;
+		}
 		g_shell->arg = g_shell->arg->next;
 		if (g_shell->arg == NULL)
 			break ;
@@ -67,4 +72,6 @@ void	check_cmnd2(int **fd, int i)
 		dup2(fd[i][1], STDOUT_FILENO);
 	wr_close_pipe(fd);
 	run_cmd(g_shell->pipe_arg);
+	lst_free2(g_shell->iter);
+	printf("ass\n");
 }

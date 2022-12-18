@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:45:59 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/18 14:46:48 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 15:38:08 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*d_quote_loop(char *content, char *tmp, char *rtn_dollar, char *itr_tmp)
 		else
 			tmp[j++] = content[i++];
 	}
-	// if (itr_tmp[0] > 32)
-	// 	free(itr_tmp);
+	if (itr_tmp != NULL)
+		free(itr_tmp);
 	free(content);
 	return (tmp);
 }
@@ -45,14 +45,12 @@ void	d_quote(int index)
 	char	*content;
 	char	*tmp;
 	char	*rtn_dollar;
-	char	*itr_tmp;
 
+	char *(itr_tmp) = NULL;
 	tmp = malloc(10000);
 	ft_bzero(tmp, 10000);
 	content = list_data(g_shell->arg, index);
 	tmp = d_quote_loop(content, tmp, rtn_dollar, itr_tmp);
-	//tmp[j] = '\0';
 	list_f_data(g_shell->arg, index)->content = ft_strdup(tmp);
 	free(tmp);
-	//free(content);
 }

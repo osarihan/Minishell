@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/16 18:08:23 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 17:28:57 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,6 @@ void	assigment(char **env)
 	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
 }
 
-void	lst_free(void)
-{
-	t_list	*iter;
-
-	while (g_shell->arg != NULL)
-	{
-		iter = g_shell->arg;
-		free(g_shell->arg->content);
-		g_shell->arg = g_shell->arg->next;
-		free(iter);
-	}
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	assigment(env);
@@ -90,12 +77,19 @@ int	main(int argc, char **argv, char **env)
 		// iter = g_shell->arg;
 		// while (iter != NULL)
 		// {
-		// 	//printf("argsLAST:::::%s\n", iter->content);
+		// 	//printf("argsLAST:::::%s\n", //iter->content);
 		// 	iter = iter->next;
 		// }
 		//system("leaks minishell");
 		executor();
 		lst_free();
+		// t_list *iter;
+		// iter = g_shell->iter;
+		// while (iter != NULL)
+		// {
+		// 	printf("argsLAST:::::%s\n", iter->content);
+		// 	iter = iter->next;
+		// }
 	}
 	return (1);
 }

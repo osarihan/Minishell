@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/16 19:01:37 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 17:53:29 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
-
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -35,6 +34,7 @@ typedef struct s_shell
 	char	*name;
 	char	**environ;
 	char	*temp;
+	t_list	*iter;
 	t_list	*declare;
 	t_list	*asd;
 	t_list	*arg;
@@ -98,7 +98,7 @@ char	*list_data(t_list *root, int index);
 t_list	*list_f_data(t_list *root, int index);
 int		lstcmp(char *str);
 void	ft_dstry_node(int c);
-void	ft_lstremover(t_list *list);
+void	ft_lstremover(t_list *list, int i);
 char	**list_to_2d(t_list *list);
 void	ft_dstry_node2(t_list *iter, int c);
 int		lstcmp2(t_list *iter, char *str);
@@ -137,4 +137,6 @@ void	heredoc(void);
 int		heredoc_check(void);
 int		heredoc_cnt(void);
 int		heredoc_finder(void);
+void	lst_free(void);
+void	lst_free2(t_list *list);
 #endif

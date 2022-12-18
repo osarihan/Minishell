@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:12:05 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 18:54:02 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:11:01 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_unset(t_list *list)
 {
+	int (i) = 0;
 	if (!g_shell->ctrl++)
 		ft_fill();
-	ft_lstremover(list);
+	ft_lstremover(list, i);
 	g_shell->exit_status = 0;
 }
 

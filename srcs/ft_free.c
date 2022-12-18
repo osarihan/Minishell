@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 17:50:18 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/18 17:24:41 by oozcan           ###   ########.fr       */
+/*   Created: 2022/12/18 16:12:47 by oozcan            #+#    #+#             */
+/*   Updated: 2022/12/18 17:56:31 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pipe_counter(void)
+void	lst_free(void)
 {
 	t_list	*iter;
 
-	iter = g_shell->arg;
-	g_shell->pipe = 0;
-	while (iter != NULL)
+	while (g_shell->arg != NULL)
 	{
-		if (ft_strcmp(iter->content, "|"))
-			g_shell->pipe++;
-		iter = iter->next;
+		iter = g_shell->arg;
+		free(g_shell->arg->content);
+		g_shell->arg = g_shell->arg->next;
+		free(iter);
 	}
 }
 
-void	run_cmd_with_pipe(void)
+void	lst_free2(t_list *list)
 {
-	pipe_counter();
-	pipe_f();
+	t_shell	*iter;
+
+	printf("geldim\n");
+	while (list != NULL)
+	{
+		printf("listcon:%s\n", list->content);
+		iter = list;
+		free(list->content);
+		list = list->next;
+		free(iter);
+	}
 }

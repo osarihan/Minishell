@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:08:55 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 18:09:59 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 15:57:21 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,27 @@ void	lexur(int cnt)
 	ft_lstadd_back(&g_shell->arg, ft_lstnew(tmp));
 }
 
+int	lexer_cnt(int cnt, int i)
+{
+	if (i == 1)
+	{
+		if (cnt > 0)
+			lexur(cnt);
+		else if (cnt == -1)
+			return (0);
+	}
+	else if (i == 2)
+	{
+		if (cnt > 0)
+			lexur(cnt);
+	}
+	return (1);
+}
+
 int	lexer(void)
 {
-	int		cnt;
-	char	*tmp;
-
-	tmp = g_shell->line;
+	int (cnt) = 0;
+	char *(tmp) = g_shell->line;
 	while (*g_shell->line)
 	{
 		space_skip();
@@ -82,13 +97,10 @@ int	lexer(void)
 			}
 		}
 		cnt = token_compr();
-		if (cnt > 0)
-			lexur(cnt);
-		else if (cnt == -1)
+		if (lexer_cnt(cnt, 1) == 0)
 			return (0);
 		cnt = text_cmpr();
-		if (cnt > 0)
-			lexur(cnt);
+		lexer_cnt(cnt, 2);
 	}
 	free(tmp);
 	return (1);

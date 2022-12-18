@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:51:41 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 19:53:01 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 17:17:46 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	other_pipe_child(int i, int **fd)
 		}
 		i++;
 	}
-	usleep(5500);
+	usleep(5500);//
 	wr_close_pipe(fd);
 	wait(NULL);
 }

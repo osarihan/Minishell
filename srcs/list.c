@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:15:02 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:11:13 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,14 @@ void	ft_dstry_node(int c)
 		tmp->next = NULL;
 }
 
-void	ft_lstremover(t_list *list)
+void	ft_lstremover(t_list *list, int i)
 {
-	char	*tmp;
-	char	*tmp2;
-	char	*content;
-	t_list	*tmplst;
-
-	int (i) = 1;
+	char *(tmp) = NULL;
+	char *(tmp2) = NULL;
 	int (c) = 1;
-	content = list_data(list, 1);
-	while (content)
+	t_list *(tmplst) = NULL;
+	char *(content);
+	while (list_data(list, i))
 	{
 		content = list_data(list, i);
 		tmplst = g_shell->asd->next;
