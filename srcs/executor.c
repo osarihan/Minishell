@@ -48,9 +48,9 @@ void	run_cmd_with_d_redirect(void)
 		else if (g_shell->dr_red)
 		{
 			if (ft_strcmp(g_shell->arg->next->content, ">>"))
-				double_right_redirect(1, 0);
+				double_right_redirect(1, ft_redirect_cntr());
 			else
-				double_right_redirect(2, 0);
+				double_right_redirect(2, ft_redirect_cntr());
 		}
 		run_cmd(g_shell->arg);
 		exit(0);
@@ -81,9 +81,9 @@ void	run_cmd_with_redirect(void)
 		else if (g_shell->l_red)
 		{
 			if (ft_strcmp(g_shell->arg->next->content, "<"))
-				left_redirect(1, 0);
+				left_redirect(1, ft_redirect_cntr());
 			else
-				left_redirect(2, 0);
+				left_redirect(2, ft_redirect_cntr());
 		}
 		run_cmd(g_shell->arg);
 		exit(0);
@@ -102,7 +102,7 @@ void	executor(void)
 	status = pipe_status();
 	if (status)
 		run_cmd_with_pipe();
-	system("leaks minishell");
+	//("leaks minishell");
 	if (!status)
 	{
 		if (g_shell->r_red || g_shell->l_red)
