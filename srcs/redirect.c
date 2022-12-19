@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:55:42 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 18:06:43 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/19 17:46:12 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ int	which_red(char *content)
 	return (0);
 }
 
-void	redirect_decider(int stat, int index)
+void	redirect_decider(int stat, int index, int r_c)
 {
+	printf ("%d\n", r_c);
 	if (stat == 1)
-		right_redirect(index);
+		right_redirect(index, r_c);
 	else if (stat == 2)
-		double_right_redirect(index);
+		double_right_redirect(index, r_c);
 	else if (stat == 3)
-		left_redirect(index);
+		left_redirect(index, r_c);
 	else if (stat == 4)
 		run_heredoc(index);
 }

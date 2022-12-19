@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:59:35 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:59:36 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:14:30 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	run_cmd(t_list *list)
 {
 	if (!ft_strcmp(list->content, "CD"))
 		to_lower(list, list->content);
-	if (ft_strcmp(list->content, "cd"))
+	if (ft_strcmp(list->content, "cd")) // leak
 		ft_cd(list);
 	else if (ft_strcmp(list->content, "export"))
 		ft_export(list);
@@ -28,7 +28,7 @@ void	run_cmd(t_list *list)
 		ft_pwd();
 	else if (ft_strcmp(list->content, "env"))
 		ft_env();
-	else if (ft_strcmp(list->content, "exit"))
+	else if (ft_strcmp(list->content, "exit")) //leak
 		ft_exit(list);
 	else
 		other_cmnds(list_to_2d(list));

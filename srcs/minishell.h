@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/18 17:53:29 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:08:41 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,15 @@ void	reset_stdin(void);
 void	get_name(void);
 void	to_lower(t_list *list, char *cmd);
 //redirect
-void	right_redirect(int index);
-void	double_right_redirect(int index);
-void	left_redirect(int index);
+void	right_redirect(int index, int r_c);
+void	double_right_redirect(int index, int r_c);
+void	left_redirect(int index, int r_c);
 int		redirect_check(void);
 int		which_red(char *content);
-void	redirect_decider(int stat, int index);
 void	cut_redirect(int index);
+void	redirect_decider(int stat, int index, int r_c);
+void	run_cmd_with_redirect(void);
+int		ft_redirect_cntr(void);
 //heredoc
 void	heredoc_prompt(int index);
 void	run_heredoc(int i);
@@ -137,6 +139,7 @@ void	heredoc(void);
 int		heredoc_check(void);
 int		heredoc_cnt(void);
 int		heredoc_finder(void);
+//free
 void	lst_free(void);
-void	lst_free2(t_list *list);
+void	ft_free_fd(int **fd);
 #endif

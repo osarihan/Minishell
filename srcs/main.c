@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/18 17:28:57 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/19 18:13:19 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,9 @@ int	main(int argc, char **argv, char **env)
 		// 	//printf("argsLAST:::::%s\n", //iter->content);
 		// 	iter = iter->next;
 		// }
-		//system("leaks minishell");
 		executor();
 		lst_free();
-		// t_list *iter;
-		// iter = g_shell->iter;
-		// while (iter != NULL)
-		// {
-		// 	printf("argsLAST:::::%s\n", iter->content);
-		// 	iter = iter->next;
-		// }
+		//system("leaks minishell");
 	}
 	return (1);
 }

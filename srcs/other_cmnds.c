@@ -6,13 +6,13 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:48:46 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:50:08 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/19 16:37:47 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**list_to_2d(t_list *list)
+char	** list_to_2d(t_list *list)
 {
 	t_list	*iter;
 	char	**str;
