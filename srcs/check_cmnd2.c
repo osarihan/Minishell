@@ -37,24 +37,24 @@ void	stat_decider(int stat, int index)
 	t_list *(iter) = g_shell->arg;
 	if (ft_strcmp(list_data(g_shell->arg, index), ">") || \
 		ft_strcmp(list_data(g_shell->arg, index), ">>") || \
-			ft_strcmp(list_data(g_shell->arg, index ), "<") || \
-			ft_strcmp(list_data(g_shell->arg, index), "<<"))
+			ft_strcmp(list_data(g_shell->arg, index), "<") || \
+				ft_strcmp(list_data(g_shell->arg, index), "<<"))
+	{
+		while (!ft_strcmp(list_data(iter, index), "|"))
 		{
-			while (!ft_strcmp(list_data(iter, index), "|"))
+			if (ft_strcmp(list_data(iter, index), ">") || \
+				ft_strcmp(list_data(iter, index), ">>") || \
+					ft_strcmp(list_data(iter, index), "<") || \
+						ft_strcmp(list_data(iter, index), "<<"))
 			{
-				if (ft_strcmp(list_data(iter, index), ">") || \
-					ft_strcmp(list_data(iter, index), ">>") || \
-						ft_strcmp(list_data(iter, index), "<") || \
-							ft_strcmp(list_data(iter, index), "<<"))
-				{
-					redc++;
-					index++;
-				}
-				else
-					index++;
+				redc++;
+				index++;
 			}
-		redirect_decider(stat, f_index, redc - 1);
+			else
+				index++;
 		}
+		redirect_decider(stat, f_index, redc - 1);
+	}
 	else
 		redirect_decider(stat, f_index - 1, redc - 1);
 }

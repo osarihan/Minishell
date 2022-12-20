@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:35:11 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 18:14:29 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:26:25 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ char	*check_env(char *desired_env)
 	int		i;
 
 	i = 0;
-	if (!g_shell->asd)
-		ft_fill();
 	l_tmp = g_shell->asd;
 	while (l_tmp != NULL)
 	{

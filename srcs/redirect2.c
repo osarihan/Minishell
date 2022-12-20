@@ -14,7 +14,8 @@
 
 int	ft_redirect_cntr(void)
 {
-	t_list *iter;
+	t_list	*iter;
+
 	int (redc) = 0;
 	int (index) = 0;
 	iter = g_shell->arg;

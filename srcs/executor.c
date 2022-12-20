@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -43,7 +42,7 @@ void	run_cmd_with_d_redirect(void)
 			if (ft_strcmp(g_shell->arg->next->content, "<<"))
 				run_heredoc(1);
 			else
-				run_heredoc(2); // SAYDIR
+				run_heredoc(2);
 		}
 		else if (g_shell->dr_red)
 		{
@@ -102,7 +101,6 @@ void	executor(void)
 	status = pipe_status();
 	if (status)
 		run_cmd_with_pipe();
-	//("leaks minishell");
 	if (!status)
 	{
 		if (g_shell->r_red || g_shell->l_red)

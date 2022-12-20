@@ -41,20 +41,28 @@ void	create_pipe(int **fd)
 	}
 }
 
+void	go_pipe(void)
+{
+	t_list	*iter;
+
+	while (!ft_strcmp(g_shell->arg->content, "|") \
+		&& g_shell->arg != NULL)
+	{
+		iter = g_shell->arg;
+		free(g_shell->arg->content);
+		g_shell->arg = g_shell->arg->next;
+		free(iter);
+	}
+}
+
 void	other_pipe_child(int i, int **fd)
 {
 	t_list	*iter;
+
 	i++;
 	while (i < g_shell->pipe + 1)
 	{
-		while (!ft_strcmp(g_shell->arg->content, "|") \
-			&& g_shell->arg != NULL)
-		{
-			iter = g_shell->arg;
-			free(g_shell->arg->content);
-			g_shell->arg = g_shell->arg->next;
-			free(iter);
-		}
+		go_pipe();
 		if (ft_strcmp(g_shell->arg->content, "|"))
 		{
 			iter = g_shell->arg;
@@ -70,7 +78,6 @@ void	other_pipe_child(int i, int **fd)
 		}
 		i++;
 	}
-	usleep(5500);////////
 	wr_close_pipe(fd);
 	wait(NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:30:38 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/19 18:05:02 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:26:21 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ int	ft_env(void)
 	t_list	*tmp;
 	t_list	*iter;
 
-	if (!g_shell->ctrl)
-	{
-		ft_fill();
-		g_shell->ctrl++;
-	}
 	tmp = g_shell->asd;
 	while (tmp != NULL)
 	{
@@ -36,8 +31,7 @@ int	ft_env(void)
 void	ft_pwd(void)
 {
 	char	*pwd;
-	if (!g_shell->asd)
-		ft_fill();
+
 	pwd = check_env(ft_strdup("PWD"));
 	printf("%s\n", pwd);
 	free(pwd);

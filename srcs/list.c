@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:15:02 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/18 16:11:13 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 18:05:59 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ int	lstcmp(char *str)
 
 void	ft_dstry_node(int c)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
 	t_list	*cleaner;
 
-	tmp = g_shell->asd;
-	tmp2 = g_shell->asd;
+	t_list *(tmp) = g_shell->asd;
+	t_list *(tmp2) = g_shell->asd;
 	while (c > 1 && tmp != NULL)
 	{
 		if (tmp->next != NULL)
@@ -45,8 +43,11 @@ void	ft_dstry_node(int c)
 		c--;
 	}
 	cleaner = tmp->next;
-	//free(cleaner->content);
-	//free(cleaner);
+	if (g_shell->cd == 0)
+	{
+		free(cleaner->content);
+		free(cleaner);
+	}
 	if (tmp->next->next != NULL)
 		tmp2 = tmp->next->next;
 	else

@@ -12,6 +12,20 @@
 
 #include "minishell.h"
 
+void	space_skip(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_shell->line[i] <= 32 && g_shell->line[i + 1] != '\0')
+		g_shell->line++;
+	if (g_shell->line[i] <= 32 && g_shell->line[i + 1] == '\0')
+	{
+		*g_shell->line = '\0';
+		return ;
+	}
+}
+
 int	token_compr(void)
 {
 	int (i) = 0;
@@ -44,6 +58,7 @@ int	text_returner_out_of_ideas(int x, int i)
 {
 	if (x == 1)
 	{
+		i++;
 		while (g_shell->line[i] != 34 && g_shell->line[i] != '\0')
 			i++;
 		while (g_shell->line[i] != ' ' && g_shell->line[i] != '\0')
@@ -71,11 +86,13 @@ int	text_cmpr(void)
 	{
 		if (g_shell->line[i] == 34)
 		{
-			text_returner_out_of_ideas(1, i);
+			i = text_returner_out_of_ideas(1, i);
+			return (i);
 		}
 		if (g_shell->line[i] == 39)
 		{
-			text_returner_out_of_ideas(2, i);
+			i = text_returner_out_of_ideas(2, i);
+			return (i);
 		}
 		i++;
 	}
@@ -89,20 +106,17 @@ void	cmnd_cut(int x)
 
 	i = 0;
 	tmp = malloc(sizeof(char *) * x);
-	while (*g_shell->line > 32)
+	while (x > 0)
 	{
 		if (*g_shell->line == 34 || *g_shell->line == 39)
 			g_shell->line++;
-		else if (*g_shell->line != ' ' && *g_shell->line != '\0' \
-				&& *g_shell->line != '>' && *g_shell->line != '<' \
-					&& *g_shell->line != '|')
+		else
 		{
 			tmp[i] = *g_shell->line;
 			g_shell->line++;
 			i++;
 		}
-		else
-			break ;
+		x--;
 	}
 	tmp[i] = '\0';
 	if (tmp[0] != '\0')

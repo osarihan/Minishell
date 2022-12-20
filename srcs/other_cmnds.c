@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	** list_to_2d(t_list *list)
+char	**list_to_2d(t_list *list)
 {
 	t_list	*iter;
 	char	**str;

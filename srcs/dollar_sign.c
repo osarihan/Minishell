@@ -45,6 +45,7 @@ char	*question_mark(int i, int j, char *tmp, char *str)
 	}
 	tmp[i] = '\0';
 	free(ex_status);
+	free(str);
 	return (tmp);
 }
 

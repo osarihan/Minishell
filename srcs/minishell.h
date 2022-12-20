@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/19 18:08:41 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:50:55 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_shell
 	int		dr_red;
 	int		dl_red;
 	int		heredoc_cnt;
+	int		cd;
 }	t_shell;
 
 t_shell	*g_shell;

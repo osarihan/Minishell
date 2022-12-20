@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:34:53 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 18:52:55 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:44:35 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	ft_export(t_list *list)
 		content = content1;
 	else
 		content = NULL;
-	if (!g_shell->ctrl++)
-		ft_fill();
 	if (content == NULL)
 		printf_alph();
 	exporter(content, i, list);

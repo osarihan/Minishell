@@ -6,13 +6,11 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/19 18:13:19 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:52:12 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//rl_replace_line("", 0); // eger komut satirina yazilan karakterler varsa ve ctrl-C yapilirsa yazilan karakterleri siler.
 
 void	sighandler(int signum)
 {
@@ -20,7 +18,7 @@ void	sighandler(int signum)
 	{
 		printf("\n");
 		rl_on_new_line();
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -48,6 +46,8 @@ void	assigment(char **env)
 	printf("|----------------|Minishell|-----------------|\n");
 	g_shell = malloc(sizeof(t_shell));
 	g_shell->environ = env;
+	g_shell->cd = 0;
+	ft_fill();
 	g_shell->ctrl = 0;
 	g_shell->saved_stdout = dup(1);
 	g_shell->saved_stdin = dup(0);
@@ -56,8 +56,8 @@ void	assigment(char **env)
 	g_shell->r_red = 0;
 	g_shell->l_red = 0;
 	get_name();
-	signal(SIGINT, sighandler); // ctrl-C
-	signal(SIGQUIT, SIG_IGN); // ctrl-\ //
+	signal(SIGINT, sighandler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -73,16 +73,8 @@ int	main(int argc, char **argv, char **env)
 		if (!lexer())
 			continue ;
 		expander();
-		//t_list *iter;
-		// iter = g_shell->arg;
-		// while (iter != NULL)
-		// {
-		// 	//printf("argsLAST:::::%s\n", //iter->content);
-		// 	iter = iter->next;
-		// }
 		executor();
 		lst_free();
-		//system("leaks minishell");
 	}
 	return (1);
 }

@@ -12,17 +12,31 @@
 
 #include "minishell.h"
 
-void	space_skip(void)
+int	cmnd_quote_cnt(int i)
 {
-	int	i;
-
-	i = 0;
-	while (g_shell->line[i] <= 32 && g_shell->line[i + 1] != '\0')
-		g_shell->line++;
-	if (g_shell->line[i] <= 32 && g_shell->line[i + 1] == '\0')
+	if (g_shell->line[i] == 34)
 	{
-		*g_shell->line = '\0';
-		return ;
+		i++;
+		while (g_shell->line[i] != 34 && g_shell->line[i] != '\0')
+		{
+			i++;
+		}
+		i++;
+		while (g_shell->line[i] > 32 && g_shell->line[i] != '\0')
+		{
+			i++;
+		}
+		return (i);
+	}
+	else if (g_shell->line[i] == 39)
+	{
+		i++;
+		while (g_shell->line[i] != 39 && g_shell->line[i] != '\0')
+			i++;
+		i++;
+		while (g_shell->line[i] > 32 && g_shell->line[i] != '\0')
+			i++;
+		return (i);
 	}
 }
 
@@ -38,6 +52,11 @@ int	cmnd_take(void)
 			(g_shell->line[i] != '>' && g_shell->line[i] != '<' \
 				&& g_shell->line[i] != '|'))
 	{
+		if (g_shell->line[i] == 34 || g_shell->line[i] == 39)
+		{
+			i = cmnd_quote_cnt(i);
+			return (i);
+		}
 		i++;
 	}
 	return (i);
