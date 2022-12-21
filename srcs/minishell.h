@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/20 17:50:55 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:03:35 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_shell
 	int		dl_red;
 	int		heredoc_cnt;
 	int		cd;
+	int		heredoc_quit;
 }	t_shell;
 
 t_shell	*g_shell;
@@ -132,6 +133,7 @@ void	cut_redirect(int index);
 void	redirect_decider(int stat, int index, int r_c);
 void	run_cmd_with_redirect(void);
 int		ft_redirect_cntr(void);
+void	ft_dstry_node_for_red(t_list *iter, int c);
 //heredoc
 void	heredoc_prompt(int index);
 void	run_heredoc(int i);
@@ -140,7 +142,10 @@ void	heredoc(void);
 int		heredoc_check(void);
 int		heredoc_cnt(void);
 int		heredoc_finder(void);
+void	sighandler_heredoc(int signum);
+void	heredoc_exit(int fd, char *eof, char *to_write);
 //free
 void	lst_free(void);
 void	ft_free_fd(int **fd);
+void	ft_dstry_node31(int c);
 #endif

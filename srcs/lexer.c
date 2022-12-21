@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:08:55 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/18 15:57:21 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 12:08:54 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	cmnd_quote_cnt(int i)
 			i++;
 		return (i);
 	}
+	return (0);
 }
 
 int	cmnd_take(void)

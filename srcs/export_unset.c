@@ -6,22 +6,35 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:34:53 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/20 17:44:35 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:36:25 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_fill(void)
+void	ft_dstry_node31(int c)
 {
-	int (i) = 0;
-	g_shell->asd = NULL;
-	while (g_shell->environ[i] != NULL)
+	t_list	*cleaner;
+
+	t_list *(tmp) = g_shell->asd;
+	t_list *(tmp2) = g_shell->asd;
+	while (c > 1 && tmp != NULL)
 	{
-		ft_lstadd_back(&g_shell->asd, ft_lstnew(g_shell->environ[i]));
-		i++;
+		if (tmp->next != NULL)
+			tmp = tmp->next;
+		c--;
 	}
-	ultimate_alpha_index_finder();
+	cleaner = tmp->next;
+	free(cleaner->content);
+	free(cleaner);
+	if (tmp->next->next != NULL)
+		tmp2 = tmp->next->next;
+	else
+		tmp2 = NULL;
+	if (tmp2 != NULL)
+		tmp->next = tmp2;
+	else
+		tmp->next = NULL;
 }
 
 void	exporter(char *content, int i, t_list *list)
@@ -36,13 +49,14 @@ void	exporter(char *content, int i, t_list *list)
 			ft_lstadd_back(&g_shell->declare, ft_lstnew(ft_strdup(content)));
 		else
 		{
-			ft_dstry_node(g_shell->cmmp);
+			ft_dstry_node31(g_shell->cmmp);
 			if (ft_strchr(content, '='))
 				ft_lstadd_back(&g_shell->asd, ft_lstnew(ft_strdup(content)));
 		}
 		i++;
 		content = list_data(list, i);
 	}
+	free(content);
 }
 
 void	ft_export(t_list *list)

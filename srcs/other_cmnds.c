@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:48:46 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/19 16:37:47 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:37:12 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ char	**list_to_2d(t_list *list)
 
 void	exec(char *path, char **arg)
 {
-	if (execve(path, arg, g_shell->environ) == -1)
+	char	**env;
+
+	env = list_to_2d(g_shell->asd);
+	if (execve(path, arg, env) == -1)
 	{
 		reset_stdout();
 		printf("%s: command not found.\n", arg[0]);
@@ -48,7 +51,9 @@ char	*f_path(char **arg)
 	char	*path_tmp;
 
 	int (i) = 0;
-	path_tmp = getenv("PATH");
+	path_tmp = check_env(ft_strdup("PATH"));
+	if (!path_tmp)
+		printf("%s: No such file or directory\n", arg[0]);
 	if (arg[0][0] == '.')
 		path_tmp = ft_strjoin(path_tmp, ":./");
 	else if (access(arg[0], F_OK) == 0)

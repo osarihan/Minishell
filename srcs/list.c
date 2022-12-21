@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:15:02 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/20 18:05:59 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:03:58 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_dstry_node(int c)
 		tmp->next = tmp2;
 	else
 		tmp->next = NULL;
+	free(cleaner);
 }
 
 void	ft_lstremover(t_list *list, int i)
@@ -76,7 +77,7 @@ void	ft_lstremover(t_list *list, int i)
 				break ;
 			if (ft_strcmp2(tmp, content))
 			{
-				ft_dstry_node(c);
+				ft_dstry_node31(c);
 				break ;
 			}
 			tmplst = tmplst->next;

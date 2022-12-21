@@ -6,11 +6,20 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:55:42 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/19 17:46:12 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:57:19 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	sighandler_heredoc(int signum)
+{
+	if (signum == SIGINT)
+	{
+		open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		exit(0);
+	}
+}
 
 int	redirect_check(void)
 {
@@ -68,6 +77,6 @@ void	redirect_decider(int stat, int index, int r_c)
 
 void	cut_redirect(int index)
 {
-	ft_dstry_node2(g_shell->arg, index);
-	ft_dstry_node2(g_shell->arg, index);
+	ft_dstry_node_for_red(g_shell->arg, index);
+	ft_dstry_node_for_red(g_shell->arg, index);
 }

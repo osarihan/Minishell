@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/20 17:52:12 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:42:09 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sighandler(int signum)
 	{
 		printf("\n");
 		rl_on_new_line();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
@@ -55,6 +55,7 @@ void	assigment(char **env)
 	g_shell->dr_red = 0;
 	g_shell->r_red = 0;
 	g_shell->l_red = 0;
+	g_shell->heredoc_quit = 0;
 	get_name();
 	signal(SIGINT, sighandler);
 	signal(SIGQUIT, SIG_IGN);
@@ -74,7 +75,9 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		expander();
 		executor();
+		g_shell->heredoc_quit = 0;
 		lst_free();
+		system("leaks minishell");
 	}
 	return (1);
 }
