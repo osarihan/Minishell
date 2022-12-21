@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/21 17:42:09 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:48:40 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	main(int argc, char **argv, char **env)
 		executor();
 		g_shell->heredoc_quit = 0;
 		lst_free();
-		system("leaks minishell");
 	}
 	return (1);
 }

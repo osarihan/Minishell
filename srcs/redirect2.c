@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:06:51 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/19 17:52:45 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/21 18:02:57 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ void	left_redirect(int index, int r_c)
 	cut_redirect(index);
 	fd = open(g_shell->to_open, O_RDWR, 0777);
 	if (fd < 0)
-		return ;
+	{
+		printf("dosya yok\n") ;
+		exit(0);
+	}
 	dup2(fd, 0);
 	close(fd);
 }
