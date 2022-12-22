@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:34:53 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/22 12:33:53 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:56:56 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ void	ultimate_alpha_index_finder(void)
 	t_list	*list_iter;
 	t_list	*arg_iter;
 	char	*str;
-	char	*str2;
 
+	char *(str2) = NULL;
 	int (i) = 0;
 	int (j) = 0;
 	arg_iter = g_shell->asd->next;

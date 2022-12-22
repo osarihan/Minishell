@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:11:32 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 17:45:14 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:49:41 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	expand(int index)
 	char *(tmp) = ft_calloc(10000, sizeof(char));
 	char *(content) = list_data(g_shell->arg, index);
 	int (i) = 0;
-	int (j) = 0;
+	size_t (j) = 0;
 	while (content[i])
 	{
 		if (content[i] == '$')

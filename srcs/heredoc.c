@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:47:18 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 16:12:01 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:51:39 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	heredoc_prompt(int index)
 {
 	char	*to_write;
-	char	*tmp;
 	char	*eof;
-	char	*path;
 	int		fd;
 
 	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
@@ -43,9 +41,6 @@ void	heredoc_prompt(int index)
 void	run_heredoc(int i)
 {
 	int		fd;
-	int		pid;
-	char	*temp;
-	char	*path;
 
 	fd = open(".heredoc", O_RDWR, 0777);
 	if (fd < 0)
@@ -59,8 +54,15 @@ void	run_heredoc(int i)
 //NU3NLL9F
 void	cut_heredoc(int index)
 {
+	int (i) = g_shell->heredoc_cnt;
 	ft_dstry_node2(g_shell->arg, index);
 	ft_dstry_node2(g_shell->arg, index);
+	while (i > 1)
+	{
+		ft_dstry_node2(g_shell->arg, index);
+		ft_dstry_node2(g_shell->arg, index);
+		i--;
+	}
 }
 
 void	heredoc(void)
@@ -69,7 +71,6 @@ void	heredoc(void)
 	int		index;
 	int		pid;
 
-	int (i) = 0;
 	index = heredoc_finder();
 	iter = g_shell->arg;
 	pid = fork();
@@ -80,17 +81,15 @@ void	heredoc(void)
 
 int	heredoc_check(void)
 {
-	int (i) = 0;
-	while (g_shell->arg)
+	t_list	*iter;
+
+	iter = g_shell->arg;
+	while (!lstcmp2(iter, "<<"))
 	{
-		if (!lstcmp2(g_shell->arg, "<<"))
-		{
-			g_shell->heredoc_cnt = heredoc_cnt();
-			heredoc();
-			return (1);
-		}
-		else
-			return (0);
+		g_shell->heredoc_cnt = heredoc_cnt();
+		heredoc();
+		if (iter->next->next != NULL)
+			iter = iter->next->next;
 	}
-	return (0);
+	return (1);
 }

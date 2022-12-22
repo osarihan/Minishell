@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp_all.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:42:56 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/16 16:44:17 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:50:35 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	ft_strcmp2(char *asd, char *sda)
 int	ft_strcmp3(char *asd, char *sda)
 {
 	int		i;
-	size_t	len;
 
 	i = 0;
 	while (asd[i] != '\0')

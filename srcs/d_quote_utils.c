@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_quote_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:35:11 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/20 17:26:25 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:48:48 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*check_env(char *desired_env)
 {
 	t_list	*l_tmp;
 	char	*env_name;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	l_tmp = g_shell->asd;

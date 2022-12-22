@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_quote.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 13:45:59 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/18 15:38:08 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:56:40 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	d_quote(int index)
 {
 	char	*content;
 	char	*tmp;
-	char	*rtn_dollar;
 
+	char *(rtn_dollar) = NULL;
 	char *(itr_tmp) = NULL;
 	tmp = malloc(10000);
 	ft_bzero(tmp, 10000);

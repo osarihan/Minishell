@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:15:02 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 17:03:58 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:51:51 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	lstcmp(char *str)
 {
 	t_list	*temp;
-	t_list	*temp2;
 
 	g_shell->cmmp = 1;
 	temp = g_shell->asd;
@@ -62,7 +61,6 @@ void	ft_dstry_node(int c)
 void	ft_lstremover(t_list *list, int i)
 {
 	char *(tmp) = NULL;
-	char *(tmp2) = NULL;
 	int (c) = 1;
 	t_list *(tmplst) = NULL;
 	char *(content);

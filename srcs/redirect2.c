@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:06:51 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/22 13:27:26 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:53:37 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_redirect_cntr(void)
 void	right_redirect(int index, int r_c)
 {
 	int	fd;
-	int	pid;
 
 	while (r_c > 0)
 	{
@@ -61,7 +60,6 @@ void	right_redirect(int index, int r_c)
 void	left_redirect(int index, int r_c)
 {
 	int	fd;
-	int	pid;
 
 	while (r_c > 0)
 	{
@@ -86,7 +84,6 @@ void	left_redirect(int index, int r_c)
 void	double_right_redirect(int index, int r_c)
 {
 	int	fd;
-	int	pid;
 
 	while (r_c > 0)
 	{

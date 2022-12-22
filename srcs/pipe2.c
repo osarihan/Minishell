@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:51:41 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/22 13:32:19 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:53:27 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ void	other_pipe_child(int i, int **fd)
 
 void	pipe_f(void)
 {
-	int	len;
+	int	pid;
 	int	**fd;
-	int	status;
 
 	int (i) = 0;
 	fd = malloc(sizeof(int *) * g_shell->pipe + 1);
@@ -95,7 +94,8 @@ void	pipe_f(void)
 		fd[i++] = malloc(sizeof(int) * 2);
 	create_pipe(fd);
 	i = 0;
-	if (!fork())
+	pid = fork();
+	if (pid == 0)
 	{
 		check_cmnd2(fd, i);
 		exit(0);
@@ -103,6 +103,7 @@ void	pipe_f(void)
 	else
 	{
 		wait(NULL);
+		waitpid(pid, NULL, 0);
 		other_pipe_child(i, fd);
 	}
 	ft_free_fd(fd);

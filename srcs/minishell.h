@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/22 13:17:42 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:52:49 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		routine(void);
 void	assigment(char **env);
 //signal
 void	sighandler(int signum);
-void	ctrl_d(char *line);
+void	ctrl_d(void);
 //ft_strcmp
 int		ft_strcmp(char *asd, char *sda);
 int		ft_strcmp2(char *asd, char *sda);

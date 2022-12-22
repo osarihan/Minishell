@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:16:09 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 16:12:43 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 15:51:57 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	heredoc_exit(int fd, char *eof, char *to_write)
 int	lstcmp2(t_list *iter, char *str)
 {
 	t_list	*temp;
-	t_list	*temp2;
 
 	temp = iter;
 	while (temp != NULL)
