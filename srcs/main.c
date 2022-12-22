@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:25:40 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/21 17:48:40 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 13:47:14 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	routine(void)
 		ctrl_d(g_shell->line);
 	add_history(g_shell->line);
 	if (g_shell->line[0] == 0)
+		return (0);
+	if (!q_check(g_shell->line))
 		return (0);
 	return (1);
 }
@@ -75,7 +77,6 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		expander();
 		executor();
-		g_shell->heredoc_quit = 0;
 		lst_free();
 	}
 	return (1);

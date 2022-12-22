@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:51:41 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/19 18:10:49 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 13:32:19 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	go_pipe(void)
 void	other_pipe_child(int i, int **fd)
 {
 	t_list	*iter;
+	int		pid;
 
-	i++;
-	while (i < g_shell->pipe + 1)
+	while (++i < g_shell->pipe + 1)
 	{
 		go_pipe();
 		if (ft_strcmp(g_shell->arg->content, "|"))
@@ -70,15 +70,16 @@ void	other_pipe_child(int i, int **fd)
 			g_shell->arg = g_shell->arg->next;
 			free(iter);
 		}
-		if (!fork())
+		pid = fork();
+		if (pid == 0)
 		{
 			dup2(fd[i - 1][0], STDIN_FILENO);
 			check_cmnd2(fd, i);
 			exit(0);
 		}
-		i++;
 	}
 	wr_close_pipe(fd);
+	waitpid(pid, NULL, 0);
 	wait(NULL);
 }
 

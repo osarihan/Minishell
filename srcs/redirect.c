@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:55:42 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 15:57:19 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 13:29:07 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	which_red(char *content)
 
 void	redirect_decider(int stat, int index, int r_c)
 {
-	printf ("%d\n", r_c);
 	if (stat == 1)
 		right_redirect(index, r_c);
 	else if (stat == 2)

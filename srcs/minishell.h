@@ -6,7 +6,7 @@
 /*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:24:56 by osarihan          #+#    #+#             */
-/*   Updated: 2022/12/21 17:03:35 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 13:17:42 by oozcan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	reset_stdout(void);
 void	reset_stdin(void);
 void	get_name(void);
 void	to_lower(t_list *list, char *cmd);
+int		q_check(char *str);
 //redirect
 void	right_redirect(int index, int r_c);
 void	double_right_redirect(int index, int r_c);
