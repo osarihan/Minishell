@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:12:05 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 17:36:48 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 12:45:46 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ void	ultimate_alpha_index_finder_declared(void)
 
 	int (i) = 0;
 	int (j) = 0;
-	arg_iter = g_shell->asd->next;
-	list_iter = g_shell->asd;
+	if (g_shell->declare == NULL)
+		return ;
+	arg_iter = g_shell->declare->next;
+	list_iter = g_shell->declare;
 	while (list_iter)
 	{
 		str = list_iter->content;
 		j = baby_index_finder_declared(i, arg_iter, str, str2);
 		list_iter->index = j;
 		list_iter = list_iter->next;
-		arg_iter = g_shell->asd;
+		arg_iter = g_shell->declare;
 		i = 0;
 		j = 0;
 	}
@@ -72,6 +74,8 @@ void	printf_alph_declared(void)
 	t_list	*list_iter;
 
 	int (i) = 0;
+	if (g_shell->declare == NULL)
+		return ;
 	list_iter = g_shell->declare;
 	while (list_iter != NULL)
 	{

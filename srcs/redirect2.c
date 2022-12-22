@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oozcan <oozcan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:06:51 by oozcan            #+#    #+#             */
-/*   Updated: 2022/12/21 18:02:57 by oozcan           ###   ########.fr       */
+/*   Updated: 2022/12/22 12:47:11 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	left_redirect(int index, int r_c)
 	fd = open(g_shell->to_open, O_RDWR, 0777);
 	if (fd < 0)
 	{
-		printf("dosya yok\n") ;
+		printf("dosya yok\n");
 		exit(0);
 	}
 	dup2(fd, 0);
